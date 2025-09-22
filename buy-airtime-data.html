@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#98ea6c",
+                        "surface": "#172111",
+                        "background-dark": "#0A140D",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+        }
+        html {
+            height: -webkit-fill-available;
+        }
+    </style>
+<style>
+        body {
+            min-height: 100dvh;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-white">
+<div class="flex flex-col h-screen">
+<header class="sticky top-0 z-10 bg-background-dark/80 backdrop-blur-sm">
+<div class="flex items-center p-4">
+<button class="p-2 -m-2">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="flex-1 text-lg font-bold text-center pr-8">Buy Airtime &amp; Data</h1>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto p-4 space-y-6">
+<section class="bg-surface p-4 rounded-xl flex items-center justify-between">
+<div>
+<p class="text-sm text-white/60">Your Balance</p>
+<p class="text-2xl font-bold">1,234.56 ♛</p>
+</div>
+<button 
+  class="flex items-center gap-2 text-primary font-bold" 
+  onclick="window.location.href='top-up.html'">
+  <span>Top up</span>
+  <span class="material-symbols-outlined">add_circle</span>
+</button>
+</section>
+<section>
+<h2 class="text-base font-bold text-white mb-3">Select country</h2>
+<div class="relative">
+<select class="w-full p-4 rounded-xl bg-surface border-2 border-transparent focus:border-primary focus:ring-0 text-white appearance-none">
+<option>South Africa</option>
+<option>Nigeria</option>
+<option>Kenya</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-white/70 pointer-events-none" style="text-shadow: none;">expand_more</span>
+</div>
+</section>
+<section>
+<h2 class="text-base font-bold text-white mb-3">Select network</h2>
+<div class="grid grid-cols-2 @sm:grid-cols-4 gap-3">
+<label class="flex items-center justify-center p-3 rounded-xl border border-surface bg-surface text-white has-[:checked]:bg-primary has-[:checked]:text-black has-[:checked]:border-primary cursor-pointer transition-all">
+<input checked="" class="sr-only" name="network" type="radio"/>
+<span class="text-sm font-medium">MTN</span>
+</label>
+<label class="flex items-center justify-center p-3 rounded-xl border border-surface bg-surface text-white has-[:checked]:bg-primary has-[:checked]:text-black has-[:checked]:border-primary cursor-pointer transition-all">
+<input class="sr-only" name="network" type="radio"/>
+<span class="text-sm font-medium">Vodacom</span>
+</label>
+<label class="flex items-center justify-center p-3 rounded-xl border border-surface bg-surface text-white has-[:checked]:bg-primary has-[:checked]:text-black has-[:checked]:border-primary cursor-pointer transition-all">
+<input class="sr-only" name="network" type="radio"/>
+<span class="text-sm font-medium">Cell C</span>
+</label>
+<label class="flex items-center justify-center p-3 rounded-xl border border-surface bg-surface text-white has-[:checked]:bg-primary has-[:checked]:text-black has-[:checked]:border-primary cursor-pointer transition-all">
+<input class="sr-only" name="network" type="radio"/>
+<span class="text-sm font-medium">Telkom</span>
+</label>
+</div>
+</section>
+<section>
+<h2 class="text-base font-bold text-white mb-3">Select airtime or data</h2>
+<div class="relative flex p-1 bg-surface rounded-xl">
+<label class="flex-1 text-center py-2 rounded-lg text-sm font-medium cursor-pointer has-[:checked]:bg-primary has-[:checked]:text-black text-white/60 transition-all">
+<input checked="" class="sr-only" name="product_type" type="radio" value="Airtime"/>
+            Airtime
+          </label>
+<label class="flex-1 text-center py-2 rounded-lg text-sm font-medium cursor-pointer has-[:checked]:bg-primary has-[:checked]:text-black text-white/60 transition-all">
+<input class="sr-only" name="product_type" type="radio" value="Data"/>
+            Data
+          </label>
+</div>
+</section>
+<section>
+<h2 class="text-base font-bold text-white mb-3">Choose amount</h2>
+<div class="grid grid-cols-3 @sm:grid-cols-4 gap-3">
+<label class="flex items-center justify-center p-3 rounded-xl border border-surface bg-surface text-white has-[:checked]:bg-primary has-[:checked]:text-black has-[:checked]:border-primary cursor-pointer transition-all">
+<input class="sr-only" name="amount" type="radio"/>
+<span class="text-sm font-medium">R10</span>
+</label>
+<label class="flex items-center justify-center p-3 rounded-xl border border-surface bg-surface text-white has-[:checked]:bg-primary has-[:checked]:text-black has-[:checked]:border-primary cursor-pointer transition-all">
+<input checked="" class="sr-only" name="amount" type="radio"/>
+<span class="text-sm font-medium">R20</span>
+</label>
+<label class="flex items-center justify-center p-3 rounded-xl border border-surface bg-surface text-white has-[:checked]:bg-primary has-[:checked]:text-black has-[:checked]:border-primary cursor-pointer transition-all">
+<input class="sr-only" name="amount" type="radio"/>
+<span class="text-sm font-medium">R50</span>
+</label>
+<label class="flex items-center justify-center p-3 rounded-xl border border-surface bg-surface text-white has-[:checked]:bg-primary has-[:checked]:text-black has-[:checked]:border-primary cursor-pointer transition-all">
+<input class="sr-only" name="amount" type="radio"/>
+<span class="text-sm font-medium">R100</span>
+</label>
+<label class="flex items-center justify-center p-3 rounded-xl border border-surface bg-surface text-white has-[:checked]:bg-primary has-[:checked]:text-black has-[:checked]:border-primary cursor-pointer transition-all">
+<input class="sr-only" name="amount" type="radio"/>
+<span class="text-sm font-medium">R200</span>
+</label>
+<label class="flex items-center justify-center p-3 rounded-xl border border-surface bg-surface text-white has-[:checked]:bg-primary has-[:checked]:text-black has-[:checked]:border-primary cursor-pointer transition-all">
+<input class="sr-only" name="amount" type="radio"/>
+<span class="text-sm font-medium">R500</span>
+</label>
+</div>
+</section>
+<div class="sticky bottom-0 bg-background-dark/80 backdrop-blur-sm p-4">
+<button 
+  class="w-full flex items-center justify-center h-14 px-6 rounded-xl bg-primary text-black text-base font-bold"
+  onclick="window.location.href='select-recipient.html'">
+  Pay 20.00 ♛
+</button>
+</div>
+</main>
+</div>
+
+</body></html>

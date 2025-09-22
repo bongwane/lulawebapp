@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#98ea6c",
+            "background-light": "#f7f8f6",
+            "background-dark": "#0A140D",
+            "surface-dark": "#172111",
+          },
+          fontFamily: {
+            display: ["Manrope"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            full: "9999px"
+          },
+        },
+      },
+    };
+  </script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-background-dark dark:text-background-light">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<header class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-2 backdrop-blur-sm">
+<div class="flex items-center gap-3">
+<img alt="Nikiwe's profile picture" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGmTncQ5C-4tczebiMVWayjgf4KZ5MD3y_y3zlxZtcdfmbtlfP5ZoRrOlhc1csBOBsj0sFR5z-u6GKCM8n4H_hltW_z4RnGv25wxq4BDgtHeMutjDlLEGhjq3PUuCKbDLiuIR972Fu38gabkVGUsnAAQ_4x31zQDQ2krWtM7IAPtnQqxHhDqFgVdb3VwkZMzAn0sXHAu0Qw_7PKXKtzM_woFNVVZhERJzW1RWHsh7bVIPusJTMK9L0WCaKFXeVZiQ-Q6T3ksG6FV7S"/>
+<p class="font-bold text-background-light">Hi, Nikiwe</p>
+</div>
+<div class="flex items-center gap-2">
+<button onclick="location.href='notifications.html'"  class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-background-light">
+<span class="material-symbols-outlined text-2xl"> notifications </span>
+</button>
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-background-light">
+<span class="material-symbols-outlined text-2xl"> search </span>
+</button>
+</div>
+</header>
+<main class="flex-grow px-4 pb-24 pt-20">
+<div class="bg-surface-dark rounded-xl p-4 my-4">
+<div class="flex items-center justify-between">
+<p class="text-sm text-background-light/60">Total balance</p>
+<div class="flex items-center gap-1 text-sm font-medium text-background-light">
+<span>MANDLA</span>
+<span class="material-symbols-outlined text-base"> expand_more </span>
+</div>
+</div>
+<p class="text-3xl font-bold text-background-light mt-1 mb-6">1,007.77 ♛</p>
+<div class="grid grid-cols-4 gap-2 text-center">
+<a class="flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors hover:bg-white/10" href="top-up.html">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-background-dark">
+<span class="material-symbols-outlined"> add </span>
+</div>
+<span class="text-xs font-medium text-background-light">Top up</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors hover:bg-white/10" href="send-money.html">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-background-dark">
+<span class="material-symbols-outlined"> arrow_outward </span>
+</div>
+<span class="text-xs font-medium text-background-light">Send</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors hover:bg-white/10" href="store.html">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-background-dark">
+<span class="material-symbols-outlined"> store </span>
+</div>
+<span class="text-xs font-medium text-background-light">Store</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors hover:bg-white/10" href="track.html">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-background-dark">
+<span class="material-symbols-outlined"> local_shipping </span>
+</div>
+<span class="text-xs font-medium text-background-light">Tracking</span>
+</a>
+</div>
+</div>
+<div class="flex items-center justify-between pt-5 pb-3">
+<h3 class="text-lg font-bold text-background-light">Recent Transactions</h3>
+<a class="text-sm font-medium text-primary" href="#">View all</a>
+</div>
+<div class="space-y-2">
+<div class="flex items-center gap-4 py-2 min-h-[64px]">
+<img alt="David Adebayo's profile picture" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArOiwKoHXg6iRf7NzBLMGg7yyq5an9A3ckRE_DTeguQKyZiRe7S0zBIh2Dv18pzSy4rFvU22SzLEdLb5WcXUSkMgoAupcwFs7edqRcCJzRVBLZrGd0v5wMhidbiIXU_CxJWHMl0Qvr8DjW6yol1IJfTlBonk-c-j4a-9dL5GGpWPS0q3tXCZJPR-5_alcuvS9xsam6RxUzaNJXN90xSohdB5lIkEzr85US5T0gpM-S1wmurF4J8n1e1zhgjKHDO5ExJnURIYqiXyxE"/>
+<div class="flex-grow">
+<p class="font-medium text-background-light">Payment from Zibusio Nyoni</p>
+<p class="text-sm text-background-light/60">July 20, 2024</p>
+</div>
+<p class="shrink-0 font-medium text-primary">+150.00 ♛</p>
+</div>
+<div class="flex items-center gap-4 py-2 min-h-[64px]">
+<img alt="Amara Okoro's profile picture" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiffhBMsAm00NOCQQbuKrfcsukmBN8Jbwd5-jDwQwFzpCTfNRff_3p-Sj-lrlGyDgFr0sZjoUb-Q842ndkrhkfj9IYhs1NqTgHXMmbrpx1e2yF5DsaOv84HChtckcHHPBiuG1wwzLmv7LKQJ2ZlL93ab6vDXiXAC8TGizowGnvH1SVGe28ZS56NMVTrQAG4Zhmf7cMVZAq-CE7KTTFSBLwrr7rGgbE0aMqkuqtbti-yRHwkTbu_SjnqBEGcjmzV5SabWjovZrf6bR5"/>
+<div class="flex-grow">
+<p class="font-medium text-background-light">Payment to Nomalanga Nyoni</p>
+<p class="text-sm text-background-light/60">July 19, 2024</p>
+</div>
+<p class="shrink-0 font-medium text-background-light">-75.50 ♛</p>
+</div>
+<div class="flex items-center gap-4 py-2 min-h-[64px]">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/30">
+<span class="material-symbols-outlined text-2xl text-primary"> account_balance </span>
+</div>
+<div class="flex-grow">
+<p class="font-medium text-background-light">Top Up from Bank</p>
+<p class="text-sm text-background-light/60">July 18, 2024</p>
+</div>
+<p class="shrink-0 font-medium text-primary">+500.00 ♛</p>
+</div>
+<div class="flex items-center gap-4 py-2 min-h-[64px]">
+<img alt="Kofi Mensah's profile picture" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzzFKC7TlSku78Z852moqSxRTnYxvqipkFP-ocG2pWtjX1oa9il_QsJ86z5p1cDrJg190Mp-phnaM2ru1VHAn_tq8Q-T37izUU-e_HSvsnVKo1QZcXbWNya3nj1ZEjfHbEouOVbNX6aEc3dnL2WrxiwBODwlTg4RKWZ4mLPQ7EzqZIbJ5SXDEQcoYNXrOrEl-AtsaZzxyZBf71vy7ag7NVCP5S0gWtZbHuLWsEL9rvLuu4fQtREVLIGHQLbZomQX13SHYWwk4pVpID"/>
+<div class="flex-grow">
+<p class="font-medium text-background-light">Payment to Kofi Mensah</p>
+<p class="text-sm text-background-light/60">July 17, 2024</p>
+</div>
+<p class="shrink-0 font-medium text-background-light">-25.00 ♛</p>
+</div>
+<div class="flex items-center gap-4 py-2 min-h-[64px]">
+<img alt="David Adebayo's profile picture" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLeCytn8BOXToUvLcVijLDqalgx1-rO8dmYQceYORB7pcMKJle86zUJG94q33a7qyxbqSx9oNaH-jIctKrzRK1oT6Zy6T7dSPy0gawC25POf07nxk9AOgRNQXqX6yly2RoP_r3cVc8o27r0rqo45_aygGMzFJyh4Y7VHrbsU85dKq420Q3f5yMrE54V8ZWw2y4ANyDBFums51vyStAPl51Fqufu3x-eSXAHwqXgQFLCUcBK0xTnCUfTMJ4EI9WZJomnZwJ7Nt3Bpeh"/>
+<div class="flex-grow">
+<p class="font-medium text-background-light">Payment from David Adebayo</p>
+<p class="text-sm text-background-light/60">July 17, 2024</p>
+</div>
+<p class="shrink-0 font-medium text-primary">+150.00 ♛</p>
+</div>
+</div>
+</main>
+<footer class="fixed bottom-0 left-0 right-0 z-10 bg-background-dark/80 backdrop-blur-sm">
+<nav class="flex justify-around pt-2 pb-5">
+<a class="flex flex-col items-center gap-1 text-primary" href="dashboard.html">
+<span class="material-symbols-outlined"> home </span>
+<span class="text-xs font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-background-light/60" href="store.html">
+<span class="material-symbols-outlined"> store </span>
+<span class="text-xs font-medium">Store</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-background-light/60" href="send-money.html">
+<span class="material-symbols-outlined"> arrow_outward </span>
+<span class="text-xs font-medium">Send</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-background-light/60" href="cards.html">
+<span class="material-symbols-outlined"> credit_card </span>
+<span class="text-xs font-medium">Cards</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-background-light/60" href="profile.html">
+<span class="material-symbols-outlined"> person </span>
+<span class="text-xs font-medium">Profile</span>
+</a>
+</nav>
+</footer>
+</div>
+
+</body></html>

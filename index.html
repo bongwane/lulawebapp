@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LULA - Digital Wallet</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#98ea6c",
+            "background-light": "#f7f8f6",
+            "background-dark": "#0A140D",
+            "surface-dark": "#172111",
+          },
+          fontFamily: {
+            sans: ["Manrope", "sans-serif"],
+            brand: ["Luckiest Guy", "cursive"],
+            display: ["Manrope"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            "2xl": "2rem",
+            full: "9999px",
+          },
+        },
+      },
+    };
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+    .text-contrast-on-primary {
+      color: #102216;
+    }
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-sans text-text-light dark:text-text-dark">
+<div class="relative w-full overflow-x-hidden">
+<header class="absolute top-0 left-0 right-0 z-10 flex justify-between items-center p-4">
+<div class="text-white text-4xl font-brand tracking-wider">LULA</div>
+<div class="flex items-center gap-2">
+<a class="border border-white/50 text-white text-sm font-bold py-2 px-4 rounded-full" href="how-it-works.html">How it works</a>
+<a class="bg-primary/20 dark:bg-primary/30 text-white text-sm font-bold py-2 px-4 rounded-full" href="sign-in.html">Sign In</a>
+</div>
+</header>
+<main>
+<section class="relative min-h-[50vh] flex items-end justify-center text-center p-4 bg-cover bg-center" style='background-image: linear-gradient(to top, rgba(16, 34, 22, 1) 0%, rgba(16, 34, 22, 0.7) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBbEM_duBpGABpsoiSxGPF5oQ5Xc3y5wHmvkU_zJqI2f4fDYGKzE4OVKUInHNIGvqncRn3fxiP_zMXp5VINexBMoWlQzM5B1lpbDqjWGtTHxtYECRPqOtom7CBwyLT2fRzGdmAhb1vJUZCADwVOC104BQAM6QTnm-NkcGITol5zAZOJkGrCZxFUR3BCEGtGArbvUv59R2mUvHnbxZsZJ618GYh0lCADZlN-5HzahfvnNBsZM0Nm1CvvBQDQh0TC5Xs_3myMCVn-DmXF");'>
+<div class="flex flex-col gap-4 items-center pb-8">
+<h1 class="text-white text-5xl md:text-6xl font-bold leading-tight tracking-wide">Your money, your way.</h1>
+<p class="text-white/80 max-w-md text-base md:text-lg">One app for all your financial needs. Simple, fast, secure.</p>
+</div>
+</section>
+<section class="px-4 pb-16 @container -mt-16">
+<div class="max-w-md mx-auto bg-white dark:bg-background-dark rounded-2xl shadow-2xl p-6">
+<h2 class="text-3xl font-bold text-center mb-6">Get Started Now!</h2>
+<div class="grid grid-cols-2 gap-4 text-center">
+<a class="flex flex-col items-center gap-2 p-4 bg-background-light dark:bg-border-dark/30 rounded-xl hover:bg-primary/20 transition-colors" href="#">
+<div class="bg-primary/20 p-3 rounded-full">
+<span class="material-symbols-outlined text-primary text-2xl">send</span>
+</div>
+<h3 class="font-bold text-base">Send Money</h3>
+</a>
+<a class="flex flex-col items-center gap-2 p-4 bg-background-light dark:bg-border-dark/30 rounded-xl hover:bg-primary/20 transition-colors" href="#">
+<div class="bg-primary/20 p-3 rounded-full">
+<span class="material-symbols-outlined text-primary text-2xl">phone_iphone</span>
+</div>
+<h3 class="font-bold text-base">Buy Data</h3>
+</a>
+<a class="flex flex-col items-center gap-2 p-4 bg-background-light dark:bg-border-dark/30 rounded-xl hover:bg-primary/20 transition-colors" href="#">
+<div class="bg-primary/20 p-3 rounded-full">
+<span class="material-symbols-outlined text-primary text-2xl">credit_card</span>
+</div>
+<h3 class="font-bold text-base">Debit Card</h3>
+</a>
+<a class="flex flex-col items-center gap-2 p-4 bg-background-light dark:bg-border-dark/30 rounded-xl hover:bg-primary/20 transition-colors" href="#">
+<div class="bg-primary/20 p-3 rounded-full">
+<span class="material-symbols-outlined text-primary text-2xl">confirmation_number</span>
+</div>
+<h3 class="font-bold text-base">Get Coupons</h3>
+</a>
+</div>
+<a class="bg-primary text-contrast-on-primary w-full text-center font-bold py-4 px-6 rounded-full text-lg transition-transform hover:scale-105 mt-8 block" href="sign-up.html"> Create Free Account </a>
+</div>
+</section>
+<section class="py-16 px-4 bg-background-light dark:bg-background-dark">
+<div class="max-w-4xl mx-auto flex flex-col gap-12">
+<div class="text-center">
+<h2 class="text-4xl md:text-5xl font-bold tracking-wide">Why choose LULA?</h2>
+<p class="text-text-muted-light dark:text-text-muted-dark mt-2 max-w-2xl mx-auto">Experience banking that is simple, secure, and designed for you.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col gap-4 text-center items-center">
+<div class="w-full aspect-square rounded-xl bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6XIGhoYQxsVnTnVfpqAcAyYUiCxgaQ4lZKwinZgEwyfxcVz8wY9Nd6oRhJZKoO0UYGWz4z9r3Qt9K7VX_lYaueD5sSLTg33YsFJpCJLj-UWarYuZV8IazFcy3ozwIgila6c02kgRBZC0d3PZonMjCNAokSBmcTyaTftrErioXeJXinqypt2-u9hdYBTJ3O6vRZVKNIvdwsLdFyTu-QLyqFC3kPknTMLlD6EBbJyRJZ6MEWnXnaq0tuC99IRFb-4jbrl7M84sHRQue");'></div>
+<h3 class="font-bold text-lg">Fast and secure</h3>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">Your money is protected with industry-leading security measures.</p>
+</div>
+<div class="flex flex-col gap-4 text-center items-center">
+<div class="w-full aspect-square rounded-xl bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCzJjwjwRgYoBn4vR3LFz27etJFBRqFSYPinlW0HixyPX70AW5CJhQNzAHhuR_0qr-m0Aie2cT5nfIz_4dFd5kGGi0EwHPXb_Z8sm0MniD-cKJ3DVBS_eQupOdRuCmsaK3mhYLmO7qe96RNnbKFjY9lz1mDUjmT5ptDPsdtqCpvhDLL3FDTzGFh26BQtkcImbxPZ1veacMd-xQtBnfPNd5oxqyAB3Zv3Um-zYyYjAXq4Fp35wYWcnPs_8Z5WGHraF8APXBE3FBK4Lg0");'></div>
+<h3 class="font-bold text-lg">No hidden fees</h3>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">We believe in transparency. No surprises, just simple fees.</p>
+</div>
+<div class="flex flex-col gap-4 text-center items-center">
+<div class="w-full aspect-square rounded-xl bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCXdhxVLWZRy4calFWa9msBffor3o8h_658d2uOYB5QcxIztZW0u389FYEmSJYfTQg6S2_n7AgrA-qxCdzrTTXWCKfAae9XO0gDxEpY6rYC36GZFy_BIuXWvXMxq0iYN83lbxF8XWZo49ZH_W7LA5YDvdD1Ea80cxqoR0bFBV2x1yhj9ndMk3wmbfRrbiYZVJdJVimk7MM_AAf5OhdrtUcHiwmTjjfLEDo1s31mZFj1rf-F2nnBhNnuc5NeLTBnApWWU3wNmNAZYEv4");'></div>
+<h3 class="font-bold text-lg">24/7 support</h3>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">Our support team is here for you whenever you need assistance.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 px-4 bg-primary/10 dark:bg-primary/5">
+<div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
+<h2 class="text-4xl md:text-5xl font-bold tracking-wide">Ready to take control?</h2>
+<p class="text-text-muted-light dark:text-text-muted-dark max-w-xl">Join thousands of users who trust LULA for their financial needs.</p>
+<a class="bg-primary text-contrast-on-primary font-bold py-3 px-6 rounded-full text-lg transition-transform hover:scale-105 mt-2" href="sign-up.html"> Get started </a>
+</div>
+</section>
+</main>
+<footer class="bg-background-light dark:bg-background-dark py-12 px-4">
+<div class="max-w-5xl mx-auto flex flex-col items-center gap-8">
+<div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="privacy-policy.html">Privacy Policy</a>
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="terms-of-service.html">Terms of Service</a>
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" 
+   href="https://wa.me/263777374641?text=Hello%2C%20I%E2%80%99m%20interested%20in%20your%20services" 
+   target="_blank">
+  Contact Us
+</a>
+</div>
+<div class="flex justify-center gap-6">
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path>
+</svg>
+</a>
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"></path>
+</svg>
+</a>
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"></path>
+</svg>
+</a>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">© 2025 LULA. All rights reserved.</p>
+</div>
+</footer>
+</div>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/263777374641?text=Hello%2C%20I%E2%80%99m%20interested%20in%20your%20services" 
+   target="_blank"
+   class="fixed bottom-6 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 transition">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="28" height="28" viewBox="0 0 256 256">
+    <path d="M128,24A104,104,0,0,0,24,128a103.34,103.34,0,0,0,15.44,54.76L24.58,231.42a8,8,0,0,0,10,10l48.66-15.06A103.34,103.34,0,0,0,128,232h0a104,104,0,0,0,0-208Zm0,192a87.51,87.51,0,0,1-45.11-12.42,8,8,0,0,0-6.94-.63l-36.8,11.39 11.39-36.8a8,8,0,0,0-.63-6.94A87.51,87.51,0,1,1,128,216Zm39.59-64.79c-2.17-1.09-12.8-6.34-14.77-7.06s-3.42-1.09-4.86,1.09-5.6,7.06-6.86,8.54-2.51,1.63-4.68.54a71.36,71.36,0,0,1-21-12.92,77.65,77.65,0,0,1-14.29-17.69c-1.17-2,0-3.11.88-4.19s2-2.51,3-3.77a15.48,15.48,0,0,0,2-3.37,3.75,3.75,0,0,0-.17-3.63c-.5-1.09-4.86-11.7-6.66-16.07s-3.53-3.52-4.86-3.58a9.58,9.58,0,0,0-4.11,0,7.86,7.86,0,0,0-5.6,2.6,23.72,23.72,0,0,0-7.46,17.58c0,10.36,7.6,20.39,8.68,21.75s15,23.07,36.29,32.33c5.08,2.19,9,3.5,12.07,4.48a29,29,0,0,0,13.36.83c4.08-.61,12.8-5.23,14.6-10.28s1.8-9.37,1.26-10.28S169.74,152.33,167.59,151.21Z"/>
+  </svg>
+</a>
+<!-- End Floating WhatsApp Button -->
+
+</body></html>

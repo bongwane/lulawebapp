@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LULA - How It Works</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13ec5b",
+            "background-light": "#f6f8f6",
+            "background-dark": "#102216",
+            "foreground-light": "#111813",
+            "foreground-dark": "#e3e4e3",
+            "subtle-light": "#61896f",
+            "subtle-dark": "#a1b5a8",
+            "border-light": "#dbe6df",
+            "border-dark": "#2a3f31",
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Manrope', sans-serif;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-foreground-light dark:text-foreground-dark">
+<div class="min-h-screen flex flex-col">
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="container mx-auto px-4 py-3">
+<div class="flex items-center justify-between">
+<button class="p-2 -ml-2" onclick="window.location.href='index.html'">
+  <span class="material-symbols-outlined text-2xl text-foreground-light dark:text-foreground-dark">close</span>
+</button>
+<h1 class="text-lg font-bold text-center">How it works</h1>
+<div class="w-8"></div>
+</div>
+</div>
+</header>
+<main class="flex-grow container mx-auto px-4 py-6">
+<h2 class="text-2xl font-bold mb-8">Send money in 5 easy steps</h2>
+<div class="relative pl-6">
+<div class="absolute left-[34px] top-2 bottom-2 w-0.5 bg-border-light dark:bg-border-dark"></div>
+<div class="relative mb-8">
+<div class="absolute left-[-10px] top-[5px] w-5 h-5 bg-primary rounded-full ring-8 ring-background-light dark:ring-background-dark z-10 flex items-center justify-center">
+<span class="text-xs font-bold text-background-dark">1</span>
+</div>
+<div class="pl-8">
+<h3 class="font-bold text-base">Get a quote</h3>
+<p class="text-sm text-subtle-light dark:text-subtle-dark">Enter amount and destination for a real-time rate.</p>
+</div>
+</div>
+<div class="relative mb-8">
+<div class="absolute left-[-10px] top-[5px] w-5 h-5 bg-primary rounded-full ring-8 ring-background-light dark:ring-background-dark z-10 flex items-center justify-center">
+<span class="text-xs font-bold text-background-dark">2</span>
+</div>
+<div class="pl-8">
+<h3 class="font-bold text-base">Confirm your order</h3>
+<p class="text-sm text-subtle-light dark:text-subtle-dark">Review receiver's info, payment method, and speed.</p>
+</div>
+</div>
+<div class="relative mb-8">
+<div class="absolute left-[-10px] top-[5px] w-5 h-5 bg-primary rounded-full ring-8 ring-background-light dark:ring-background-dark z-10 flex items-center justify-center">
+<span class="text-xs font-bold text-background-dark">3</span>
+</div>
+<div class="pl-8">
+<h3 class="font-bold text-base">Make payment</h3>
+<p class="text-sm text-subtle-light dark:text-subtle-dark">Choose your payment method and follow instructions.</p>
+</div>
+</div>
+<div class="relative mb-8">
+<div class="absolute left-[-10px] top-[5px] w-5 h-5 bg-primary rounded-full ring-8 ring-background-light dark:ring-background-dark z-10 flex items-center justify-center">
+<span class="text-xs font-bold text-background-dark">4</span>
+</div>
+<div class="pl-8">
+<h3 class="font-bold text-base">Track your order</h3>
+<p class="text-sm text-subtle-light dark:text-subtle-dark">Track your transaction in real-time from start to finish.</p>
+</div>
+</div>
+<div class="relative">
+<div class="absolute left-[-10px] top-[5px] w-5 h-5 bg-primary rounded-full ring-8 ring-background-light dark:ring-background-dark z-10 flex items-center justify-center">
+<span class="text-xs font-bold text-background-dark">5</span>
+</div>
+<div class="pl-8">
+<h3 class="font-bold text-base">Money delivered</h3>
+<p class="text-sm text-subtle-light dark:text-subtle-dark">Get confirmation when your money reaches the recipient.</p>
+</div>
+</div>
+</div>
+</main>
+<footer class="sticky bottom-0 z-20 bg-background-light dark:bg-background-dark pt-4 pb-6 px-4 border-t border-border-light dark:border-border-dark">
+<div class="mb-4">
+<label class="flex items-center space-x-3" for="terms">
+<input class="form-checkbox h-5 w-5 rounded border-2 border-border-light dark:border-border-dark bg-transparent text-primary focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark checked:bg-primary" id="terms" type="checkbox"/>
+<span class="text-sm">I agree to the <a class="font-bold underline text-foreground-light dark:text-foreground-dark" href="#">Terms of Service</a></span>
+</label>
+</div>
+<a href="sign-in.html">
+<button class="w-full bg-primary text-background-dark font-bold py-3 px-5 rounded-xl text-base h-14 hover:bg-primary/90 transition-colors">
+      Get started
+    </button>
+</a>
+</footer>
+</div>
+
+</body></html>

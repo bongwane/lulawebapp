@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#98ea6c",
+                        "background-dark": "#0A140D",
+                        "surface-dark": "#172111",
+                        "text-primary-dark": "#f6f8f6",
+                        "text-secondary-dark": "#a7b3ad",
+                        "border-dark": "#2d4234",
+                    },
+                    fontFamily: {
+                        display: ["Manrope", "sans-serif"],
+                        sans: ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        lg: "1.5rem",
+                        xl: "2rem",
+                        full: "9999px"
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23a7b3ad' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 1.5rem center;
+        }
+        .dark .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23a7b3ad' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        }
+        body {
+            min-height: 100vh;
+            background-color: #0A140D;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+            display: flex;
+            flex-direction: column;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding-bottom: 96px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-text-primary-dark">
+<div class="flex h-full w-full flex-col">
+<header class="sticky top-0 z-10 flex items-center justify-between p-4 bg-background-dark/80 backdrop-blur-sm">
+<button class="p-2 rounded-full hover:bg-surface-dark/50">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path>
+</svg>
+</button>
+<h1 class="flex-1 text-center text-xl font-bold text-text-primary-dark">Top Up Wallet</h1>
+<div class="w-10"></div>
+</header>
+<div class="flex-grow flex flex-col">
+<main class="main-content p-4 space-y-8">
+<div class="text-center space-y-2 pt-8">
+<p class="text-text-secondary-dark text-sm">Enter amount</p>
+<div class="relative inline-flex items-center">
+<span class="text-5xl font-bold text-primary mr-1">M</span>
+<input class="w-64 border-none bg-transparent text-text-primary-dark placeholder:text-text-secondary-dark focus:ring-0 text-7xl font-bold p-0 text-center" id="mandla-amount" placeholder="0.00" type="text" value="100.00"/>
+</div>
+<p class="text-sm text-text-secondary-dark">1 Mandla = 1 USD</p>
+</div>
+<div class="bg-surface-dark p-6 rounded-xl space-y-6">
+<div>
+<label class="block text-sm font-medium text-text-secondary-dark mb-2" for="payment-currency">Payment Currency</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary-dark pointer-events-none">paid</span>
+<select class="form-select w-full rounded-lg border-2 border-border-dark bg-transparent text-text-primary-dark focus:ring-primary focus:border-primary h-14 pl-12" id="payment-currency">
+<option data-flag="🇺🇸" value="USD">USD - US Dollar</option>
+<option data-flag="🇪🇺" selected="" value="EUR">EUR - Euro</option>
+<option data-flag="🇬🇧" value="GBP">GBP - British Pound</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-secondary-dark mb-2" for="payment-method">Payment Method</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary-dark pointer-events-none">account_balance</span>
+<select class="form-select w-full rounded-lg border-2 border-border-dark bg-transparent text-text-primary-dark focus:ring-primary focus:border-primary h-14 pl-12" id="payment-method">
+<option value="lula">Lula Balance - $100.00</option>
+<option value="card">Credit/Debit Card</option>
+<option selected="" value="bank">Bank Transfer</option>
+</select>
+</div>
+</div>
+</div>
+<div class="bg-surface-dark p-4 rounded-xl">
+<div class="space-y-3 text-sm">
+<div class="flex justify-between">
+<p class="text-text-secondary-dark">Exchange Rate</p>
+<p class="font-medium text-text-primary-dark">1 USD = 0.92 EUR</p>
+</div>
+<div class="flex justify-between">
+<p class="text-text-secondary-dark">Bank Fees</p>
+<p class="font-medium text-text-primary-dark">€1.50</p>
+</div>
+<div class="flex justify-between">
+<p class="text-text-secondary-dark">Lula Fees</p>
+<p class="font-medium text-text-primary-dark">€0.06</p>
+</div>
+</div>
+</div>
+</main>
+<footer class="fixed bottom-0 left-0 right-0 p-4 bg-background-dark border-t border-background-dark">
+<button onclick="window.location.href='payment.html'"  class="w-full h-14 px-6 rounded-full bg-primary text-background-dark text-lg font-bold">
+                You pay: 93.56 EUR
+            </button>
+</footer>
+</div>
+</div>
+</body></html>
