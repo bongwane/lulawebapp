@@ -71,72 +71,75 @@
   </style>
   </head>
 <body class="bg-background-dark font-display text-text-primary-dark">
-<div class="flex h-full w-full flex-col">
-<header class="sticky top-0 z-10 flex items-center justify-between p-4 bg-background-dark/80 backdrop-blur-sm">
-<button class="p-2 rounded-full hover:bg-surface-dark/50">
-<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path>
-</svg>
-</button>
-<h1 class="flex-1 text-center text-xl font-bold text-text-primary-dark">Top Up Wallet</h1>
-<div class="w-10"></div>
-</header>
-<div class="flex-grow flex flex-col">
-<main class="main-content p-4 space-y-8">
-<div class="text-center space-y-2 pt-8">
-<p class="text-text-secondary-dark text-sm">Enter amount</p>
-<div class="relative inline-flex items-center">
-<span class="text-5xl font-bold text-primary mr-1">M</span>
-<input class="w-64 border-none bg-transparent text-text-primary-dark placeholder:text-text-secondary-dark focus:ring-0 text-7xl font-bold p-0 text-center" id="mandla-amount" placeholder="0.00" type="text" value="100.00"/>
-</div>
-<p class="text-sm text-text-secondary-dark">1 Mandla = 1 USD</p>
-</div>
-<div class="bg-surface-dark p-6 rounded-xl space-y-6">
-<div>
-<label class="block text-sm font-medium text-text-secondary-dark mb-2" for="payment-currency">Payment Currency</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary-dark pointer-events-none">paid</span>
-<select class="form-select w-full rounded-lg border-2 border-border-dark bg-transparent text-text-primary-dark focus:ring-primary focus:border-primary h-14 pl-12" id="payment-currency">
-<option data-flag="🇺🇸" value="USD">USD - US Dollar</option>
-<option data-flag="🇪🇺" selected="" value="EUR">EUR - Euro</option>
-<option data-flag="🇬🇧" value="GBP">GBP - British Pound</option>
-</select>
-</div>
-</div>
-<div>
-<label class="block text-sm font-medium text-text-secondary-dark mb-2" for="payment-method">Payment Method</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary-dark pointer-events-none">account_balance</span>
-<select class="form-select w-full rounded-lg border-2 border-border-dark bg-transparent text-text-primary-dark focus:ring-primary focus:border-primary h-14 pl-12" id="payment-method">
-<option value="lula">Lula Balance - $100.00</option>
-<option value="card">Credit/Debit Card</option>
-<option selected="" value="bank">Bank Transfer</option>
-</select>
-</div>
-</div>
-</div>
-<div class="bg-surface-dark p-4 rounded-xl">
-<div class="space-y-3 text-sm">
-<div class="flex justify-between">
-<p class="text-text-secondary-dark">Exchange Rate</p>
-<p class="font-medium text-text-primary-dark">1 USD = 0.92 EUR</p>
-</div>
-<div class="flex justify-between">
-<p class="text-text-secondary-dark">Bank Fees</p>
-<p class="font-medium text-text-primary-dark">€1.50</p>
-</div>
-<div class="flex justify-between">
-<p class="text-text-secondary-dark">Lula Fees</p>
-<p class="font-medium text-text-primary-dark">€0.06</p>
-</div>
-</div>
-</div>
-</main>
-<footer class="fixed bottom-0 left-0 right-0 p-4 bg-background-dark border-t border-background-dark">
-<button onclick="window.location.href='payment.html'"  class="w-full h-14 px-6 rounded-full bg-primary text-background-dark text-lg font-bold">
-                You pay: 93.56 EUR
-            </button>
-</footer>
-</div>
-</div>
-</body></html>
+  <div class="flex h-full w-full flex-col">
+    <header class="sticky top-0 z-10 flex items-center justify-between p-4 bg-background-dark/80 backdrop-blur-sm max-w-md mx-auto w-full">
+      <button class="p-2 rounded-full hover:bg-surface-dark/50">
+        <svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path>
+        </svg>
+      </button>
+      <h1 class="flex-1 text-center text-xl font-bold text-text-primary-dark">Top Up Wallet</h1>
+      <div class="w-10"></div>
+    </header>
+    <div class="flex-grow flex flex-col">
+      <main class="main-content p-4 space-y-8 max-w-md mx-auto">
+        <div class="text-center space-y-2 pt-8">
+          <p class="text-text-secondary-dark text-sm">Enter amount</p>
+          <div class="relative inline-flex items-center">
+            <span class="text-5xl font-bold text-primary mr-1">M</span>
+            <input class="w-64 border-none bg-transparent text-text-primary-dark placeholder:text-text-secondary-dark focus:ring-0 text-7xl font-bold p-0 text-center" id="mandla-amount" placeholder="0.00" type="text" value="100.00"/>
+          </div>
+          <p class="text-sm text-text-secondary-dark">1 Mandla = 1 USD</p>
+        </div>
+        <div class="bg-surface-dark p-6 rounded-xl space-y-6">
+          <div>
+            <label class="block text-sm font-medium text-text-secondary-dark mb-2" for="payment-currency">Payment Currency</label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary-dark pointer-events-none">paid</span>
+              <select class="form-select w-full rounded-lg border-2 border-border-dark bg-transparent text-text-primary-dark focus:ring-primary focus:border-primary h-14 pl-12" id="payment-currency">
+                <option data-flag="🇺🇸" value="USD">USD - US Dollar</option>
+                <option data-flag="🇪🇺" selected="" value="EUR">EUR - Euro</option>
+                <option data-flag="🇬🇧" value="GBP">GBP - British Pound</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-text-secondary-dark mb-2" for="payment-method">Payment Method</label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary-dark pointer-events-none">account_balance</span>
+              <select class="form-select w-full rounded-lg border-2 border-border-dark bg-transparent text-text-primary-dark focus:ring-primary focus:border-primary h-14 pl-12" id="payment-method">
+                <option value="lula">Lula Balance - $100.00</option>
+                <option value="card">Credit/Debit Card</option>
+                <option selected="" value="bank">Bank Transfer</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="bg-surface-dark p-4 rounded-xl">
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between">
+              <p class="text-text-secondary-dark">Exchange Rate</p>
+              <p class="font-medium text-text-primary-dark">1 USD = 0.92 EUR</p>
+            </div>
+            <div class="flex justify-between">
+              <p class="text-text-secondary-dark">Bank Fees</p>
+              <p class="font-medium text-text-primary-dark">€1.50</p>
+            </div>
+            <div class="flex justify-between">
+              <p class="text-text-secondary-dark">Lula Fees</p>
+              <p class="font-medium text-text-primary-dark">€0.06</p>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div class="fixed bottom-4 left-0 right-0 z-30 flex justify-center pointer-events-none">
+      <button 
+        onclick="window.location.href='payment.html'"
+        class="pointer-events-auto w-[90%] max-w-md h-14 px-6 rounded-full bg-primary text-background-dark text-lg font-bold shadow-lg flex items-center justify-center">
+        You pay: 93.56 EUR
+      </button>
+    </div>
+    </div>
+  </div>
+</body>
+</html>

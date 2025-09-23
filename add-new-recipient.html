@@ -54,58 +54,58 @@
   </head>
 <body class="bg-background-dark font-display text-white">
 <div class="flex flex-col h-screen">
-<header class="sticky top-0 z-10 bg-background-dark/80 backdrop-blur-sm">
-<div class="flex items-center p-4">
-<button class="p-2 -m-2">
-<span class="material-symbols-outlined">arrow_back</span>
-</button>
-<h1 class="flex-1 text-lg font-bold text-center pr-8">Add new recipient</h1>
-</div>
-</header>
-<main class="flex-1 overflow-y-auto p-4 space-y-4">
-<section>
-<label class="block text-sm font-medium text-white/70 mb-2" for="recipient-name">Name</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none">person</span>
-<input class="w-full pl-12 pr-4 py-4 rounded-xl bg-surface border-2 border-transparent focus:border-primary focus:ring-0 text-white placeholder-white/50" id="recipient-name" placeholder="e.g. Jane Doe" type="text"/>
-</div>
-</section>
-<section>
-<label class="block text-sm font-medium text-white/70 mb-2" for="bank-name">Bank Name</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none">account_balance</span>
-<input class="w-full pl-12 pr-4 py-4 rounded-xl bg-surface border-2 border-transparent focus:border-primary focus:ring-0 text-white placeholder-white/50" id="bank-name" placeholder="e.g. Digital Bank" type="text"/>
-</div>
-</section>
-<section>
-<label class="block text-sm font-medium text-white/70 mb-2" for="account-number">Account Number</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none">pin</span>
-<input class="w-full pl-12 pr-4 py-4 rounded-xl bg-surface border-2 border-transparent focus:border-primary focus:ring-0 text-white placeholder-white/50" id="account-number" placeholder="Enter account number" type="number"/>
-</div>
-</section>
-<section>
-<label class="block text-sm font-medium text-white/70 mb-2" for="phone-number">Phone Number</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none">call</span>
-<input class="w-full pl-12 pr-4 py-4 rounded-xl bg-surface border-2 border-transparent focus:border-primary focus:ring-0 text-white placeholder-white/50" id="phone-number" placeholder="Enter phone number" type="tel"/>
-</div>
-</section>
-<div class="pt-4">
-<p class="text-xs text-center text-white/50">Or choose from your contacts</p>
-<button class="w-full flex items-center justify-center h-14 px-6 mt-4 rounded-xl bg-surface text-primary text-base font-bold">
-<span class="material-symbols-outlined mr-2">contacts</span>
-                Import from Contacts
-            </button>
-</div>
-</main>
-<div class="sticky bottom-0 bg-background-dark/80 backdrop-blur-sm p-4">
-<button 
-  class="w-full flex items-center justify-center h-14 px-6 rounded-xl bg-primary text-black text-base font-bold"
-  onclick="window.location.href='tracking.html'">
-  Add recipient
-</button>
-</div>
+  <header class="sticky top-0 z-10 bg-background-dark/80 backdrop-blur-sm">
+    <div class="flex items-center p-4">
+      <button class="p-2 -m-2">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <h1 class="flex-1 text-lg font-bold text-center pr-8">Add new recipient</h1>
+    </div>
+  </header>
+  <main class="flex-1 overflow-y-auto p-4 space-y-4 w-full max-w-md mx-auto">
+    <section>
+      <label class="block text-sm font-medium text-white/70 mb-2" for="recipient-name">Name</label>
+      <div class="relative">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none">person</span>
+        <input class="w-full pl-12 pr-4 py-4 rounded-xl bg-surface border-2 border-transparent focus:border-primary focus:ring-0 text-white placeholder-white/50" id="recipient-name" placeholder="e.g. Jane Doe" type="text"/>
+      </div>
+    </section>
+    <section>
+      <label class="block text-sm font-medium text-white/70 mb-2" for="bank-name">Bank Name</label>
+      <div class="relative">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none">account_balance</span>
+        <input class="w-full pl-12 pr-4 py-4 rounded-xl bg-surface border-2 border-transparent focus:border-primary focus:ring-0 text-white placeholder-white/50" id="bank-name" placeholder="e.g. Digital Bank" type="text"/>
+      </div>
+    </section>
+    <section>
+      <label class="block text-sm font-medium text-white/70 mb-2" for="account-number">Account Number</label>
+      <div class="relative">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none">pin</span>
+        <input class="w-full pl-12 pr-4 py-4 rounded-xl bg-surface border-2 border-transparent focus:border-primary focus:ring-0 text-white placeholder-white/50" id="account-number" placeholder="Enter account number" type="number"/>
+      </div>
+    </section>
+    <section>
+      <label class="block text-sm font-medium text-white/70 mb-2" for="phone-number">Phone Number</label>
+      <div class="relative">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none">call</span>
+        <input class="w-full pl-12 pr-4 py-4 rounded-xl bg-surface border-2 border-transparent focus:border-primary focus:ring-0 text-white placeholder-white/50" id="phone-number" placeholder="Enter phone number" type="tel"/>
+      </div>
+    </section>
+    <div class="pt-4">
+      <p class="text-xs text-center text-white/50">Or choose from your contacts</p>
+      <button class="w-full flex items-center justify-center h-14 px-6 mt-4 rounded-xl bg-surface text-primary text-base font-bold">
+        <span class="material-symbols-outlined mr-2">contacts</span>
+        Import from Contacts
+      </button>
+    </div>
+  </main>
+  <div class="sticky bottom-0 bg-background-dark/80 backdrop-blur-sm p-4 w-full max-w-md mx-auto">
+    <button 
+      class="w-full flex items-center justify-center h-14 px-6 rounded-xl bg-primary text-black text-base font-bold"
+      onclick="window.location.href='tracking.html'">
+      Add recipient
+    </button>
+  </div>
 </div>
 
 </body></html>
