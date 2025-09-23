@@ -52,7 +52,7 @@
     }
   </style>
   </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark overflow-hidden">
 <div class="flex flex-col min-h-screen p-6 max-w-md mx-auto">
   <header class="relative flex items-center justify-center mb-8">
     <button class="absolute left-0 text-text-light dark:text-text-dark">
@@ -62,7 +62,7 @@
     </button>
     <h1 class="text-xl font-bold">Sign In</h1>
   </header>
-  <main class="flex-grow space-y-8">
+  <main class="flex-grow space-y-8 overflow-y-auto pr-2">
     <div class="space-y-4">
       <input class="form-input w-full bg-white dark:bg-card-dark border-none rounded-lg h-16 px-5 text-base focus:ring-2 focus:ring-primary/50 placeholder:text-muted-light dark:placeholder:text-muted-dark" placeholder="Email or phone number" type="text"/>
       <div class="relative">
@@ -74,14 +74,14 @@
     </div>
     <a class="block text-right font-semibold text-primary hover:underline text-sm" href="forgot-password.html">Forgot Password?</a>
   </main>
-  <footer class="space-y-6 pb-4">
+  <footer class="space-y-6 pb-4 fixed bottom-0 left-0 right-0 bg-background-light dark:bg-background-dark z-30 px-6">
     <button onclick="window.location.href='dashboard.html'" 
-        class="w-full bg-primary text-background-dark font-bold py-4 rounded-full text-base h-16 transition-transform active:scale-95">
+        class="w-full max-w-md mx-auto bg-primary text-background-dark font-bold py-4 rounded-full text-base h-16 transition-transform active:scale-95 block">
       Sign In
     </button>
     <p class="text-center text-sm text-muted-light dark:text-muted-dark">
-              Don't have an account? 
-              <a class="font-bold text-primary hover:underline" href="sign-up.html">Sign Up</a>
+      Don't have an account? 
+      <a class="font-bold text-primary hover:underline" href="sign-up.html">Sign Up</a>
     </p>
   </footer>
 </div>

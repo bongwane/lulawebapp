@@ -37,8 +37,11 @@
 <body class="bg-[var(--lula-dark)]">
 <div class="relative flex h-screen w-full flex-col bg-[var(--lula-dark)] dark overflow-x-hidden">
 <header class="fixed top-0 left-0 right-0 z-10 flex items-center bg-[var(--lula-dark)] p-4 pb-2 justify-between">
-<button class="text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-[var(--lula-gray-dark)] transition-colors">
-<span class="material-symbols-outlined">close</span>
+<button 
+  class="text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-[var(--lula-gray-dark)] transition-colors"
+  onclick="window.location.href='dashboard.html'"
+>
+  <span class="material-symbols-outlined">close</span>
 </button>
 <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-10">Send
             Money</h2>
@@ -141,11 +144,12 @@
 </div>
 </div>
 </main>
-<footer class="fixed bottom-0 left-0 right-0 z-10 bg-[var(--lula-dark)] px-4 py-3 border-t border-[var(--lula-dark)] max-w-md mx-auto w-full">
-  <button onclick="window.location.href='select-recipient.html'" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 flex-1 w-full bg-[var(--lula-green)] text-black text-lg font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-opacity">
+<div class="fixed bottom-4 left-0 right-0 z-30 flex justify-center pointer-events-none">
+  <button 
+    onclick="window.location.href='select-recipient.html'"
+    class="pointer-events-auto w-[90%] max-w-md flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-[var(--lula-green)] text-black text-lg font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-opacity shadow-lg">
     <span class="truncate">Pay total: $103.00</span>
   </button>
-</footer>
 </div>
-
+</div>
 </body></html>

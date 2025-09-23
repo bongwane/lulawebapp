@@ -46,7 +46,7 @@
 <body class="bg-background-light dark:bg-background-dark font-display text-black dark:text-white">
   <div class="relative flex h-screen flex-col">
     <header class="sticky top-0 z-10 flex items-center justify-between bg-background-light p-4 dark:bg-background-dark w-full">
-      <button class="text-black dark:text-white">
+      <button class="text-black dark:text-white" onclick="history.back()">
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
       <h1 class="flex-1 text-center text-lg font-bold">Payment</h1>
@@ -97,11 +97,13 @@
       </div>
       <div class="h-20"></div>
     </main>
-    <footer class="sticky bottom-0 z-10 border-t border-background-dark bg-background-dark p-4 pt-2 max-w-md mx-auto w-full">
-      <button onclick="window.location.href='tracking.html'"  class="w-full rounded-xl bg-primary py-4 text-center font-bold text-background-dark">
+    <div class="fixed bottom-4 left-0 right-0 z-30 flex justify-center pointer-events-none">
+      <button 
+        onclick="window.location.href='tracking.html'"
+        class="pointer-events-auto w-[90%] max-w-md rounded-xl bg-primary py-4 text-center font-bold text-background-dark shadow-lg">
         Submit Payment Proof
       </button>
-    </footer>
+    </div>
   </div>
 </body>
 </html>
