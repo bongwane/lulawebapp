@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Confirm Receiving - Lula Agent</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#98ea6c",
+            "background-light": "#f7f8f6",
+            "background-dark": "#0A140D",
+            "surface-dark": "#172111",
+          },
+          fontFamily: {
+            display: ["Manrope"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            full: "9999px"
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-background-dark dark:text-background-light">
+  <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+    <header class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-2 backdrop-blur-sm">
+      <div class="flex items-center gap-3">
+        <button onclick="history.back()" class="flex h-10 w-10 items-center justify-center rounded-full text-background-light">
+          <span class="material-symbols-outlined text-2xl">arrow_back</span>
+        </button>
+        <p class="font-bold text-background-light ml-2">Confirm Receiving</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="location.href='notifications.html'" class="flex h-10 w-10 items-center justify-center rounded-full text-background-light">
+          <span class="material-symbols-outlined text-2xl">notifications</span>
+        </button>
+      </div>
+    </header>
+    <main class="flex-grow px-4 pb-24 pt-20 max-w-md mx-auto">
+      <!-- Order Details Card with improved POP and PIN design -->
+      <div class="bg-surface-dark rounded-xl p-4 my-4">
+        <h2 class="text-lg font-bold text-background-light mb-4">Order Details</h2>
+        <div class="mb-4">
+          <div class="flex items-center justify-between gap-x-8 mb-2">
+            <span class="text-background-light/60">Order Number</span>
+            <span class="font-bold text-primary">LULA0123456789</span>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-background-light/60">From</span>
+            <span class="font-medium text-background-light">Sekai Njanike</span>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-background-light/60">Date</span>
+            <span class="font-medium text-background-light">24 Sep 2025</span>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-background-light/60">Bank Paid To</span>
+            <span class="font-medium text-background-light">Lula Pay Solutions</span>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-background-light/60">Pay Total</span>
+            <span class="font-bold text-primary">$120.00</span>
+          </div>
+        </div>
+        <!-- POP Download Button -->
+        <div class="mb-6">
+          <button class="w-full bg-primary/80 text-background-dark font-semibold py-3 rounded-lg text-base flex items-center justify-center gap-2 hover:bg-primary transition">
+            <span class="material-symbols-outlined text-xl">download</span>
+            Download POP sent by client
+          </button>
+        </div>
+        <!-- Agent POP Upload (styled like payment.html) -->
+        <div class="mb-6">
+          <div class="flex items-center justify-center rounded-xl border-2 border-dashed border-background-light/20 bg-background-dark p-4">
+            <div class="text-center w-full">
+              <span class="material-symbols-outlined text-5xl text-primary/40">
+                cloud_upload
+              </span>
+              <p class="mt-2 font-medium text-background-light">Upload Your POP</p>
+              <p class="text-xs text-background-light/60">Tap to select a file or photo</p>
+              <input accept="image/*,application/pdf" class="sr-only" id="agent-pop" name="agent-pop" type="file"/>
+              <label class="mt-4 inline-block cursor-pointer rounded-lg bg-primary/20 px-4 py-2 text-sm font-semibold text-primary" for="agent-pop">Choose File</label>
+            </div>
+          </div>
+        </div>
+        <!-- Agent PIN Input (styled like forgot-password.html) -->
+        <div class="mb-6">
+          <input type="password" id="agent-pin" name="agent-pin" maxlength="6"
+            class="form-input w-full bg-background-dark text-background-light border-none rounded-lg h-12 px-4 text-base focus:ring-2 focus:ring-primary/50 placeholder:text-background-light/60"
+            placeholder="Enter PIN"/>
+        </div>
+      </div>
+    </main>
+    <div class="fixed bottom-4 left-0 right-0 z-30 flex justify-center pointer-events-none">
+      <button
+        class="pointer-events-auto w-[90%] max-w-md rounded-xl bg-primary py-4 text-center font-bold text-background-dark shadow-lg"
+        style="font-size:1.25rem;"
+      >
+        Confirm Received
+      </button>
+
+
+
+
+</html></body>  </div>    </div>    </div>
+  </div>
+</body>
+</html>

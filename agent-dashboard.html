@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Lula Agent Dashboard</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#98ea6c",
+            "background-light": "#f7f8f6",
+            "background-dark": "#0A140D",
+            "surface-dark": "#172111",
+          },
+          fontFamily: {
+            display: ["Manrope"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            full: "9999px"
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-background-dark dark:text-background-light">
+  <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+    <!-- Agent header with image of an African woman with black skin -->
+<header class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-2 backdrop-blur-sm">
+  <div class="flex items-center gap-3">
+    <img alt="Agent's profile picture" class="h-10 w-10 rounded-full object-cover" src="https://randomuser.me/api/portraits/women/88.jpg"/>
+    <p class="font-bold text-background-light">Hi, Agent Emma</p>
+  </div>
+  <div class="flex items-center gap-2">
+    <button onclick="location.href='notifications.html'" class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-background-light">
+      <span class="material-symbols-outlined text-2xl">notifications</span>
+    </button>
+    <button class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-background-light">
+      <span class="material-symbols-outlined text-2xl">search</span>
+    </button>
+  </div>
+</header>
+    <main class="flex-grow px-4 pb-24 pt-20 max-w-md mx-auto">
+      <!-- Agent Balances Card -->
+      <div class="bg-surface-dark rounded-xl p-4 my-4">
+        <h2 class="text-lg font-bold text-background-light mb-4">Your Balances</h2>
+        <div class="grid grid-cols-3 gap-2 mb-4">
+          <div class="flex flex-col items-center p-2 rounded-lg bg-primary/10">
+            <span class="material-symbols-outlined text-2xl text-primary">account_balance</span>
+            <span class="text-xs font-medium text-background-light">Bank</span>
+            <span class="text-lg font-bold text-primary">$1,200.00</span>
+          </div>
+          <div class="flex flex-col items-center p-2 rounded-lg bg-primary/10">
+            <span class="material-symbols-outlined text-2xl text-primary">smartphone</span>
+            <span class="text-xs font-medium text-background-light">Mobile Money</span>
+            <span class="text-lg font-bold text-primary">$850.00</span>
+          </div>
+          <div class="flex flex-col items-center p-2 rounded-lg bg-primary/10">
+            <span class="material-symbols-outlined text-2xl text-primary">payments</span>
+            <span class="text-xs font-medium text-background-light">Cash</span>
+            <span class="text-lg font-bold text-primary">$400.00</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mt-2">
+          <span class="text-sm text-background-light/60">Total Balance</span>
+          <span class="text-2xl font-bold text-primary">$2,450.00</span>
+        </div>
+      </div>
+      <!-- Outstanding Orders Section -->
+      <div class="pt-5 pb-3">
+        <h3 class="text-lg font-bold text-background-light mb-2">Outstanding Orders</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Confirm Receiving List -->
+          <div>
+            <h4 class="text-base font-semibold text-primary mb-2">Confirm Receiving</h4>
+            <div class="space-y-2">
+              <a href="confirm-receiving.html" class="block bg-background-dark/60 rounded-lg p-3 transition hover:bg-primary/20">
+                <div>
+                  <p class="font-medium text-background-light">LULA0123456789</p>
+                  <span class="font-bold text-primary block mt-1">$120.00</span>
+                  <p class="text-xs text-background-light/60">From: Jane Doe</p>
+                </div>
+              </a>
+              <a href="confirm-receiving.html" class="block bg-background-dark/60 rounded-lg p-3 transition hover:bg-primary/20">
+                <div>
+                  <p class="font-medium text-background-light">LULA0123456790</p>
+                  <span class="font-bold text-primary block mt-1">$75.00</span>
+                  <p class="text-xs text-background-light/60">From: Mike Smith</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!-- Confirm Collection List -->
+          <div>
+            <h4 class="text-base font-semibold text-primary mb-2">Confirm Collection</h4>
+            <div class="space-y-2">
+              <a href="confirm-collection.html" class="block bg-background-dark/60 rounded-lg p-3 transition hover:bg-primary/20">
+                <div class="text-right">
+                  <p class="font-medium text-background-light">LULA0123456791</p>
+                  <span class="font-bold text-primary block mt-1">$200.00</span>
+                  <p class="text-xs text-background-light/60">To: Sarah Lee</p>
+                </div>
+              </a>
+              <a href="confirm-collection.html" class="block bg-background-dark/60 rounded-lg p-3 transition hover:bg-primary/20">
+                <div class="text-right">
+                  <p class="font-medium text-background-light">LULA0123456792</p>
+                  <span class="font-bold text-primary block mt-1">$50.00</span>
+                  <p class="text-xs text-background-light/60">To: David Kim</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer Navigation with Tracking, Customers removed -->
+    <footer class="fixed bottom-0 left-0 right-0 z-10 bg-background-dark/80 backdrop-blur-sm">
+      <nav class="flex justify-around pt-2 pb-5">
+        <a class="flex flex-col items-center gap-1 text-primary" href="agent-dashboard.html">
+          <span class="material-symbols-outlined">home</span>
+          <span class="text-xs font-medium">Home</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-background-light/60" href="transactions.html">
+          <span class="material-symbols-outlined">payments</span>
+          <span class="text-xs font-medium">Transactions</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-background-light/60" href="tracking.html">
+          <span class="material-symbols-outlined">location_on</span>
+          <span class="text-xs font-medium">Tracking</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-background-light/60" href="profile.html">
+          <span class="material-symbols-outlined">person</span>
+          <span class="text-xs font-medium">Profile</span>
+        </a>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>

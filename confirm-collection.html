@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Confirm Collection - Lula Agent</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#98ea6c",
+            "background-light": "#f7f8f6",
+            "background-dark": "#0A140D",
+            "surface-dark": "#172111",
+          },
+          fontFamily: {
+            display: ["Manrope"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            full: "9999px"
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-background-dark dark:text-background-light">
+  <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+    <header class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-2 backdrop-blur-sm">
+      <div class="flex items-center gap-3">
+        <button onclick="history.back()" class="flex h-10 w-10 items-center justify-center rounded-full text-background-light">
+          <span class="material-symbols-outlined text-2xl">arrow_back</span>
+        </button>
+        <p class="font-bold text-background-light ml-2">Confirm Collection</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="location.href='notifications.html'" class="flex h-10 w-10 items-center justify-center rounded-full text-background-light">
+          <span class="material-symbols-outlined text-2xl">notifications</span>
+        </button>
+      </div>
+    </header>
+    <main class="flex-grow px-4 pb-24 pt-20 max-w-md mx-auto">
+      <!-- Order Details Card with bank details included and spaced account number -->
+      <div class="bg-surface-dark rounded-xl p-4 my-4">
+        <h2 class="text-lg font-bold text-background-light mb-4">Order Details</h2>
+        <div class="mb-4 space-y-2">
+          <div class="flex items-center justify-between gap-x-8 mb-2">
+            <span class="text-background-light/60">Order Number</span>
+            <span class="font-bold text-primary">LULA0123456791</span>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-background-light/60">They get</span>
+            <span class="font-bold text-primary">$200.00</span>
+          </div>
+          <!-- Only show Account Name (remove "To") -->
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-background-light/60">Account Name</span>
+            <span class="font-medium text-background-light">Emma Hadebe</span>
+          </div>
+          <!-- New WhatsApp Number field -->
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-background-light/60">WhatsApp Number</span>
+            <span class="font-medium text-background-light">+263 77 123 4567</span>
+          </div>
+          <!-- Bank Details directly below order details -->
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-background-light/60">Bank Name</span>
+            <span class="font-medium text-background-light">UBAUSA Bank</span>
+          </div>
+          <div class="flex items-center justify-between gap-x-8 mb-2">
+            <span class="text-background-light/60">Account Number</span>
+            <div class="flex items-center space-x-2">
+              <span class="font-medium text-background-light">9876543210123</span>
+              <button class="text-background-light/60">
+                <span class="material-symbols-outlined text-base">content_copy</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Agent POP Upload (styled like payment.html) -->
+        <div class="mb-6">
+          <div class="flex items-center justify-center rounded-xl border-2 border-dashed border-background-light/20 bg-background-dark p-4">
+            <div class="text-center w-full">
+              <span class="material-symbols-outlined text-5xl text-primary/40">
+                cloud_upload
+              </span>
+              <p class="mt-2 font-medium text-background-light">Upload Your POP</p>
+              <p class="text-xs text-background-light/60">Tap to select a file or photo</p>
+              <input accept="image/*,application/pdf" class="sr-only" id="agent-pop" name="agent-pop" type="file"/>
+              <label class="mt-4 inline-block cursor-pointer rounded-lg bg-primary/20 px-4 py-2 text-sm font-semibold text-primary" for="agent-pop">Choose File</label>
+            </div>
+          </div>
+        </div>
+        <!-- Agent PIN Input (styled like forgot-password.html) -->
+        <div class="mb-6">
+          <input type="password" id="agent-pin" name="agent-pin" maxlength="6"
+            class="form-input w-full bg-background-dark text-background-light border-none rounded-lg h-12 px-4 text-base focus:ring-2 focus:ring-primary/50 placeholder:text-background-light/60"
+            placeholder="Enter PIN"/>
+        </div>
+      </div>
+    </main>
+    <div class="fixed bottom-4 left-0 right-0 z-30 flex justify-center pointer-events-none">
+      <button
+        class="pointer-events-auto w-[90%] max-w-md rounded-xl bg-primary py-4 text-center font-bold text-background-dark shadow-lg"
+        style="font-size:1.25rem;"
+        onclick="location.href='tracking.html'"
+      >
+        Confirm Collected
+      </button>
+    </div>
+  </div>
+</body>
+</html>
