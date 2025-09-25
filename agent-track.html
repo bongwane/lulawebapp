@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Agent Track Order</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#98ea6c",
+            "background-light": "#f7f8f6",
+            "background-dark": "#0A140D",
+            "surface-dark": "#172111",
+          },
+          fontFamily: {
+            display: ["Manrope"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            full: "9999px"
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-display bg-background-dark text-background-light">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden">
+  <div class="flex-grow flex flex-col">
+    <header class="fixed top-0 left-0 right-0 z-10 flex items-center p-4 bg-background-dark">
+      <button class="flex size-10 items-center justify-center rounded-full text-background-light"
+        onclick="history.back()">
+        <span class="material-symbols-outlined text-2xl"> arrow_back </span>
+      </button>
+    </header>
+    <main class="flex-grow flex flex-col items-center justify-center px-4 -mt-16 pt-16">
+      <div class="w-full max-w-sm text-center">
+        <span class="material-symbols-outlined text-7xl text-primary mb-4"> local_shipping </span>
+        <h1 class="text-2xl font-bold text-background-light mb-2">Track your order</h1>
+        <p class="text-background-light/60 mb-8">Enter your order number to see its status.</p>
+        <form class="space-y-4">
+          <div>
+            <label class="sr-only" for="order-number">Order number</label>
+            <input class="w-full bg-surface-dark border border-white/10 text-background-light placeholder:text-background-light/40 rounded-full py-3 px-4 text-center text-lg focus:ring-primary focus:border-primary" id="order-number" placeholder="e.g., LULA0123456789" type="text"/>
+          </div>
+        </form>
+      </div>
+    </main>
+    <div class="fixed bottom-4 left-0 right-0 z-30 flex justify-center pointer-events-none">
+      <button 
+        onclick="window.location.href='agent-tracking.html'"
+        class="pointer-events-auto w-[90%] max-w-sm bg-primary text-background-dark font-bold py-3 px-4 rounded-full text-lg hover:bg-primary/90 transition-colors shadow-lg">
+        Track order
+      </button>
+    </div>
+  </div>
+</div>
+</body>
