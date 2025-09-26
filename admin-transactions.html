@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Admin Transactions - Lula</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#98ea6c",
+            "background-light": "#f7f8f6",
+            "background-dark": "#0A140D",
+            "surface-dark": "#172111",
+          },
+          fontFamily: {
+            display: ["Manrope"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            full: "9999px"
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-background-dark dark:text-background-light">
+  <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+    <header class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-2 backdrop-blur-sm">
+      <h1 class="text-xl md:text-2xl font-bold text-background-light flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-2xl md:text-3xl">payments</span>
+        Recent Transactions
+      </h1>
+      <div class="flex items-center gap-2">
+        <button onclick="location.href='notifications.html'" class="flex h-10 w-10 items-center justify-center rounded-full text-background-light">
+          <span class="material-symbols-outlined text-2xl">notifications</span>
+        </button>
+        <button class="flex h-10 w-10 items-center justify-center rounded-full text-background-light">
+          <span class="material-symbols-outlined text-2xl">settings</span>
+        </button>
+      </div>
+    </header>
+    <main class="flex-grow px-4 pb-24 pt-20 max-w-2xl mx-auto">
+      <div class="space-y-4">
+        <!-- Transaction 1 -->
+        <div class="bg-surface-dark rounded-xl p-4 shadow hover:ring-2 hover:ring-primary/60 transition">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-base">calendar_today</span>
+              <span class="text-xs text-background-light/60">09:51 AM · SEP 26, 2025</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-base">description</span>
+              <span class="text-xs text-background-light/60">Ref:</span>
+              <span class="font-bold text-background-light text-xs">LULA318866550</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-xs mb-3">
+            <div class="flex items-center gap-1 font-semibold text-background-light/80">
+              <span class="material-symbols-outlined text-primary text-base">person</span>Sender
+            </div>
+            <div class="font-medium text-background-light truncate">+79100041970</div>
+            <div class="flex items-center gap-1 font-semibold text-background-light/80">
+              <span class="material-symbols-outlined text-primary text-base">person</span>Recipient
+            </div>
+            <div class="font-medium text-background-light truncate">opah manyika</div>
+            <div class="flex items-center gap-1 font-semibold text-background-light/80">
+              <span class="material-symbols-outlined text-primary text-base">account_balance</span>In Bank
+            </div>
+            <div class="font-medium text-background-light truncate">ANY RUSSIAN BANK-AnxiousKuta</div>
+            <div class="flex items-center gap-1 font-semibold text-background-light/80">
+              <span class="material-symbols-outlined text-primary text-base">account_balance</span>Out Bank
+            </div>
+            <div class="font-medium text-background-light truncate">ECOCASH USD-SeniaMuusha</div>
+            <div class="flex items-center gap-1 font-semibold text-green-400">
+              <span class="material-symbols-outlined text-green-400 text-base">arrow_downward</span>In amount
+            </div>
+            <div class="font-bold text-green-400">4500.00 RUB</div>
+            <div class="flex items-center gap-1 font-semibold text-red-400">
+              <span class="material-symbols-outlined text-red-400 text-base">arrow_upward</span>Out amount
+            </div>
+            <div class="font-bold text-red-400">46.49 USD</div>
+            <div class="flex items-center gap-1 font-semibold text-green-400">
+              <span class="material-symbols-outlined text-green-400 text-base">trending_up</span>Profit
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="font-bold text-green-400">7.34 USD</span>
+              <span class="material-symbols-outlined text-green-400 text-base">check_circle</span>
+            </div>
+          </div>
+        </div>
+        <!-- Transaction 2 -->
+        <div class="bg-surface-dark rounded-xl p-4 shadow hover:ring-2 hover:ring-primary/60 transition">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-base">calendar_today</span>
+              <span class="text-xs text-background-light/60">09:04 PM · SEP 25, 2025</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-base">description</span>
+              <span class="text-xs text-background-light/60">Ref:</span>
+              <span class="font-bold text-background-light text-xs">LULA594460376</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-xs mb-3">
+            <div class="flex items-center gap-1 font-semibold text-background-light/80">
+              <span class="material-symbols-outlined text-primary text-base">person</span>Sender
+            </div>
+            <div class="font-medium text-background-light truncate">+79536197238</div>
+            <div class="flex items-center gap-1 font-semibold text-background-light/80">
+              <span class="material-symbols-outlined text-primary text-base">person</span>Recipient
+            </div>
+            <div class="font-medium text-background-light truncate">shingirai munetsi</div>
+            <div class="flex items-center gap-1 font-semibold text-background-light/80">
+              <span class="material-symbols-outlined text-primary text-base">account_balance</span>In Bank
+            </div>
+            <div class="font-medium text-background-light truncate">ECOCASH USD-SeniaMuusha</div>
+            <div class="flex items-center gap-1 font-semibold text-background-light/80">
+              <span class="material-symbols-outlined text-primary text-base">account_balance</span>Out Bank
+            </div>
+            <div class="font-medium text-background-light truncate">ANY RUSSIAN BANK-ThomasNyamadzawo</div>
+            <div class="flex items-center gap-1 font-semibold text-green-400">
+              <span class="material-symbols-outlined text-green-400 text-base">arrow_downward</span>In amount
+            </div>
+            <div class="font-medium text-background-light">214.00 USD</div>
+            <div class="flex items-center gap-1 font-semibold text-red-400">
+              <span class="material-symbols-outlined text-red-400 text-base">arrow_upward</span>Out amount
+            </div>
+            <div class="font-medium text-background-light">16246.00 RUB</div>
+            <div class="flex items-center gap-1 font-semibold text-green-400">
+              <span class="material-symbols-outlined text-green-400 text-base">trending_up</span>Profit
+            </div>
+            <div class="font-bold text-green-400 flex items-center gap-1">19.67 USD <span class="text-lg">🟢</span></div>
+          </div>
+        </div>
+        <!-- Transaction 3 -->
+        <div class="bg-surface-dark rounded-xl p-4 shadow hover:ring-2 hover:ring-primary/60 transition">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-base">calendar_today</span>
+              <span class="text-xs text-background-light/60">06:55 PM · SEP 25, 2025</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-base">description</span>
+              <span class="text-xs text-background-light/60">Ref:</span>
+              <span class="font-bold text-background-light text-xs">LULA673601411</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-xs mb-3">
+            <div class="flex items-center gap-1 font-semibold text-background-light/80">
+              <span class="material-symbols-outlined text-primary text-base">person</span>Sender
+            </div>
+            <div class="font-medium text-background-light truncate">+79643829311</div>
+            <div class="flex items-center gap-1 font-semibold text-background-light/80">
+              <span class="material-symbols-outlined text-primary text-base">person</span>Recipient
+            </div>
+            <div class="font-medium text-background-light truncate">sifundo moyo</div>
+            <div class="flex items-center gap-1 font-semibold text-background-light/80">
+              <span class="material-symbols-outlined text-primary text-base">account_balance</span>In Bank
+            </div>
+            <div class="font-medium text-background-light truncate">ECOCASH USD-SeniaMuusha</div>
+            <div class="flex items-center gap-1 font-semibold text-background-light/80">
+              <span class="material-symbols-outlined text-primary text-base">account_balance</span>Out Bank
+            </div>
+            <div class="font-medium text-background-light truncate">ANY RUSSIAN BANK-ThomasNyamadzawo</div>
+            <div class="flex items-center gap-1 font-semibold text-green-400">
+              <span class="material-symbols-outlined text-green-400 text-base">arrow_downward</span>In amount
+            </div>
+            <div class="font-medium text-background-light">210.00 USD</div>
+            <div class="flex items-center gap-1 font-semibold text-red-400">
+              <span class="material-symbols-outlined text-red-400 text-base">arrow_upward</span>Out amount
+            </div>
+            <div class="font-medium text-background-light">15961.00 RUB</div>
+            <div class="flex items-center gap-1 font-semibold text-green-400">
+              <span class="material-symbols-outlined text-green-400 text-base">trending_up</span>Profit
+            </div>
+            <div class="font-bold text-green-400 flex items-center gap-1">19.08 USD <span class="text-lg">🟢</span></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="fixed bottom-0 left-0 right-0 z-10 bg-background-dark/80 backdrop-blur-sm">
+      <nav class="flex justify-around pt-2 pb-5">
+        <a class="flex flex-col items-center gap-1 text-background-light/60" href="admin-dashboard.html">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="text-xs font-medium">Dashboard</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-primary" href="admin-transactions.html">
+          <span class="material-symbols-outlined">payments</span>
+          <span class="text-xs font-medium">Transactions</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-background-light/60" href="admin-agents.html">
+          <span class="material-symbols-outlined">person_pin</span>
+          <span class="text-xs font-medium">Agents</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-background-light/60" href="admin-stats.html">
+          <span class="material-symbols-outlined">bar_chart</span>
+          <span class="text-xs font-medium">Statistics</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-background-light/60" href="coming-soon.html">
+          <span class="material-symbols-outlined">settings</span>
+          <span class="text-xs font-medium">Settings</span>
+        </a>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>

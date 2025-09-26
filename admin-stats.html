@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Admin Statistics - Lula</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#98ea6c",
+            "background-light": "#f7f8f6",
+            "background-dark": "#0A140D",
+            "surface-dark": "#172111",
+          },
+          fontFamily: {
+            display: ["Manrope"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            full: "9999px"
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-background-dark dark:text-background-light">
+  <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+    <header class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-2 backdrop-blur-sm">
+      <h1 class="text-xl md:text-2xl font-bold text-background-light flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-2xl md:text-3xl">bar_chart</span>
+        Statistics
+      </h1>
+      <div class="flex items-center gap-2">
+        <button onclick="location.href='notifications.html'" class="flex h-10 w-10 items-center justify-center rounded-full text-background-light">
+          <span class="material-symbols-outlined text-2xl">notifications</span>
+        </button>
+        <button class="flex h-10 w-10 items-center justify-center rounded-full text-background-light">
+          <span class="material-symbols-outlined text-2xl">settings</span>
+        </button>
+      </div>
+    </header>
+    <main class="flex-grow px-4 pb-24 pt-20 max-w-2xl mx-auto">
+      <div class="grid grid-cols-1 gap-6">
+        <!-- Today Card -->
+        <div class="bg-surface-dark rounded-xl p-4 shadow">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-primary">today</span>
+            <span class="font-bold text-background-light">Today (2025-09-25)</span>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-400">attach_money</span>
+                <span class="text-xs text-background-light/60">Sales</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">431.37 USD</span>
+              <span class="text-xs text-background-light/40">Count: 6</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-red-400">money_off</span>
+                <span class="text-xs text-background-light/60">Expenses</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">393.44 USD</span>
+              <span class="text-xs text-background-light/40">Count: 6</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-yellow-400">savings</span>
+                <span class="text-xs text-background-light/60">Gross Profit</span>
+              </div>
+              <span class="text-lg font-bold text-green-400">37.93 USD</span>
+              <span class="text-xs text-background-light/40">9.64%</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">inventory_2</span>
+                <span class="text-xs text-background-light/60">Orders</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">6</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs text-background-light/60 mt-2">
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-primary text-base">add_circle</span>
+              <span>OWCR:</span>
+              <span class="text-background-light">None</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-red-400 text-base">block</span>
+              <span>OWAR:</span>
+              <span class="text-background-light">LULA262360071</span>
+            </div>
+          </div>
+        </div>
+        <!-- Yesterday Card -->
+        <div class="bg-surface-dark rounded-xl p-4 shadow">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-primary">calendar_month</span>
+            <span class="font-bold text-background-light">Yesterday (2025-09-24)</span>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-400">attach_money</span>
+                <span class="text-xs text-background-light/60">Sales</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">1 670.38 USD</span>
+              <span class="text-xs text-background-light/40">Count: 6</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-red-400">money_off</span>
+                <span class="text-xs text-background-light/60">Expenses</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">1 640.44 USD</span>
+              <span class="text-xs text-background-light/40">Count: 6</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-yellow-400">savings</span>
+                <span class="text-xs text-background-light/60">Gross Profit</span>
+              </div>
+              <span class="text-lg font-bold text-green-400">29.94 USD</span>
+              <span class="text-xs text-background-light/40">1.83%</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">inventory_2</span>
+                <span class="text-xs text-background-light/60">Orders</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">7</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs text-background-light/60 mt-2">
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-primary text-base">add_circle</span>
+              <span>OWCR:</span>
+              <span class="text-background-light">None</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-red-400 text-base">block</span>
+              <span>OWAR:</span>
+              <span class="text-background-light">LULA262360071</span>
+            </div>
+          </div>
+        </div>
+        <!-- This Month Card -->
+        <div class="bg-surface-dark rounded-xl p-4 shadow">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-primary">date_range</span>
+            <span class="font-bold text-background-light">This Month (2025-09)</span>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-400">attach_money</span>
+                <span class="text-xs text-background-light/60">Sales</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">71 473.68 USD</span>
+              <span class="text-xs text-background-light/40">Count: 252</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-red-400">money_off</span>
+                <span class="text-xs text-background-light/60">Expenses</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">66 263.08 USD</span>
+              <span class="text-xs text-background-light/40">Count: 252</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-yellow-400">savings</span>
+                <span class="text-xs text-background-light/60">Gross Profit</span>
+              </div>
+              <span class="text-lg font-bold text-green-400">5 210.60 USD</span>
+              <span class="text-xs text-background-light/40">7.86%</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">inventory_2</span>
+                <span class="text-xs text-background-light/60">Orders</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">252</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-blue-400">show_chart</span>
+                <span class="text-xs text-background-light/60">Avg Daily Profit</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">208.42 USD</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-blue-400">trending_up</span>
+                <span class="text-xs text-background-light/60">Avg Order Profit</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">19.96 USD</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-purple-400">leaderboard</span>
+                <span class="text-xs text-background-light/60">Projected Yearly Sales</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">1 029 220.99 USD</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-purple-400">leaderboard</span>
+                <span class="text-xs text-background-light/60">Projected Yearly Gross Profit</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">75 032.64 USD</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs text-background-light/60 mt-2">
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-primary text-base">add_circle</span>
+              <span>OWCR:</span>
+              <span class="text-background-light">None</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-red-400 text-base">block</span>
+              <span>OWAR:</span>
+              <span class="text-background-light">LULA262360071</span>
+            </div>
+          </div>
+        </div>
+        <!-- Last Month Card -->
+        <div class="bg-surface-dark rounded-xl p-4 shadow">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-primary">calendar_today</span>
+            <span class="font-bold text-background-light">Last Month (2025-08)</span>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-400">attach_money</span>
+                <span class="text-xs text-background-light/60">Sales</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">2,391,000.00 USD</span>
+              <span class="text-xs text-background-light/40">Count: 2,347</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-red-400">money_off</span>
+                <span class="text-xs text-background-light/60">Expenses</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">2,120,000.00 USD</span>
+              <span class="text-xs text-background-light/40">Count: 2,347</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-yellow-400">savings</span>
+                <span class="text-xs text-background-light/60">Gross Profit</span>
+              </div>
+              <span class="text-lg font-bold text-green-400">271,000.00 USD</span>
+              <span class="text-xs text-background-light/40">12.78%</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">inventory_2</span>
+                <span class="text-xs text-background-light/60">Orders</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">2,347</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-blue-400">show_chart</span>
+                <span class="text-xs text-background-light/60">Avg Daily Profit</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">8,742.00 USD</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-blue-400">trending_up</span>
+                <span class="text-xs text-background-light/60">Avg Order Profit</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">115.50 USD</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-purple-400">leaderboard</span>
+                <span class="text-xs text-background-light/60">Projected Yearly Sales</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">28,900,000.00 USD</span>
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-purple-400">leaderboard</span>
+                <span class="text-xs text-background-light/60">Projected Yearly Gross Profit</span>
+              </div>
+              <span class="text-lg font-bold text-background-light">3,252,000.00 USD</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs text-background-light/60 mt-2">
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-primary text-base">add_circle</span>
+              <span>OWCR:</span>
+              <span class="text-background-light">None</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-red-400 text-base">block</span>
+              <span>OWAR:</span>
+              <span class="text-background-light">LULA262360071</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="fixed bottom-0 left-0 right-0 z-10 bg-background-dark/80 backdrop-blur-sm">
+      <nav class="flex justify-around pt-2 pb-5">
+        <a class="flex flex-col items-center gap-1 text-background-light/60" href="admin-dashboard.html">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="text-xs font-medium">Dashboard</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-background-light/60" href="admin-transactions.html">
+          <span class="material-symbols-outlined">payments</span>
+          <span class="text-xs font-medium">Transactions</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-background-light/60" href="admin-agents.html">
+          <span class="material-symbols-outlined">person_pin</span>
+          <span class="text-xs font-medium">Agents</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-primary" href="admin-stats.html">
+          <span class="material-symbols-outlined">bar_chart</span>
+          <span class="text-xs font-medium">Statistics</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-background-light/60" href="coming-soon.html">
+          <span class="material-symbols-outlined">settings</span>
+          <span class="text-xs font-medium">Settings</span>
+        </a>
+      </nav>
+    </footer>
+  </div>
+</body>
