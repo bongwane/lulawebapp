@@ -87,18 +87,51 @@
             Download POP sent by client
           </button>
         </div>
-        <!-- Agent POP Upload (styled like payment.html) -->
-        <div class="mb-6">
-          <div class="flex items-center justify-center rounded-xl border-2 border-dashed border-background-light/20 bg-background-dark p-4">
-            <div class="text-center w-full">
-              <span class="material-symbols-outlined text-5xl text-primary/40">
-                cloud_upload
-              </span>
-              <p class="mt-2 font-medium text-background-light">Upload Your POP</p>
-              <p class="text-xs text-background-light/60">Tap to select a file or photo</p>
-              <input accept="image/*,application/pdf" class="sr-only" id="agent-pop" name="agent-pop" type="file"/>
-              <label class="mt-4 inline-block cursor-pointer rounded-lg bg-primary/20 px-4 py-2 text-sm font-semibold text-primary" for="agent-pop">Choose File</label>
+        <!-- Toggle Button -->
+        <div class="flex justify-center mb-6 mt-2">
+          <div id="toggle-container" class="flex bg-background-dark/70 rounded-full p-1 w-72 shadow-inner">
+            <button
+              id="toggle-confirm"
+              type="button"
+              class="flex-1 py-2 rounded-full font-bold text-sm transition-all bg-primary text-background-dark shadow"
+              onclick="setToggle('confirm')"
+            >
+              Confirm Received
+            </button>
+            <button
+              id="toggle-cancel"
+              type="button"
+              class="flex-1 py-2 rounded-full font-bold text-sm transition-all text-background-light"
+              style="background:transparent;"
+              onclick="setToggle('cancel')"
+            >
+              Cancel Order
+            </button>
+          </div>
+        </div>
+        <!-- Toggle Content: Confirm (default) -->
+        <div id="confirm-content">
+          <!-- Agent POP Upload (styled like payment.html) -->
+          <div class="mb-6">
+            <div class="flex items-center justify-center rounded-xl border-2 border-dashed border-background-light/20 bg-background-dark p-4">
+              <div class="text-center w-full">
+                <span class="material-symbols-outlined text-5xl text-primary/40">
+                  cloud_upload
+                </span>
+                <p class="mt-2 font-medium text-background-light">Upload Your POP</p>
+                <p class="text-xs text-background-light/60">Tap to select a file or photo</p>
+                <input accept="image/*,application/pdf" class="sr-only" id="agent-pop" name="agent-pop" type="file"/>
+                <label class="mt-4 inline-block cursor-pointer rounded-lg bg-primary/20 px-4 py-2 text-sm font-semibold text-primary" for="agent-pop">Choose File</label>
+              </div>
             </div>
+          </div>
+        </div>
+        <!-- Toggle Content: Cancel -->
+        <div id="cancel-content" style="display:none;">
+          <div class="mb-6">
+            <textarea id="cancel-reason" name="cancel-reason" rows="3"
+              class="form-input w-full bg-background-dark text-background-light border-none rounded-lg px-4 py-3 text-base focus:ring-2 focus:ring-red-600/50 placeholder:text-background-light/60 resize-none"
+              placeholder="Reason for cancelling this order..."></textarea>
           </div>
         </div>
         <!-- Agent PIN Input (styled like forgot-password.html) -->
@@ -110,14 +143,62 @@
       </div>
     </main>
     <div class="fixed bottom-4 left-0 right-0 z-30 flex justify-center pointer-events-none">
-      <button
-        class="pointer-events-auto w-[90%] max-w-md rounded-xl bg-primary py-4 text-center font-bold text-background-dark shadow-lg"
-        style="font-size:1.25rem;"
-        onclick="window.location.href='agent-tracking.html'"
-      >
-        Confirm Received
-      </button>
+      <div class="flex w-[90%] max-w-md gap-3 pointer-events-auto">
+        <button
+          id="cancel-btn"
+          class="flex-1 rounded-xl bg-red-600 py-4 text-center font-bold text-background-light shadow-lg hover:bg-red-700 transition"
+          style="font-size:1.1rem; display:none;"
+          onclick="window.location.href='order-cancelled.html'"
+        >
+          Cancel Order
+        </button>
+        <button
+          id="confirm-btn"
+          class="flex-1 rounded-xl bg-primary py-4 text-center font-bold text-background-dark shadow-lg"
+          style="font-size:1.1rem;"
+          onclick="window.location.href='agent-tracking.html'"
+        >
+          Confirm Received
+        </button>
+      </div>
     </div>
   </div>
+  <script>
+    // Toggle logic
+    function setToggle(mode) {
+      const confirmBtn = document.getElementById('toggle-confirm');
+      const cancelBtn = document.getElementById('toggle-cancel');
+      const confirmContent = document.getElementById('confirm-content');
+      const cancelContent = document.getElementById('cancel-content');
+      const confirmActionBtn = document.getElementById('confirm-btn');
+      const cancelActionBtn = document.getElementById('cancel-btn');
+
+      if (mode === 'confirm') {
+        confirmBtn.classList.add('bg-primary', 'text-background-dark', 'shadow');
+        confirmBtn.classList.remove('text-background-light');
+        cancelBtn.classList.remove('bg-red-600', 'text-background-dark', 'shadow');
+        cancelBtn.classList.add('text-background-light');
+        cancelBtn.style.background = 'transparent';
+        confirmContent.style.display = '';
+        cancelContent.style.display = 'none';
+        confirmActionBtn.style.display = '';
+        cancelActionBtn.style.display = 'none';
+        confirmActionBtn.disabled = false;
+      } else {
+        cancelBtn.classList.add('bg-red-600', 'text-background-dark', 'shadow');
+        cancelBtn.classList.remove('text-background-light');
+        cancelBtn.style.background = '';
+        confirmBtn.classList.remove('bg-primary', 'text-background-dark', 'shadow');
+        confirmBtn.classList.add('text-background-light');
+        confirmContent.style.display = 'none';
+        cancelContent.style.display = '';
+        confirmActionBtn.style.display = 'none';
+        cancelActionBtn.style.display = '';
+        cancelActionBtn.disabled = false;
+      }
+    }
+    // Set default to confirm
+    setToggle('confirm');
+  </script>
 </body>
 </html>
