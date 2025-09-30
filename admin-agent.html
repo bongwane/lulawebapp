@@ -57,83 +57,86 @@
     </header>
     <main class="flex-grow px-4 pb-24 pt-20 max-w-md mx-auto">
       <!-- Agent Stats -->
-      <div class="bg-surface-dark rounded-xl p-4 mb-4 shadow">
-        <h2 class="text-lg font-bold text-background-light mb-4 flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary">bar_chart</span>
-          Month Statistics
-        </h2>
-        <!-- This Month -->
-        <div class="mb-4">
-          <div class="flex items-center gap-2 text-background-light/80 text-sm mb-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <!-- This Month Card -->
+        <div class="bg-surface-dark rounded-xl p-4 shadow flex flex-col">
+          <h2 class="text-lg font-bold text-background-light mb-3 flex items-center gap-2">
             <span class="material-symbols-outlined text-primary">calendar_month</span>
-            <span class="font-semibold">This Month</span>
-            <span class="text-xs text-background-light/40">(2025-09-01 - 2025-09-26)</span>
-          </div>
-          <div class="grid grid-cols-2 gap-3 text-sm">
-            <div class="flex flex-col items-center bg-background-dark/30 rounded-lg p-2 w-full">
-              <span class="material-symbols-outlined text-primary">payments</span>
-              <span class="text-background-light/60 text-xs mt-1">Payments</span>
+            This Month
+            <span class="text-xs text-background-light/40 font-normal ml-2">(2025-09-01 - 2025-09-26)</span>
+          </h2>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-background-light/60 flex items-center gap-1">
+                <span class="material-symbols-outlined text-primary text-base">payments</span>
+                Payments
+              </span>
               <span class="font-bold text-background-light">15</span>
-              <span class="text-xs text-background-light/60">73,600.00 RUB</span>
+              <span class="text-xs text-background-light/60 ml-2">73,600.00 RUB</span>
             </div>
-            <div class="flex flex-col items-center bg-background-dark/30 rounded-lg p-2 w-full">
-              <span class="material-symbols-outlined text-primary">account_balance_wallet</span>
-              <span class="text-background-light/60 text-xs mt-1">Collections</span>
+            <div class="flex items-center justify-between">
+              <span class="text-background-light/60 flex items-center gap-1">
+                <span class="material-symbols-outlined text-primary text-base">account_balance_wallet</span>
+                Collections
+              </span>
               <span class="font-bold text-background-light">12</span>
-              <span class="text-xs text-background-light/60">147,439.00 RUB</span>
+              <span class="text-xs text-background-light/60 ml-2">147,439.00 RUB</span>
             </div>
-          </div>
-          <div class="flex items-center justify-between gap-2 mt-2">
-            <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-base">inventory_2</span>
-              <span class="text-xs text-background-light/60">Orders:</span>
-              <span class="font-bold text-background-light text-sm">27</span>
+            <div class="flex items-center justify-between">
+              <span class="text-background-light/60 flex items-center gap-1">
+                <span class="material-symbols-outlined text-primary text-base">inventory_2</span>
+                Orders
+              </span>
+              <span class="font-bold text-background-light">27</span>
             </div>
-            <div class="flex items-center gap-1">
-              <span class="material-symbols-outlined text-primary text-base">star</span>
-              <span class="text-xs text-background-light/60">Commission:</span>
-              <span class="font-bold text-primary text-sm">5,200.00 RUB</span>
+            <div class="flex items-center justify-between">
+              <span class="text-background-light/60 flex items-center gap-1">
+                <span class="material-symbols-outlined text-primary text-base">star</span>
+                Commission
+              </span>
+              <span class="font-bold text-primary">5,200.00 RUB</span>
             </div>
           </div>
         </div>
-        <!-- Last Month -->
-        <div>
-          <div class="flex items-center gap-2 text-background-light/80 text-sm mb-2">
+        <!-- Last Month Card -->
+        <div class="bg-surface-dark rounded-xl p-4 shadow flex flex-col">
+          <h2 class="text-lg font-bold text-background-light mb-3 flex items-center gap-2">
             <span class="material-symbols-outlined text-primary">calendar_month</span>
-            <span class="font-semibold">Last Month</span>
-            <span class="text-xs text-background-light/40">(2025-08-01 - 2025-08-31)</span>
-          </div>
-          <div class="grid grid-cols-2 gap-3 text-sm">
-            <div class="flex flex-col items-center bg-background-dark/30 rounded-lg p-2 w-full">
-              <span class="material-symbols-outlined text-primary">payments</span>
-              <span class="text-background-light/60 text-xs mt-1">Payments</span>
+            Last Month
+            <span class="text-xs text-background-light/40 font-normal ml-2">(2025-08-01 - 2025-08-31)</span>
+          </h2>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-background-light/60 flex items-center gap-1">
+                <span class="material-symbols-outlined text-primary text-base">payments</span>
+                Payments
+              </span>
               <span class="font-bold text-background-light">36</span>
-              <span class="text-xs text-background-light/60">265,600.00 RUB</span>
+              <span class="text-xs text-background-light/60 ml-2">265,600.00 RUB</span>
             </div>
-            <div class="flex flex-col items-center bg-background-dark/30 rounded-lg p-2 w-full">
-              <span class="material-symbols-outlined text-primary">account_balance_wallet</span>
-              <span class="text-background-light/60 text-xs mt-1">Collections</span>
+            <div class="flex items-center justify-between">
+              <span class="text-background-light/60 flex items-center gap-1">
+                <span class="material-symbols-outlined text-primary text-base">account_balance_wallet</span>
+                Collections
+              </span>
               <span class="font-bold text-background-light">24</span>
-              <span class="text-xs text-background-light/60">335,466.00 RUB</span>
+              <span class="text-xs text-background-light/60 ml-2">335,466.00 RUB</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-background-light/60 flex items-center gap-1">
+                <span class="material-symbols-outlined text-primary text-base">inventory_2</span>
+                Orders
+              </span>
+              <span class="font-bold text-background-light">60</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-background-light/60 flex items-center gap-1">
+                <span class="material-symbols-outlined text-primary text-base">star</span>
+                Commission
+              </span>
+              <span class="font-bold text-primary">12,800.00 RUB</span>
             </div>
           </div>
-          <div class="flex items-center justify-between gap-2 mt-2">
-            <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-base">inventory_2</span>
-              <span class="text-xs text-background-light/60">Orders:</span>
-              <span class="font-bold text-background-light text-sm">60</span>
-            </div>
-            <div class="flex items-center gap-1">
-              <span class="material-symbols-outlined text-primary text-base">star</span>
-              <span class="text-xs text-background-light/60">Commission:</span>
-              <span class="font-bold text-primary text-sm">12,800.00 RUB</span>
-            </div>
-          </div>
-        </div>
-        <div class="mt-6 flex items-center gap-2 justify-end">
-          <span class="material-symbols-outlined text-primary">account_balance</span>
-          <span class="text-sm text-background-light/60">Total Balance:</span>
-          <span class="text-lg font-bold text-primary">110,000.00 RUB</span>
         </div>
       </div>
       <!-- Recent Transactions -->
