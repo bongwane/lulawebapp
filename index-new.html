@@ -307,6 +307,8 @@
   </a>
 </div>
 </div>
+
+<!-- End hero section -->
 </section>
 
 <!-- Rate Playground Section - Similar to Wise -->
@@ -316,25 +318,47 @@
 <!-- Rate Calculator -->
 <div class="space-y-4">
 <!-- You Send Section -->
-<div class="rounded-xl p-2 md:p-3 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur">
+<div id="youSendCard" class="rounded-xl p-1.5 md:p-2 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur transition-shadow focus-within:ring-2 focus-within:ring-[#9FE870]/60 hover:shadow-md">
 <div class="flex flex-col">
-<div class="flex items-center justify-between mb-1">
-<label for="sendAmount" class="text-sm text-gray-600 dark:text-gray-400" data-i18n="youSend">You send</label>
+<div class="flex items-center justify-between mb-0.5">
+<label for="sendAmount" class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400"><span data-i18n="youSend">You send</span></label>
  </div>
-<div class="flex items-center justify-between">
-<input 
-  id="sendAmount" 
-  class="bg-transparent text-2xl md:text-3xl font-bold text-gray-900 dark:text-white placeholder-gray-400 border-none outline-none flex-1 min-w-0 input-glow" 
-  placeholder="100" 
-  type="text" 
-  value="100"
-  oninput="updateConversion()" onfocus="unformatInput(this)" onblur="formatInput(this, 2)" aria-describedby="sendCurrencyButton" inputmode="decimal" step="0.01" min="0"
-/>
-<button id="sendCurrencyButton" class="flex items-center gap-2 rounded-full bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-2 py-1 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
-<img alt="Zimbabwe flag" class="h-5 w-5 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg"/>
-<span class="font-bold">USD</span>
-<span class="material-symbols-outlined text-sm">expand_more</span>
-</button>
+<div class="grid grid-cols-[1fr_auto] items-center gap-2">
+  <input 
+    id="sendAmount" 
+    class="bg-transparent text-2xl md:text-3xl font-bold text-gray-900 dark:text-white placeholder-gray-400 border-none outline-none flex-1 min-w-0 input-glow" 
+    placeholder="100" 
+    type="text" 
+    value="100"
+    oninput="updateConversion()" onfocus="unformatInput(this)" onblur="formatInput(this, 2)" aria-describedby="sendCurrencyButton" inputmode="decimal" step="0.01" min="0"
+  />
+  <div class="relative inline-block">
+    <button id="sendCurrencyButton" aria-expanded="false" aria-controls="sendCurrencyMenu" class="flex items-center gap-2 rounded-full bg-transparent px-1 py-0.5 hover:bg-white/40 dark:hover:bg-gray-700/40 transition-colors">
+        <img alt="Zimbabwe flag" class="h-5 w-5 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg"/>
+        <span class="font-bold text-2xl md:text-3xl leading-none">USD</span>
+        <span class="material-symbols-outlined text-2xl md:text-3xl leading-none">expand_more</span>
+      </button>
+      <div id="sendCurrencyMenu" class="absolute right-0 mt-2 bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg w-40 p-2 hidden z-50 backdrop-blur-md" role="menu" aria-labelledby="sendCurrencyButton">
+        <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-curr="USD" role="menuitem">
+          <img alt="USD" class="h-4 w-4 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg" />
+          <span>USD</span>
+        </button>
+        <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-curr="RUB" role="menuitem">
+          <img alt="RUB" class="h-4 w-4 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg" />
+          <span>RUB</span>
+        </button>
+      </div>
+  </div>
+</div>
+<div class="flex justify-end mt-1">
+  <div class="relative inline-block">
+    <button id="paymentMethodButton" aria-expanded="false" aria-controls="paymentMethodMenu" class="w-auto flex items-center gap-2 justify-between md:justify-center rounded-full bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-2 py-1 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-600 min-w-[160px] md:min-w-[200px]">
+      <span class="material-symbols-outlined text-base text-[#102216] dark:text-[#EAF7E4]" id="paymentMethodIcon">credit_card</span>
+      <span id="paymentMethodLabel" class="text-[#102216] dark:text-[#EAF7E4]">—</span>
+      <span class="material-symbols-outlined text-sm text-[#102216] dark:text-[#EAF7E4]">expand_more</span>
+    </button>
+    <div id="paymentMethodMenu" class="absolute right-0 mt-2 w-56 bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-lg p-2 hidden z-50 backdrop-blur-md" role="menu" aria-labelledby="paymentMethodButton"></div>
+  </div>
 </div>
 </div>
 </div>
@@ -348,32 +372,54 @@
 </div>
 
 <!-- They Get Section -->
-<div id="theyGetCard" class="rounded-xl p-2 md:p-3 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur -mt-5 md:-mt-6 will-change-transform">
+<div id="theyGetCard" class="rounded-xl p-1.5 md:p-2 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur -mt-5 md:-mt-6 will-change-transform transition-shadow focus-within:ring-2 focus-within:ring-[#9FE870]/60 hover:shadow-md">
 <div class="flex items-center justify-between mb-1">
-<label for="receiveAmount" class="text-sm text-gray-600 dark:text-gray-400" data-i18n="theyGet">They get</label>
-<span class="text-xs text-gray-500 dark:text-gray-400"><span data-i18n="rateLabel">Rate</span>: 1 USD = <span id="exchangeRate">78.62</span> <span id="toCurrency">RUB</span></span>
+<label for="receiveAmount" class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400"><span data-i18n="theyGet">They get</span></label>
+<span class="px-2 py-1 rounded-full bg-white/60 dark:bg-gray-700/60 text-[11px] text-gray-700 dark:text-gray-200"><span data-i18n="rateLabel">Rate</span>: 1 USD = <span id="exchangeRate">78.62</span> <span id="toCurrency">RUB</span></span>
 </div>
-<div class="flex items-center justify-between mb-2 md:mb-3">
-<input 
-  id="receiveAmount" 
-  class="bg-transparent text-2xl md:text-3xl font-bold text-gray-900 dark:text-white placeholder-gray-400 border-none outline-none flex-1 min-w-0 input-glow" 
-  placeholder="0.00" 
-  type="text" 
-  value="7862.00"
-  oninput="updateFromReceive()" onfocus="unformatInput(this)" onblur="formatInput(this, 2)" aria-describedby="receiveCurrencyButton" inputmode="decimal" step="1" min="0"
-/>
-<button id="receiveCurrencyButton" class="flex items-center gap-2 rounded-full bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-2 py-1 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
-<img alt="RUB flag" class="h-5 w-5 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg"/>
-<span class="font-bold">RUB</span>
-<span class="material-symbols-outlined text-sm">expand_more</span>
-</button>
+<div class="grid grid-cols-[1fr_auto] items-center gap-2 mb-1.5 md:mb-2">
+  <input 
+    id="receiveAmount" 
+    class="bg-transparent text-2xl md:text-3xl font-bold text-gray-900 dark:text-white placeholder-gray-400 border-none outline-none flex-1 min-w-0 input-glow" 
+    placeholder="0.00" 
+    type="text" 
+    value="7862.00"
+    oninput="updateFromReceive()" onfocus="unformatInput(this)" onblur="formatInput(this, 2)" aria-describedby="receiveCurrencyButton" inputmode="decimal" step="1" min="0"
+  />
+  <div class="relative inline-block">
+    <button id="receiveCurrencyButton" aria-expanded="false" aria-controls="receiveCurrencyMenu" class="flex items-center gap-2 rounded-full bg-transparent px-1 py-0.5 hover:bg-white/40 dark:hover:bg-gray-700/40 transition-colors">
+        <img alt="RUB flag" class="h-5 w-5 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg"/>
+        <span class="font-bold text-2xl md:text-3xl leading-none">RUB</span>
+        <span class="material-symbols-outlined text-2xl md:text-3xl leading-none">expand_more</span>
+      </button>
+      <div id="receiveCurrencyMenu" class="absolute right-0 mt-2 bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg w-40 p-2 hidden z-50 backdrop-blur-md" role="menu" aria-labelledby="receiveCurrencyButton">
+        <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-curr="RUB" role="menuitem">
+          <img alt="RUB" class="h-4 w-4 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg" />
+          <span>RUB</span>
+        </button>
+        <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-curr="USD" role="menuitem">
+          <img alt="USD" class="h-4 w-4 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg" />
+          <span>USD</span>
+        </button>
+      </div>
+  </div>
+</div>
+<div class="flex justify-end">
+  <div class="relative inline-block">
+    <button id="collectionMethodButton" aria-expanded="false" aria-controls="collectionMethodMenu" class="w-auto flex items-center gap-2 justify-between md:justify-center rounded-full bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-2 py-1 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-600 min-w-[160px] md:min-w-[200px]">
+      <span class="material-symbols-outlined text-base text-[#102216] dark:text-[#EAF7E4]" id="collectionMethodIcon">account_balance</span>
+      <span id="collectionMethodLabel" class="text-[#102216] dark:text-[#EAF7E4]">—</span>
+      <span class="material-symbols-outlined text-sm text-[#102216] dark:text-[#EAF7E4]">expand_more</span>
+    </button>
+    <div id="collectionMethodMenu" class="absolute right-0 mt-2 w-56 bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-lg p-2 hidden z-50 backdrop-blur-md" role="menu" aria-labelledby="collectionMethodButton"></div>
+  </div>
 </div>
 </div>
 
 </div>
 
 <!-- Fee Breakdown -->
-<div class="rounded-xl p-4 space-y-3 mt-6 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur">
+<div class="rounded-xl p-4 space-y-3 mt-4 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur">
 <div class="flex justify-between items-center text-sm">
 <span class="text-gray-600 dark:text-gray-400" data-i18n="bankFee">Bank fee</span>
 <span class="font-semibold" id="transferFeeDisplay">$2.50</span>
@@ -411,6 +457,8 @@
 </button>
 </div>
 </div>
+
+<!-- Payment & Collection dropdowns are now embedded into the cards below -->
 
 <button class="bg-[#9FE870] text-[#163300] w-full text-center font-semibold py-4 px-6 rounded-full text-lg hover:bg-[#8BD45F] active:bg-[#163300] active:text-[#9FE870] transition-colors hover-press mt-6 neon-soft shadow-lg" onclick="window.location.href='sign-up.html'" data-i18n="startTransfer">
 Start your transfer
@@ -620,7 +668,7 @@ const flagUrls = {
 
 let currentFromCurrency = 'USD';
 let currentToCurrency = 'RUB';
-let baseTransferFeePercent = 0.01; // 1% bank fee
+let baseTransferFeePercent = 0.02; // default 2% bank fee (overridden by methods)
 let speedFee = 0.00; // computed from percentage
 let currentSpeedPercent = 0.05; // default express 5%
 
@@ -634,6 +682,31 @@ const currencySymbols = {
   'ZWL': 'Z$',
   'RUB': '₽'
 };
+
+// Methods configuration decoupled: payment by SOURCE currency, collection by DESTINATION currency
+const paymentMethodsBySource = {
+  // Zimbabwe (USD) should always have Mobile Money as an option
+  USD: ['methodBank', 'methodMobileMoney', 'methodCashPickup'],
+  // Russia (RUB) sending side does not have Mobile Money
+  RUB: ['methodBank', 'methodCashPickup']
+};
+const collectionMethodsByDest = {
+  // Zimbabwe (USD) destination supports Mobile Money for collection
+  USD: ['methodBank', 'methodMobileMoney', 'methodCashPickup'],
+  // Russia (RUB) destination has no Mobile Money
+  RUB: ['methodBank', 'methodCashPickup']
+};
+const defaultPaymentBySource = {
+  USD: 'methodCashPickup',
+  RUB: 'methodBank'
+};
+const defaultCollectionByDest = {
+  USD: 'methodCashPickup',
+  RUB: 'methodBank'
+};
+let selectedPaymentMethod = null;
+let selectedCollectionMethod = null;
+let lastMethodsPair = { from: null, to: null }; // track last pair for rerender
 
 function formatAmount(value, currencyCode, locale) {
   try {
@@ -669,6 +742,15 @@ const i18n = {
     speedInstant: 'Instant',
     speedInstantTime: 'Minutes',
     startTransfer: 'Start your transfer',
+  paymentMethodLabel: 'Payment method',
+  collectionMethodLabel: 'Collection method',
+  methodBankCard: 'Bank card',
+  methodBank: 'Bank',
+  methodCashPickup: 'Cash',
+  methodMobileMoney: 'Mobile Money',
+  payingWith: 'Paying with',
+  collectingWith: 'Collecting with',
+  change: 'Change',
     getStartedSectionTitle: 'More than just transfers',
     getStartedSendMoney: 'Send Money',
     getStartedBuyData: 'Buy Data',
@@ -720,6 +802,15 @@ const i18n = {
     speedInstant: 'Мгновенно',
     speedInstantTime: 'Минуты',
     startTransfer: 'Начать перевод',
+  paymentMethodLabel: 'Способ оплаты',
+  collectionMethodLabel: 'Способ получения',
+  methodBankCard: 'Банковская карта',
+  methodBank: 'Банк',
+  methodCashPickup: 'Наличные',
+  methodMobileMoney: 'Мобильные деньги',
+  payingWith: 'Оплата',
+  collectingWith: 'Получение',
+  change: 'Изменить',
     getStartedSectionTitle: 'Больше, чем переводы',
     getStartedSendMoney: 'Отправить деньги',
     getStartedBuyData: 'Купить интернет',
@@ -854,8 +945,11 @@ function updateConversion() {
   const receiveAmount = (sendAmount * rate).toFixed(2);
   // compute speed fee based on current percent
   speedFee = sendAmount * currentSpeedPercent;
-  // compute bank fee (1%)
-  const bankFee = sendAmount * baseTransferFeePercent;
+  // compute bank fee depending on selected methods
+  const cashKey = 'methodCashPickup';
+  const isCash = (selectedPaymentMethod === cashKey) || (selectedCollectionMethod === cashKey);
+  const effectiveBankFeePercent = isCash ? 0 : baseTransferFeePercent;
+  const bankFee = sendAmount * effectiveBankFeePercent;
   const totalPay = (sendAmount + bankFee + speedFee).toFixed(2);
 
   const receiveInputEl = document.getElementById('receiveAmount');
@@ -878,8 +972,16 @@ function updateConversion() {
   flashUpdate(document.getElementById('speedFeeDisplay'), formatAmount(speedFee, currentFromCurrency, locale));
   flashUpdate(document.getElementById('transferFeeDisplay'), formatAmount(bankFee, currentFromCurrency, locale));
   document.getElementById('toCurrency').textContent = currentToCurrency;
+  // Refresh method options only when pair changes
+  if (lastMethodsPair.from !== currentFromCurrency || lastMethodsPair.to !== currentToCurrency) {
+    renderMethodOptions(currentFromCurrency, currentToCurrency);
+    lastMethodsPair = { from: currentFromCurrency, to: currentToCurrency };
+  }
   // Update speed card amounts with current symbol and current input amount
   updateSpeedCardAmounts(currentFromCurrency, sendAmount, locale);
+
+  // Keep cards equal height after content changes
+  equalizeCardsHeight();
 
   // Typing pulse
   const sendInputEl = document.getElementById('sendAmount');
@@ -952,6 +1054,9 @@ function swapCurrencies() {
 
   // Optional tick sound (muted by default)
   if (shouldPlayTick()) playTick();
+
+  // Re-equalize heights after swap animations/updates
+  setTimeout(equalizeCardsHeight, 0);
 }
 
 function updateSpeedCardAmounts(currencyCode, sendAmount, locale){
@@ -1005,6 +1110,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize with express option selected (5%)
   const defaultOption = document.querySelector('.speed-option[data-speed="express"]') || speedOptions[1];
   if (defaultOption) defaultOption.click();
+  // Initialize payment/collection methods based on destination currency
+  renderMethodOptions(currentFromCurrency, currentToCurrency);
+  lastMethodsPair = { from: currentFromCurrency, to: currentToCurrency };
   
   // Language switcher interactions
   const langBtn = document.getElementById('langSwitcherButton');
@@ -1018,6 +1126,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileAppToggle = document.getElementById('mobileAppToggle');
   const mobileAppMenu = document.getElementById('mobileAppMenu');
   const mobileAppChevron = document.getElementById('mobileAppChevron');
+  const receiveCurrencyBtn = document.getElementById('receiveCurrencyButton');
+  const receiveCurrencyMenu = document.getElementById('receiveCurrencyMenu');
+  const sendCurrencyBtn = document.getElementById('sendCurrencyButton');
+  const sendCurrencyMenu = document.getElementById('sendCurrencyMenu');
+  const sendCardEl = sendCurrencyBtn ? sendCurrencyBtn.closest('.rounded-xl') : null;
+  const receiveCardEl = receiveCurrencyBtn ? receiveCurrencyBtn.closest('.rounded-xl') : null;
   if (langBtn && langMenu) {
     langBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -1057,6 +1171,110 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!appMenu.classList.contains('hidden')) {
         appMenu.classList.add('hidden');
         appBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+  // Receive currency dropdown interactions
+  if (receiveCurrencyBtn && receiveCurrencyMenu) {
+    receiveCurrencyBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = receiveCurrencyMenu.classList.contains('hidden');
+      receiveCurrencyMenu.classList.toggle('hidden');
+      receiveCurrencyBtn.setAttribute('aria-expanded', String(willOpen));
+      if (willOpen) {
+        // Elevate card and menu above siblings
+        receiveCardEl?.classList.add('relative', 'z-[100]');
+        receiveCurrencyMenu.style.zIndex = '9999';
+      } else {
+        receiveCardEl?.classList.remove('z-[100]');
+        receiveCurrencyMenu.style.zIndex = '';
+      }
+    });
+    receiveCurrencyMenu.querySelectorAll('[data-curr]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const newCurr = e.currentTarget.getAttribute('data-curr');
+        if (!newCurr || newCurr === currentToCurrency) {
+          receiveCurrencyMenu.classList.add('hidden');
+          receiveCurrencyBtn.setAttribute('aria-expanded', 'false');
+          return;
+        }
+        currentToCurrency = newCurr;
+  // Update UI icon/text
+  const img = receiveCurrencyBtn.querySelector('img');
+  const codeSpan = receiveCurrencyBtn.querySelector('span');
+  if (img) img.src = flagUrls[currentToCurrency] || img.src;
+  if (codeSpan) codeSpan.textContent = currentToCurrency;
+        // Persist pair
+        try { localStorage.setItem('lula_pair', JSON.stringify({ from: currentFromCurrency, to: currentToCurrency })); } catch (e) {}
+        // Re-render methods and recompute
+        renderMethodOptions(currentToCurrency);
+        updateConversion();
+        receiveCurrencyMenu.classList.add('hidden');
+        receiveCurrencyBtn.setAttribute('aria-expanded', 'false');
+        receiveCardEl?.classList.remove('z-[100]');
+        receiveCurrencyMenu.style.zIndex = '';
+      });
+    });
+    // Close on outside click
+    document.addEventListener('click', () => {
+      if (!receiveCurrencyMenu.classList.contains('hidden')) {
+        receiveCurrencyMenu.classList.add('hidden');
+        receiveCurrencyBtn.setAttribute('aria-expanded', 'false');
+        receiveCardEl?.classList.remove('z-[100]');
+        receiveCurrencyMenu.style.zIndex = '';
+      }
+    });
+  }
+  // Send currency dropdown interactions
+  if (sendCurrencyBtn && sendCurrencyMenu) {
+    sendCurrencyBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = sendCurrencyMenu.classList.contains('hidden');
+      sendCurrencyMenu.classList.toggle('hidden');
+      sendCurrencyBtn.setAttribute('aria-expanded', String(willOpen));
+      if (willOpen) {
+        // Elevate card and menu above siblings
+        sendCardEl?.classList.add('relative', 'z-[100]');
+        sendCurrencyMenu.style.zIndex = '9999';
+      } else {
+        sendCardEl?.classList.remove('z-[100]');
+        sendCurrencyMenu.style.zIndex = '';
+      }
+    });
+    sendCurrencyMenu.querySelectorAll('[data-curr]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const newCurr = e.currentTarget.getAttribute('data-curr');
+        if (!newCurr || newCurr === currentFromCurrency) {
+          sendCurrencyMenu.classList.add('hidden');
+          sendCurrencyBtn.setAttribute('aria-expanded', 'false');
+          sendCardEl?.classList.remove('z-[100]');
+          sendCurrencyMenu.style.zIndex = '';
+          return;
+        }
+        currentFromCurrency = newCurr;
+        // Update UI icon/text
+        const img = sendCurrencyBtn.querySelector('img');
+        const codeSpan = sendCurrencyBtn.querySelector('span');
+        if (img) img.src = flagUrls[currentFromCurrency] || img.src;
+        if (codeSpan) codeSpan.textContent = currentFromCurrency;
+        // Persist pair and recompute
+        try { localStorage.setItem('lula_pair', JSON.stringify({ from: currentFromCurrency, to: currentToCurrency })); } catch (e) {}
+        updateConversion();
+        sendCurrencyMenu.classList.add('hidden');
+        sendCurrencyBtn.setAttribute('aria-expanded', 'false');
+        sendCardEl?.classList.remove('z-[100]');
+        sendCurrencyMenu.style.zIndex = '';
+      });
+    });
+    // Close on outside click
+    document.addEventListener('click', () => {
+      if (!sendCurrencyMenu.classList.contains('hidden')) {
+        sendCurrencyMenu.classList.add('hidden');
+        sendCurrencyBtn.setAttribute('aria-expanded', 'false');
+        sendCardEl?.classList.remove('z-[100]');
+        sendCurrencyMenu.style.zIndex = '';
       }
     });
   }
@@ -1150,7 +1368,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const p = JSON.parse(savedPair);
       if (p && p.from && p.to && exchangeRates[p.from] && exchangeRates[p.from][p.to]) {
         currentFromCurrency = p.from;
-        currentToCurrency = p.to;
+        // Migrate any legacy ZWL destination to USD (Zimbabwe)
+        currentToCurrency = (p.to === 'ZWL') ? 'USD' : p.to;
+        if (p.to === 'ZWL') {
+          try { localStorage.setItem('lula_pair', JSON.stringify({ from: currentFromCurrency, to: currentToCurrency })); } catch (e) {}
+        }
         // Update flags and labels accordingly
         const sendBtn = document.getElementById('sendCurrencyButton');
         const recvBtn = document.getElementById('receiveCurrencyButton');
@@ -1163,6 +1385,15 @@ document.addEventListener('DOMContentLoaded', function() {
           recvBtn.querySelector('span').textContent = currentToCurrency;
         }
       }
+    } else {
+      // Persist default: Sending from Zim (USD) to Russia (RUB)
+      try { localStorage.setItem('lula_pair', JSON.stringify({ from: currentFromCurrency, to: currentToCurrency })); } catch (e) {}
+    }
+    // Restore saved method selections
+    const savedMethods = localStorage.getItem('lula_methods');
+    if (savedMethods) {
+      const m = JSON.parse(savedMethods);
+      if (m) { selectedPaymentMethod = m.payment || null; selectedCollectionMethod = m.collection || null; }
     }
   } catch (e) {}
   // Apply initial language
@@ -1175,8 +1406,175 @@ document.addEventListener('DOMContentLoaded', function() {
     const r = document.getElementById('receiveAmount');
     if (s && document.activeElement !== s) formatInput(s, 2);
     if (r && document.activeElement !== r) formatInput(r, 2);
+    // Initial height sync once everything paints
+    equalizeCardsHeight();
   }, 0);
+  // Re-sync on viewport resize
+  window.addEventListener('resize', () => {
+    equalizeCardsHeight();
+  });
 });
+
+// Make "They get" card match "You send" height
+function equalizeCardsHeight() {
+  const sendCard = document.getElementById('youSendCard');
+  const getCard = document.getElementById('theyGetCard');
+  if (!sendCard || !getCard) return;
+  // Reset any fixed height to measure natural sizes
+  sendCard.style.height = '';
+  getCard.style.height = '';
+  // Compute max height from natural layouts
+  const sendH = sendCard.getBoundingClientRect().height;
+  const getH = getCard.getBoundingClientRect().height;
+  const target = Math.max(sendH, getH);
+  // Apply same explicit height to both for visual parity
+  sendCard.style.height = `${target}px`;
+  getCard.style.height = `${target}px`;
+}
+
+// Render dropdown menu items for current pair
+function renderMethodOptions(sourceCurrency, destCurrency) {
+  const paymentMenu = document.getElementById('paymentMethodMenu');
+  const collectionMenu = document.getElementById('collectionMethodMenu');
+  const paymentLabel = document.getElementById('paymentMethodLabel');
+  const collectionLabel = document.getElementById('collectionMethodLabel');
+  const paymentIcon = document.getElementById('paymentMethodIcon');
+  const collectionIcon = document.getElementById('collectionMethodIcon');
+  const paymentBtn = document.getElementById('paymentMethodButton');
+  const collectionBtn = document.getElementById('collectionMethodButton');
+  if (!paymentMenu || !collectionMenu || !paymentLabel || !collectionLabel || !paymentBtn || !collectionBtn) return;
+  const paymentCard = paymentBtn.closest('.rounded-xl');
+  const collectionCard = collectionBtn.closest('.rounded-xl');
+  const elevate = (cardEl, on) => {
+    if (!cardEl) return;
+    if (on) {
+      cardEl.classList.add('relative');
+      cardEl.classList.add('z-[100]');
+    } else {
+      cardEl.classList.remove('z-[100]');
+      // keep relative harmlessly
+    }
+  };
+  paymentMenu.innerHTML = '';
+  collectionMenu.innerHTML = '';
+  const dict = i18n[currentLang] || i18n.en;
+  const methodIconMap = {
+    methodBank: 'account_balance',
+    methodBankCard: 'credit_card',
+    methodCashPickup: 'payments',
+    methodMobileMoney: 'smartphone'
+  };
+  const makeItem = (key, group) => {
+    const a = document.createElement('a');
+    a.href = '#';
+    a.className = 'flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100';
+    a.setAttribute('role', 'menuitemradio');
+    a.setAttribute('aria-checked', String((group === 'payment' ? selectedPaymentMethod : selectedCollectionMethod) === key));
+    const icon = document.createElement('span');
+    icon.className = 'material-symbols-outlined text-base';
+    icon.textContent = methodIconMap[key] || 'tune';
+    const label = document.createElement('span');
+    label.textContent = dict[key] || key;
+    a.appendChild(icon);
+    a.appendChild(label);
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (group === 'payment') {
+        selectedPaymentMethod = key;
+        paymentLabel.textContent = dict[key] || key;
+        paymentMenu.classList.add('hidden');
+        paymentBtn.setAttribute('aria-expanded', 'false');
+        paymentMenu.style.zIndex = '';
+        elevate(paymentCard, false);
+        if (paymentIcon) paymentIcon.textContent = methodIconMap[key] || 'tune';
+      } else {
+        selectedCollectionMethod = key;
+        collectionLabel.textContent = dict[key] || key;
+        collectionMenu.classList.add('hidden');
+        collectionBtn.setAttribute('aria-expanded', 'false');
+        collectionMenu.style.zIndex = '';
+        elevate(collectionCard, false);
+        if (collectionIcon) collectionIcon.textContent = methodIconMap[key] || 'tune';
+      }
+      try { localStorage.setItem('lula_methods', JSON.stringify({ payment: selectedPaymentMethod, collection: selectedCollectionMethod })); } catch (e) {}
+      renderMethodOptions(destCurrency); // refresh aria-checked states
+      updateConversion(); // recompute fees on selection
+    });
+    return a;
+  };
+  // Build options from decoupled configs
+  const payOptions = paymentMethodsBySource[sourceCurrency] || ['methodBank'];
+  const colOptions = collectionMethodsByDest[destCurrency] || ['methodBank'];
+  // Ensure sensible defaults
+  if (!selectedPaymentMethod || !payOptions.includes(selectedPaymentMethod)) {
+    const defPay = defaultPaymentBySource[sourceCurrency] || payOptions[0];
+    selectedPaymentMethod = payOptions.includes(defPay) ? defPay : payOptions[0];
+    try { localStorage.setItem('lula_methods', JSON.stringify({ payment: selectedPaymentMethod, collection: selectedCollectionMethod })); } catch (e) {}
+    setTimeout(updateConversion, 0);
+  }
+  if (!selectedCollectionMethod || !colOptions.includes(selectedCollectionMethod)) {
+    const defCol = defaultCollectionByDest[destCurrency] || colOptions[0];
+    selectedCollectionMethod = colOptions.includes(defCol) ? defCol : colOptions[0];
+    try { localStorage.setItem('lula_methods', JSON.stringify({ payment: selectedPaymentMethod, collection: selectedCollectionMethod })); } catch (e) {}
+  }
+  payOptions.forEach(k => paymentMenu.appendChild(makeItem(k, 'payment')));
+  colOptions.forEach(k => collectionMenu.appendChild(makeItem(k, 'collection')));
+  // Set labels from current selection or placeholder dashes
+  paymentLabel.textContent = selectedPaymentMethod ? (dict[selectedPaymentMethod] || selectedPaymentMethod) : '—';
+  collectionLabel.textContent = selectedCollectionMethod ? (dict[selectedCollectionMethod] || selectedCollectionMethod) : '—';
+  if (paymentIcon) paymentIcon.textContent = selectedPaymentMethod ? (methodIconMap[selectedPaymentMethod] || 'tune') : 'credit_card';
+  if (collectionIcon) collectionIcon.textContent = selectedCollectionMethod ? (methodIconMap[selectedCollectionMethod] || 'tune') : 'account_balance';
+  // Update aria-labels for accessibility since visible labels were removed
+  if (paymentBtn) paymentBtn.setAttribute('aria-label', `${dict.payingWith || 'Paying with'}: ${paymentLabel.textContent}`);
+  if (collectionBtn) collectionBtn.setAttribute('aria-label', `${dict.collectingWith || 'Collecting with'}: ${collectionLabel.textContent}`);
+  // ensure fees reflect defaults
+  setTimeout(updateConversion, 0);
+
+  // Wire button toggles
+  const openPayment = (e) => {
+    e.stopPropagation();
+    const willOpen = paymentMenu.classList.contains('hidden');
+    paymentMenu.classList.toggle('hidden');
+    paymentBtn.setAttribute('aria-expanded', String(willOpen));
+    collectionMenu.classList.add('hidden');
+    collectionBtn.setAttribute('aria-expanded', 'false');
+    if (willOpen) {
+      elevate(paymentCard, true);
+      elevate(collectionCard, false);
+      paymentMenu.style.zIndex = '9999';
+      collectionMenu.style.zIndex = '';
+    } else {
+      elevate(paymentCard, false);
+      paymentMenu.style.zIndex = '';
+    }
+  };
+  const openCollection = (e) => {
+    e.stopPropagation();
+    const willOpen = collectionMenu.classList.contains('hidden');
+    collectionMenu.classList.toggle('hidden');
+    collectionBtn.setAttribute('aria-expanded', String(willOpen));
+    paymentMenu.classList.add('hidden');
+    paymentBtn.setAttribute('aria-expanded', 'false');
+    if (willOpen) {
+      elevate(collectionCard, true);
+      elevate(paymentCard, false);
+      collectionMenu.style.zIndex = '9999';
+      paymentMenu.style.zIndex = '';
+    } else {
+      elevate(collectionCard, false);
+      collectionMenu.style.zIndex = '';
+    }
+  };
+  if (paymentBtn) paymentBtn.onclick = openPayment;
+  if (collectionBtn) collectionBtn.onclick = openCollection;
+  if (!window._methodsClickBound) {
+    document.addEventListener('click', () => {
+      if (!paymentMenu.classList.contains('hidden')) { paymentMenu.classList.add('hidden'); paymentBtn.setAttribute('aria-expanded', 'false'); paymentMenu.style.zIndex=''; elevate(paymentCard, false); }
+      if (!collectionMenu.classList.contains('hidden')) { collectionMenu.classList.add('hidden'); collectionBtn.setAttribute('aria-expanded', 'false'); collectionMenu.style.zIndex=''; elevate(collectionCard, false); }
+    });
+    window._methodsClickBound = true;
+  }
+}
 
 // --- Micro tick sound helpers ---
 let audioCtx = null;
