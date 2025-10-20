@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="LULA — Your money, your way"/>
 <meta name="twitter:description" content="Send and spend globally with fair fees, great rates, and a beautiful experience."/>
 <meta name="twitter:image" content="/assets/og-image.jpg"/>
-<meta name="theme-color" content="#163300"/>
+<meta name="theme-color" content="#9FE870"/>
 <link rel="manifest" href="/manifest.webmanifest"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -66,7 +66,38 @@
       --lula-white: #FFFFFF;
       --lula-green-dark: #2A3B2B;
       --lula-card-bg: #172111;
+      /* Brand harmonization */
+      --brand-green: #9FE870;
+      --brand-ink: #163300;
+      /* Wise secondary (from wise.design) */
+      --wise-bright-orange: #FFC091;
+      --wise-bright-yellow: #FFEB69;
+      --wise-bright-blue: #A0E1E1;
+      --wise-bright-pink: #FFD7EF;
     }
+    /* Brand utilities for consistent styling */
+    .text-ink { color: var(--brand-ink) !important; }
+    .bg-brand { background-color: var(--brand-green) !important; }
+    .btn-primary {
+      background-color: var(--brand-green);
+      color: var(--brand-ink);
+      border-radius: 9999px;
+      font-weight: 600;
+      padding: 0.9rem 1.25rem;
+      transition: background-color 180ms ease, transform 150ms ease, box-shadow 180ms ease;
+    }
+    .btn-primary:hover { background-color: #8BD45F; }
+    .btn-primary:active { background-color: var(--brand-ink); color: var(--brand-green); }
+    .btn-dark {
+      background-color: var(--brand-ink);
+      color: var(--brand-green);
+      border-radius: 9999px;
+      font-weight: 700;
+      padding: 0.85rem 1.25rem;
+      transition: background-color 180ms ease, transform 150ms ease, box-shadow 180ms ease;
+    }
+    .btn-dark:hover { background-color: #1E3A00; }
+    .btn-dark:active { background-color: var(--brand-green); color: var(--brand-ink); }
     /* Futuristic minimalist utilities */
     .glass { background: rgba(255,255,255,0.6); backdrop-filter: saturate(120%) blur(14px); border: 1px solid rgba(255,255,255,0.35); }
     .dark .glass { background: rgba(23, 33, 17, 0.5); border-color: rgba(255,255,255,0.08); }
@@ -78,6 +109,46 @@
     .grid-lines { background-image: linear-gradient(transparent 0, transparent calc(100% - 1px), rgba(255,255,255,0.08) calc(100% - 1px)), linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(255,255,255,0.08) calc(100% - 1px)); background-size: 24px 24px, 24px 24px; background-position: top left, top left; }
     .accent-glow { position: relative; }
     .accent-glow:before { content:""; position:absolute; inset:-1px; border-radius:inherit; pointer-events:none; box-shadow: 0 0 0 1px rgba(152,234,108,0.2), 0 0 60px rgba(152,234,108,0.12) inset; }
+      /* How it works: minimalist step cards */
+      .step-card { position: relative; border-radius: 0.75rem; background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.35); -webkit-backdrop-filter: saturate(120%) blur(10px); backdrop-filter: saturate(120%) blur(10px); padding: 1rem; }
+      .dark .step-card { background: rgba(23,33,17,0.35); border-color: rgba(255,255,255,0.08); }
+      .step-card:hover { box-shadow: 0 10px 24px -12px rgba(0,0,0,0.25); transform: translateY(-2px); transition: box-shadow 220ms ease, transform 180ms ease; }
+      .step-icon { width: 40px; height: 40px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; background: var(--brand-green); color: var(--brand-ink); box-shadow: 0 0 0 4px rgba(159,232,112,0.25); }
+      .dark .step-icon { box-shadow: 0 0 0 4px rgba(159,232,112,0.18); }
+      .step-badge { position: absolute; top: 8px; right: 8px; font-size: 11px; font-weight: 700; color: var(--brand-ink); background: rgba(159,232,112,0.85); border: 1px solid rgba(22,51,0,0.15); padding: 2px 8px; border-radius: 9999px; }
+  /* Wise secondary duotone tints for brighter imagery */
+  .duotone { position: relative; border-radius: 0.75rem; overflow: hidden; }
+  .duotone img { filter: saturate(1.1) contrast(1.06) brightness(1.04); }
+  .duotone::before { content: ""; position: absolute; inset: 0; border-radius: inherit; mix-blend-mode: screen; background: rgba(255,255,255,0.06); pointer-events: none; }
+  .duotone::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; mix-blend-mode: color; }
+  .duotone--blue::after { background: linear-gradient(135deg, rgba(160,225,225,0.62), rgba(255,255,255,0.12)); }
+  .duotone--yellow::after { background: linear-gradient(135deg, rgba(255,235,105,0.58), rgba(255,255,255,0.12)); }
+  .duotone--orange::after { background: linear-gradient(135deg, rgba(255,192,145,0.6), rgba(255,255,255,0.12)); }
+  .dark .duotone::before { background: rgba(255,255,255,0.08); }
+  .dark .duotone--blue::after { background: linear-gradient(135deg, rgba(160,225,225,0.55), rgba(255,255,255,0.08)); }
+  .dark .duotone--yellow::after { background: linear-gradient(135deg, rgba(255,235,105,0.5), rgba(255,255,255,0.08)); }
+  .dark .duotone--orange::after { background: linear-gradient(135deg, rgba(255,192,145,0.52), rgba(255,255,255,0.08)); }
+  /* Brand duotone tint for images */
+  .brand-duotone { position: relative; border-radius: 0.75rem; overflow: hidden; }
+  .brand-duotone img { filter: grayscale(30%) saturate(1.1) contrast(1.05); }
+  .brand-duotone::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(135deg, rgba(159,232,112,0.55), rgba(22,51,0,0.55)); mix-blend-mode: color; pointer-events: none; z-index: 5; }
+  .dark .brand-duotone::after { background: linear-gradient(135deg, rgba(159,232,112,0.45), rgba(22,51,0,0.65)); }
+  /* Minimalist pagination */
+  .pager-btn { width: 40px; height: 40px; border-radius: 9999px; border: 1px solid rgba(22,51,0,0.15); background: rgba(255,255,255,0.4); color: var(--brand-ink); display: inline-flex; align-items: center; justify-content: center; -webkit-backdrop-filter: saturate(140%) blur(8px); backdrop-filter: saturate(140%) blur(8px); transition: transform 150ms ease, background 180ms ease, box-shadow 180ms ease; }
+  .pager-btn:hover { background: rgba(255,255,255,0.6); }
+  .pager-btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+  .dark .pager-btn { background: rgba(23,33,17,0.3); border-color: rgba(255,255,255,0.08); color: #EAF7E4; }
+  .pager-dots { display: inline-flex; align-items: center; gap: 6px; }
+  .pager-dot { width: 6px; height: 6px; border-radius: 9999px; background: #d1d5db; transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease; }
+  .dark .pager-dot { background: #374151; }
+  .pager-dot.active { background: var(--brand-green); transform: scale(1.25); box-shadow: 0 0 0 2px rgba(22,51,0,0.25); }
+      /* Focus-visible rings for a11y */
+      .btn-primary:focus-visible, .btn-dark:focus-visible, .btn-liquid:focus-visible, .btn-liquid-item:focus-visible, .speed-option:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(22, 51, 0, 0.9), 0 0 0 6px rgba(159, 232, 112, 0.5);
+        border-radius: 9999px;
+      }
+      input:focus-visible { border-radius: 8px; }
     /* Micro bounce animation for swap button */
     @keyframes micro-bounce {
       0% { transform: scale(1); }
@@ -138,6 +209,7 @@
   .pulse-on-input { animation: pulse-green 650ms ease-out; }
   .number-tween { transition: color 240ms ease; }
   .flash-updated { color: #163300 !important; background: linear-gradient(transparent 60%, rgba(159,232,112,0.35)); border-radius: 4px; }
+  /* Removed rotation effect per request */
   /* Squish animation for value updates */
   @keyframes squishY { 0% { transform: scaleY(0.98); } 100% { transform: scaleY(1); } }
   .squish-once { animation: squishY 180ms ease-out; }
@@ -188,11 +260,11 @@
 <div class="relative w-full overflow-x-hidden">
 <header class="absolute top-0 left-0 right-0 z-50 flex justify-between items-center p-4">
   <div class="flex items-center gap-3">
-    <div class="text-white text-4xl font-brand tracking-wider">LULA</div>
+  <div class="text-ink text-4xl font-brand tracking-wider">LULA</div>
   </div>
   <!-- Desktop actions -->
   <div class="items-center gap-2 hidden md:flex">
-  <a class="btn-liquid text-white text-sm font-bold py-2 px-4 rounded-full" href="how-it-works.html" data-i18n="howItWorks">How it works</a>
+  
     <!-- App download dropdown (desktop hidden to avoid duplication with badges) -->
     <div class="relative md:hidden">
       <button id="appDownloadButton" aria-expanded="false" aria-controls="appMenu"
@@ -214,7 +286,7 @@
     </div>
     <!-- Language Switcher (desktop) -->
     <div class="relative">
-  <button id="langSwitcherButton" aria-expanded="false" class="flex items-center gap-2 btn-liquid text-white text-sm font-bold py-2 px-3 rounded-full">
+  <button id="langSwitcherButton" aria-expanded="false" class="flex items-center gap-2 btn-liquid text-ink text-sm font-bold py-2 px-3 rounded-full">
         <img id="langBtnFlag" src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="EN" class="h-4 w-4 rounded-full object-cover" />
         <span id="langCode">EN</span>
         <span class="material-symbols-outlined text-sm">expand_more</span>
@@ -231,7 +303,7 @@
       </div>
     </div>
     <!-- End Language Switcher -->
-  <a class="btn-liquid text-white text-sm font-bold py-2 px-4 rounded-full" href="sign-in.html" data-i18n="signIn">Sign In</a>
+  <a class="btn-liquid text-ink text-sm font-bold py-2 px-4 rounded-full" href="sign-in.html" data-i18n="signIn">Sign In</a>
   </div>
   
   <!-- Mobile hamburger -->
@@ -248,7 +320,7 @@
         <span class="material-symbols-outlined">close</span>
       </button>
     </div>
-    <a href="how-it-works.html" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-100">
+  <a href="#how-it-works" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-100">
       <span class="material-symbols-outlined text-base">info</span>
       <span data-i18n="howItWorks">How it works</span>
     </a>
@@ -293,11 +365,11 @@
   </div>
 </header>
 <main>
-<section class="relative min-h-[50vh] flex items-end justify-center text-center p-4 pt-8 bg-cover bg-center z-30" style="background-image: linear-gradient(to top, rgba(16, 34, 22, 1) 0%, rgba(16, 34, 22, 0.7) 100%), image-set(url('/assets/hero.avif') type('image/avif'), url('/assets/hero.webp') type('image/webp'), url('/assets/hero.jpg') type('image/jpeg'));">
+<section class="relative min-h-[50vh] flex items-end justify-center text-center p-4 pt-8 bg-cover bg-center z-30 bg-brand" style="background-color: #9FE870;">
 <div class="absolute inset-0 grid-lines opacity-20"></div>
 <div class="flex flex-col gap-3 items-center pb-28 relative">
-<h1 class="text-white text-5xl md:text-6xl font-semibold leading-tight tracking-tight reveal slide-up" data-i18n="heroTitle">Your money, your way.</h1>
-<p class="text-white/80 max-w-md text-base md:text-lg reveal slide-up delay-1" data-i18n="heroSubtitle">One app for all your financial needs. Simple, fast, secure.</p>
+<h1 class="text-5xl md:text-6xl font-semibold leading-tight tracking-tight reveal slide-up text-ink" data-i18n="heroTitle">Your money, your way.</h1>
+<p class="max-w-md text-base md:text-lg reveal slide-up delay-1 text-ink" data-i18n="heroSubtitle">One app for all your financial needs. Simple, fast, secure.</p>
 <div class="hidden md:flex items-center gap-4 mt-2 reveal slide-up delay-2">
   <a href="#" aria-label="Download on the App Store">
     <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=120x40" alt="Download on the App Store" class="h-10 w-auto" width="120" height="40" loading="lazy" decoding="async"/>
@@ -460,11 +532,150 @@
 
 <!-- Payment & Collection dropdowns are now embedded into the cards below -->
 
-<button class="bg-[#9FE870] text-[#163300] w-full text-center font-semibold py-4 px-6 rounded-full text-lg hover:bg-[#8BD45F] active:bg-[#163300] active:text-[#9FE870] transition-colors hover-press mt-6 neon-soft shadow-lg" onclick="window.location.href='sign-up.html'" data-i18n="startTransfer">
+<button class="btn-primary w-full text-center text-lg hover-press mt-6 neon-soft shadow-lg" onclick="window.location.href='sign-up.html'" data-i18n="startTransfer">
 Start your transfer
 </button>
 </div>
 </div>
+</section>
+
+<!-- How it works Section (embedded) -->
+<section id="how-it-works" class="px-4 py-14 md:py-16 bg-background-light dark:bg-background-dark">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold tracking-wide text-center mb-10" data-i18n="howWorksTitle">How it works</h2>
+    <!-- Steps grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+      <div class="step-card reveal slide-up" role="group" aria-labelledby="step1-title">
+        <span class="step-badge">1</span>
+        <div class="flex items-start gap-3">
+          <div class="step-icon">
+            <span class="material-symbols-outlined text-base">calculate</span>
+          </div>
+          <div>
+            <h3 id="step1-title" class="font-bold text-base" data-i18n="step1Title">Get a quote</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step1Desc">Enter amount and destination for a real-time rate.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card reveal slide-up delay-1" role="group" aria-labelledby="step2-title">
+        <span class="step-badge">2</span>
+        <div class="flex items-start gap-3">
+          <div class="step-icon">
+            <span class="material-symbols-outlined text-base">assignment_turned_in</span>
+          </div>
+          <div>
+            <h3 id="step2-title" class="font-bold text-base" data-i18n="step2Title">Confirm your order</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step2Desc">Review receiver's info, payment method, and speed.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card reveal slide-up delay-2" role="group" aria-labelledby="step3-title">
+        <span class="step-badge">3</span>
+        <div class="flex items-start gap-3">
+          <div class="step-icon">
+            <span class="material-symbols-outlined text-base">payments</span>
+          </div>
+          <div>
+            <h3 id="step3-title" class="font-bold text-base" data-i18n="step3Title">Make payment</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step3Desc">Choose your payment method and follow instructions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card reveal slide-up delay-3" role="group" aria-labelledby="step4-title">
+        <span class="step-badge">4</span>
+        <div class="flex items-start gap-3">
+          <div class="step-icon">
+            <span class="material-symbols-outlined text-base">map</span>
+          </div>
+          <div>
+            <h3 id="step4-title" class="font-bold text-base" data-i18n="step4Title">Track your order</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step4Desc">Track your transaction in real-time from start to finish.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card reveal slide-up delay-4 sm:col-span-2" role="group" aria-labelledby="step5-title">
+        <span class="step-badge">5</span>
+        <div class="flex items-start gap-3">
+          <div class="step-icon">
+            <span class="material-symbols-outlined text-base">task_alt</span>
+          </div>
+          <div>
+            <h3 id="step5-title" class="font-bold text-base" data-i18n="step5Title">Money delivered</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step5Desc">Get confirmation when your money reaches the recipient.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Protection callout -->
+    <div id="protection" class="mt-10 rounded-xl p-4 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur reveal slide-up">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="material-symbols-outlined text-primary">shield_lock</span>
+        <h3 class="font-bold" data-i18n="protectionTitle">How your money is protected</h3>
+      </div>
+      <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-300 space-y-1">
+        <li data-i18n="protection1">Partnered with regulated providers; funds are safeguarded.</li>
+        <li data-i18n="protection2">Encryption and secure payment rails.</li>
+        <li data-i18n="protection3">Real-time tracking and notifications.</li>
+      </ul>
+    </div>
+
+    <!-- FAQ -->
+    <div class="mt-10 reveal slide-up">
+      <h3 class="text-lg font-bold mb-3" data-i18n="faqTitle">Frequently asked questions</h3>
+      <!-- Speeds FAQ (merged with list) -->
+      <div class="divide-y divide-gray-200 dark:divide-gray-700 rounded-xl border border-white/30 dark:border-white/10 overflow-hidden">
+        <button type="button" class="w-full text-left px-4 py-3 bg-white/70 dark:bg-white/5 hover:bg-white/80 dark:hover:bg-white/10 flex items-center justify-between" data-faq-toggle>
+          <span>What are the transfer speeds?</span>
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <div class="px-4 py-3 hidden text-sm text-gray-700 dark:text-gray-300" data-faq-panel>
+          <ul class="list-disc list-inside space-y-1">
+            <li><strong>Standard</strong>: First come, first served in the queue (lowest fee).</li>
+            <li><strong>Express</strong>: Faster processing — skip the queue (moderate fee).</li>
+            <li><strong>Urgent</strong>: Top priority for emergencies (highest fee).</li>
+          </ul>
+          <p class="mt-2">Most transfers are completed within 24 hours, and we guarantee all transactions will be completed within 3 working days.</p>
+        </div>
+        <button type="button" class="w-full text-left px-4 py-3 bg-white/70 dark:bg-white/5 hover:bg-white/80 dark:hover:bg-white/10 flex items-center justify-between" data-faq-toggle>
+          <span data-i18n="faq1Q">How long do transfers take?</span>
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <div class="px-4 py-3 hidden text-sm text-gray-700 dark:text-gray-300" data-faq-panel>
+          <p data-i18n="faq1A">Most transfers arrive within minutes on Instant, under a day on Express, and 1–3 days on Standard.</p>
+        </div>
+
+        <button type="button" class="w-full text-left px-4 py-3 bg-white/70 dark:bg-white/5 hover:bg-white/80 dark:hover:bg-white/10 flex items-center justify-between" data-faq-toggle>
+          <span data-i18n="faq2Q">What fees will I pay?</span>
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <div class="px-4 py-3 hidden text-sm text-gray-700 dark:text-gray-300" data-faq-panel>
+          <p data-i18n="faq2A">We show all fees upfront. Bank fees may vary by method; cash-to-cash and transfers to Russia have no bank fee.</p>
+        </div>
+
+        <button type="button" class="w-full text-left px-4 py-3 bg-white/70 dark:bg-white/5 hover:bg-white/80 dark:hover:bg-white/10 flex items-center justify-between" data-faq-toggle>
+          <span data-i18n="faq3Q">Can I track my transfer?</span>
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <div class="px-4 py-3 hidden text-sm text-gray-700 dark:text-gray-300" data-faq-panel>
+          <p data-i18n="faq3A">Yes. You can follow your transfer in real-time and receive notifications at each step.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="max-w-md mx-auto mt-10">
+      <a href="sign-in.html" class="w-full block">
+        <button class="w-full bg-primary text-[#102216] font-bold py-3 px-5 rounded-xl text-base h-14 hover:bg-primary/90 transition-colors" data-i18n="getStarted">
+          Get started
+        </button>
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- Get Started Section -->
@@ -513,17 +724,38 @@ Start your transfer
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 <div class="flex flex-col gap-4 text-center items-center reveal slide-up">
-<div class="w-full aspect-square rounded-xl bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6XIGhoYQxsVnTnVfpqAcAyYUiCxgaQ4lZKwinZgEwyfxcVz8wY9Nd6oRhJZKoO0UYGWz4z9r3Qt9K7VX_lYaueD5sSLTg33YsFJpCJLj-UWarYuZV8IazFcy3ozwIgila6c02kgRBZC0d3PZonMjCNAokSBmcTyaTftrErioXeJXinqypt2-u9hdYBTJ3O6vRZVKNIvdwsLdFyTu-QLyqFC3kPknTMLlD6EBbJyRJZ6MEWnXnaq0tuC99IRFb-4jbrl7M84sHRQue");'></div>
+<div class="relative w-full aspect-square duotone duotone--blue">
+  <img 
+    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6XIGhoYQxsVnTnVfpqAcAyYUiCxgaQ4lZKwinZgEwyfxcVz8wY9Nd6oRhJZKoO0UYGWz4z9r3Qt9K7VX_lYaueD5sSLTg33YsFJpCJLj-UWarYuZV8IazFcy3ozwIgila6c02kgRBZC0d3PZonMjCNAokSBmcTyaTftrErioXeJXinqypt2-u9hdYBTJ3O6vRZVKNIvdwsLdFyTu-QLyqFC3kPknTMLlD6EBbJyRJZ6MEWnXnaq0tuC99IRFb-4jbrl7M84sHRQue" 
+    alt="Real exchange rates illustration" 
+    class="absolute inset-0 w-full h-full object-cover rounded-xl hover:scale-[1.02] transition-transform duration-300" 
+    loading="lazy" decoding="async" />
+  <div class="absolute inset-0 rounded-xl ring-1 ring-white/40 dark:ring-white/10" aria-hidden="true"></div>
+</div>
 <h3 class="font-bold text-lg" data-i18n="why1Title">Real exchange rates</h3>
 <p class="text-text-muted-light dark:text-text-muted-dark text-sm" data-i18n="why1Desc">Always get the mid-market rate with no hidden markups.</p>
 </div>
 <div class="flex flex-col gap-4 text-center items-center reveal slide-up delay-1">
-<div class="w-full aspect-square rounded-xl bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCzJjwjwRgYoBn4vR3LFz27etJFBRqFSYPinlW0HixyPX70AW5CJhQNzAHhuR_0qr-m0Aie2cT5nfIz_4dFd5kGGi0EwHPXb_Z8sm0MniD-cKJ3DVBS_eQupOdRuCmsaK3mhYLmO7qe96RNnbKFjY9lz1mDUjmT5ptDPsdtqCpvhDLL3FDTzGFh26BQtkcImbxPZ1veacMd-xQtBnfPNd5oxqyAB3Zv3Um-zYyYjAXq4Fp35wYWcnPs_8Z5WGHraF8APXBE3FBK4Lg0");'></div>
+<div class="relative w-full aspect-square duotone duotone--yellow">
+  <img 
+    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzJjwjwRgYoBn4vR3LFz27etJFBRqFSYPinlW0HixyPX70AW5CJhQNzAHhuR_0qr-m0Aie2cT5nfIz_4dFd5kGGi0EwHPXb_Z8sm0MniD-cKJ3DVBS_eQupOdRuCmsaK3mhYLmO7qe96RNnbKFjY9lz1mDUjmT5ptDPsdtqCpvhDLL3FDTzGFh26BQtkcImbxPZ1veacMd-xQtBnfPNd5oxqyAB3Zv3Um-zYyYjAXq4Fp35wYWcnPs_8Z5WGHraF8APXBE3FBK4Lg0" 
+    alt="Transparent fees illustration" 
+    class="absolute inset-0 w-full h-full object-cover rounded-xl hover:scale-[1.02] transition-transform duration-300" 
+    loading="lazy" decoding="async" />
+  <div class="absolute inset-0 rounded-xl ring-1 ring-white/40 dark:ring-white/10" aria-hidden="true"></div>
+</div>
 <h3 class="font-bold text-lg" data-i18n="why2Title">Low, transparent fees</h3>
 <p class="text-text-muted-light dark:text-text-muted-dark text-sm" data-i18n="why2Desc">No surprises, just fair fees shown upfront.</p>
 </div>
 <div class="flex flex-col gap-4 text-center items-center reveal slide-up delay-2">
-<div class="w-full aspect-square rounded-xl bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCXdhxVLWZRy4calFWa9msBffor3o8h_658d2uOYB5QcxIztZW0u389FYEmSJYfTQg6S2_n7AgrA-qxCdzrTTXWCKfAae9XO0gDxEpY6rYC36GZFy_BIuXWvXMxq0iYN83lbxF8XWZo49ZH_W7LA5YDvdD1Ea80cxqoR0bFBV2x1yhj9ndMk3wmbfRrbiYZVJdJVimk7MM_AAf5OhdrtUcHiwmTjjfLEDo1s31mZFj1rf-F2nnBhNnuc5NeLTBnApWWU3wNmNAZYEv4");'></div>
+<div class="relative w-full aspect-square duotone duotone--orange">
+  <img 
+    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXdhxVLWZRy4calFWa9msBffor3o8h_658d2uOYB5QcxIztZW0u389FYEmSJYfTQg6S2_n7AgrA-qxCdzrTTXWCKfAae9XO0gDxEpY6rYC36GZFy_BIuXWvXMxq0iYN83lbxF8XWZo49ZH_W7LA5YDvdD1Ea80cxqoR0bFBV2x1yhj9ndMk3wmbfRrbiYZVJdJVimk7MM_AAf5OhdrtUcHiwmTjjfLEDo1s31mZFj1rf-F2nnBhNnuc5NeLTBnApWWU3wNmNAZYEv4" 
+    alt="Fast transfers illustration" 
+    class="absolute inset-0 w-full h-full object-cover rounded-xl hover:scale-[1.02] transition-transform duration-300" 
+    loading="lazy" decoding="async" />
+  <div class="absolute inset-0 rounded-xl ring-1 ring-white/40 dark:ring-white/10" aria-hidden="true"></div>
+</div>
 <h3 class="font-bold text-lg" data-i18n="why3Title">Fast transfers</h3>
 <p class="text-text-muted-light dark:text-text-muted-dark text-sm" data-i18n="why3Desc">Choose your speed - from minutes to a few days.</p>
 </div>
@@ -534,21 +766,15 @@ Start your transfer
   <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-6 reveal slide-up">
     <h2 class="text-4xl md:text-5xl font-bold tracking-wide" data-i18n="ctaTitle">Ready to take control?</h2>
     <p class="text-text-muted-light dark:text-text-muted-dark max-w-xl" data-i18n="whyChooseSubtitle">Join thousands of users who trust LULA for their financial needs.</p>
-  <a class="bg-[#163300] text-[#9FE870] font-bold py-3 px-6 rounded-full text-lg transition-transform hover:scale-105 hover:bg-[#1E3A00] active:bg-[#9FE870] active:text-[#163300] transition-colors mt-2" href="sign-up.html" data-i18n="ctaGetStarted"> Get started </a>
-    <!-- Reviews Button Start -->
-    <a href="#reviews"
-  class="inline-flex items-center gap-2 bg-[#9FE870] text-[#163300] font-bold py-3 px-6 rounded-full text-lg shadow transition-transform transition-colors hover:scale-105 mt-2 hover:bg-[#8BD45F] active:bg-[#163300] active:text-[#9FE870] focus:outline-none focus:ring-2 focus:ring-[#163300] focus:ring-offset-2">
-      <span class="material-symbols-outlined text-xl">star_rate</span>
-      <span data-i18n="ctaSeeReviews">See Reviews</span>
-    </a>
-    <!-- Reviews Button End -->
+  <a class="btn-dark transition-transform hover:scale-105 mt-2" href="sign-up.html" data-i18n="ctaGetStarted"> Get started </a>
+    
     
   </div>
 </section>
 <!-- Reviews Section Start -->
 <section id="reviews" class="py-24 md:py-20 px-4 bg-white dark:bg-background-dark border-t border-primary/20">
   <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
-    <h2 class="text-3xl md:text-4xl font-bold tracking-wide text-black dark:text-black" data-i18n="reviewsTitle">What our users say</h2>
+  <h2 class="text-3xl md:text-4xl font-bold tracking-wide" data-i18n="reviewsTitle">What our users say</h2>
     <div class="flex items-center justify-center gap-2 text-gray-700 dark:text-gray-200 reveal slide-up" aria-label="Average rating 4.6 out of 5">
       <span class="material-symbols-outlined text-yellow-400">star</span>
       <span class="material-symbols-outlined text-yellow-400">star</span>
@@ -557,43 +783,15 @@ Start your transfer
       <span class="material-symbols-outlined text-yellow-400">star_half</span>
       <span class="text-sm ml-1">Rated 4.6/5 on Trustpilot</span>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-  <div class="bg-background-light dark:bg-surface-dark rounded-xl shadow p-6 flex flex-col items-center reveal slide-up">
-        <span class="material-symbols-outlined text-primary text-4xl mb-2">format_quote</span>
-        <p class="text-lg font-medium mb-4" data-i18n="review1Text">"LULA made sending money so easy and fast. Highly recommended!"</p>
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star_half</span>
-        </div>
-        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400" data-i18n="review1Author">— Tinashe M.</p>
-      </div>
-  <div class="bg-background-light dark:bg-surface-dark rounded-xl shadow p-6 flex flex-col items-center reveal slide-up delay-1">
-        <span class="material-symbols-outlined text-primary text-4xl mb-2">format_quote</span>
-        <p class="text-lg font-medium mb-4" data-i18n="review2Text">"No hidden fees and great support. I love the transparency."</p>
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-        </div>
-        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400" data-i18n="review2Author">— Amanda K.</p>
-      </div>
-  <div class="bg-background-light dark:bg-surface-dark rounded-xl shadow p-6 flex flex-col items-center reveal slide-up delay-2">
-        <span class="material-symbols-outlined text-primary text-4xl mb-2">format_quote</span>
-        <p class="text-lg font-medium mb-4" data-i18n="review3Text">"The app is super intuitive and the card features are a game changer."</p>
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-        </div>
-        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400" data-i18n="review3Author">— Brian D.</p>
-      </div>
+    <div id="reviewsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full"></div>
+    <div id="reviewsPagination" class="flex items-center justify-center gap-3 mt-6">
+      <button id="reviewsPrevBtn" class="pager-btn" aria-label="Previous reviews">
+        <span class="material-symbols-outlined text-base">chevron_left</span>
+      </button>
+      <div id="reviewsDots" class="pager-dots"></div>
+      <button id="reviewsNextBtn" class="pager-btn" aria-label="Next reviews">
+        <span class="material-symbols-outlined text-base">chevron_right</span>
+      </button>
     </div>
   </div>
 </section>
@@ -603,11 +801,12 @@ Start your transfer
 <div class="max-w-5xl mx-auto flex flex-col items-center gap-8">
 <p class="text-xs text-gray-600 dark:text-gray-400 text-center max-w-3xl">
   LULA partners with regulated providers; your funds are safeguarded in line with applicable laws.
-  <a href="how-it-works.html#protection" class="underline hover:text-primary">How your money is protected</a>.
+  <a href="#protection" class="underline hover:text-primary">How your money is protected</a>.
 </p>
 <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
 <a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="privacy-policy.html" data-i18n="footerPrivacy">Privacy Policy</a>
 <a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="terms-of-service.html" data-i18n="footerTerms">Terms of Service</a>
+    <a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="#reviews" data-i18n="ctaSeeReviews">See Reviews</a>
 <a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" 
    href="https://wa.me/263777374641?text=Hello%2C%20I%E2%80%99m%20interested%20in%20your%20services" 
    target="_blank">
@@ -671,6 +870,8 @@ let currentToCurrency = 'RUB';
 let baseTransferFeePercent = 0.02; // default 2% bank fee (overridden by methods)
 let speedFee = 0.00; // computed from percentage
 let currentSpeedPercent = 0.05; // default express 5%
+// Spin animation is applied on next recompute when user selects a method
+// Removed spin flag per request; we only tween numbers now
 
 const currencySymbols = {
   'USD': '$',
@@ -901,6 +1102,30 @@ function tweenNumber(el, target, decimals = 2, duration = 450) {
   requestAnimationFrame(frame);
 }
 
+// Tween currency textContent with locale-aware formatting
+function tweenCurrency(el, target, currencyCode, locale, decimals = 2, duration = 420) {
+  if (!el) return;
+  const parse = (t) => {
+    const n = parseFloat(String(t).replace(/[^0-9.-]/g, ''));
+    return isNaN(n) ? 0 : n;
+  };
+  const start = parse(el.textContent);
+  const end = typeof target === 'number' ? target : parse(target);
+  if (isNaN(start) || isNaN(end)) {
+    el.textContent = formatAmount(end || 0, currencyCode, locale || getLocale());
+    return;
+  }
+  const startTime = performance.now();
+  const ease = (t) => t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2; // easeInOutQuad
+  function frame(now) {
+    const p = Math.min(1, (now - startTime) / duration);
+    const val = start + (end - start) * ease(p);
+    el.textContent = formatAmount(Number(val), currencyCode, locale || getLocale());
+    if (p < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
 // Flash an updated field with subtle highlight
 function flashUpdate(el, text) {
   if (!el) return;
@@ -908,6 +1133,16 @@ function flashUpdate(el, text) {
   el.textContent = text;
   el.classList.remove('flash-updated');
   void el.offsetWidth; // reflow to restart animation
+  el.classList.add('flash-updated');
+  setTimeout(() => el.classList.remove('flash-updated'), 320);
+}
+
+// Flash-highlight an element without changing its text
+function highlightElement(el) {
+  if (!el) return;
+  el.classList.add('number-tween');
+  el.classList.remove('flash-updated');
+  void el.offsetWidth;
   el.classList.add('flash-updated');
   setTimeout(() => el.classList.remove('flash-updated'), 320);
 }
@@ -947,8 +1182,14 @@ function updateConversion() {
   speedFee = sendAmount * currentSpeedPercent;
   // compute bank fee depending on selected methods
   const cashKey = 'methodCashPickup';
-  const isCash = (selectedPaymentMethod === cashKey) || (selectedCollectionMethod === cashKey);
-  const effectiveBankFeePercent = isCash ? 0 : baseTransferFeePercent;
+  let effectiveBankFeePercent = baseTransferFeePercent;
+  // No bank fees when destination is Russia (RUB)
+  if (currentToCurrency === 'RUB') {
+    effectiveBankFeePercent = 0;
+  } else if (selectedPaymentMethod === cashKey && selectedCollectionMethod === cashKey) {
+    // Cash to Cash has no bank fee
+    effectiveBankFeePercent = 0;
+  }
   const bankFee = sendAmount * effectiveBankFeePercent;
   const totalPay = (sendAmount + bankFee + speedFee).toFixed(2);
 
@@ -968,9 +1209,13 @@ function updateConversion() {
   const rateDisplayEl = document.getElementById('rateDisplay');
   if (rateDisplayEl) tweenNumber(rateDisplayEl, rate, 4);
   const locale = getLocale();
-  flashUpdate(document.getElementById('totalPay'), formatAmount(totalPay, currentFromCurrency, locale));
-  flashUpdate(document.getElementById('speedFeeDisplay'), formatAmount(speedFee, currentFromCurrency, locale));
-  flashUpdate(document.getElementById('transferFeeDisplay'), formatAmount(bankFee, currentFromCurrency, locale));
+  const totalEl = document.getElementById('totalPay');
+  const speedEl = document.getElementById('speedFeeDisplay');
+  const bankEl = document.getElementById('transferFeeDisplay');
+  if (totalEl) { tweenCurrency(totalEl, Number(totalPay), currentFromCurrency, locale); highlightElement(totalEl); }
+  if (speedEl) { tweenCurrency(speedEl, speedFee, currentFromCurrency, locale); highlightElement(speedEl); }
+  if (bankEl) { tweenCurrency(bankEl, bankFee, currentFromCurrency, locale); highlightElement(bankEl); }
+  // rotation effect removed; just tween values
   document.getElementById('toCurrency').textContent = currentToCurrency;
   // Refresh method options only when pair changes
   if (lastMethodsPair.from !== currentFromCurrency || lastMethodsPair.to !== currentToCurrency) {
@@ -1207,8 +1452,8 @@ document.addEventListener('DOMContentLoaded', function() {
   if (codeSpan) codeSpan.textContent = currentToCurrency;
         // Persist pair
         try { localStorage.setItem('lula_pair', JSON.stringify({ from: currentFromCurrency, to: currentToCurrency })); } catch (e) {}
-        // Re-render methods and recompute
-        renderMethodOptions(currentToCurrency);
+  // Re-render methods and recompute
+  renderMethodOptions(currentFromCurrency, currentToCurrency);
         updateConversion();
         receiveCurrencyMenu.classList.add('hidden');
         receiveCurrencyBtn.setAttribute('aria-expanded', 'false');
@@ -1357,6 +1602,27 @@ document.addEventListener('DOMContentLoaded', function() {
       mobileAppChevron.textContent = isHidden ? 'expand_less' : 'expand_more';
     });
   }
+  // Simple FAQ toggles
+  document.querySelectorAll('[data-faq-toggle]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const panel = btn.nextElementSibling;
+      if (!panel) return;
+      const isHidden = panel.classList.contains('hidden');
+      // close any open sibling panels if needed
+      const container = panel.parentElement;
+      if (container) {
+        container.querySelectorAll('[data-faq-panel]').forEach((p) => {
+          if (p !== panel) p.classList.add('hidden');
+        });
+        container.querySelectorAll('[data-faq-toggle] .material-symbols-outlined').forEach((icon) => {
+          icon.textContent = 'expand_more';
+        });
+      }
+      panel.classList.toggle('hidden');
+      const icon = btn.querySelector('.material-symbols-outlined');
+      if (icon) icon.textContent = isHidden ? 'expand_less' : 'expand_more';
+    });
+  });
   // Initialize language from storage
   try {
     const saved = localStorage.getItem('lula_lang');
@@ -1497,7 +1763,7 @@ function renderMethodOptions(sourceCurrency, destCurrency) {
         if (collectionIcon) collectionIcon.textContent = methodIconMap[key] || 'tune';
       }
       try { localStorage.setItem('lula_methods', JSON.stringify({ payment: selectedPaymentMethod, collection: selectedCollectionMethod })); } catch (e) {}
-      renderMethodOptions(destCurrency); // refresh aria-checked states
+      renderMethodOptions(sourceCurrency, destCurrency); // refresh aria-checked states
       updateConversion(); // recompute fees on selection
     });
     return a;
@@ -1610,6 +1876,78 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').catch(() => {});
   });
 }
+
+// --- Reviews pagination ---
+document.addEventListener('DOMContentLoaded', () => {
+  const reviews = [
+    { textKey: 'review1Text', authorKey: 'review1Author', stars: 4.5 },
+    { textKey: 'review2Text', authorKey: 'review2Author', stars: 5 },
+    { textKey: 'review3Text', authorKey: 'review3Author', stars: 5 },
+    // New reviews (use English literals by default; can add i18n later)
+    { text: 'Fast, fair, and reliable — my go-to for cross-border transfers.', author: '— Kuda N.', stars: 5 },
+    { text: 'Clean design and transparent pricing. Love the experience.', author: '— Olga S.', stars: 4.5 },
+    { text: 'Support was super helpful when I had a question. A+', author: '— Tariro P.', stars: 5 },
+    { text: 'The debit card integration is seamless. Highly recommend.', author: '— Lesedi M.', stars: 5 },
+  ];
+  const pageSize = 3;
+  let page = 0;
+  const container = document.getElementById('reviewsContainer');
+  const dotsEl = document.getElementById('reviewsDots');
+  const prevBtn = document.getElementById('reviewsPrevBtn');
+  const nextBtn = document.getElementById('reviewsNextBtn');
+
+  function starRow(stars) {
+    const full = Math.floor(stars);
+    const half = stars - full >= 0.5 ? 1 : 0;
+    const empties = 5 - full - half;
+    return [
+      ...Array(full).fill('<span class="material-symbols-outlined text-yellow-400">star</span>'),
+      ...Array(half).fill('<span class="material-symbols-outlined text-yellow-400">star_half</span>'),
+      ...Array(empties).fill('<span class="material-symbols-outlined text-gray-300 dark:text-gray-600">star</span>'),
+    ].join('');
+  }
+
+  function cardHtml(r) {
+    const dict = i18n[currentLang] || i18n.en;
+    const text = r.textKey ? (dict[r.textKey] || '') : r.text;
+    const author = r.authorKey ? (dict[r.authorKey] || '') : r.author;
+    return `
+      <div class="bg-background-light dark:bg-surface-dark rounded-xl shadow p-6 flex flex-col items-center reveal slide-up">
+        <span class="material-symbols-outlined text-primary text-4xl mb-2">format_quote</span>
+        <p class="text-lg font-medium mb-4">${text}</p>
+        <div class="flex items-center gap-2">${starRow(r.stars || 5)}</div>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">${author}</p>
+      </div>
+    `;
+  }
+
+  function render() {
+    if (!container || !dotsEl) return;
+    const start = page * pageSize;
+    const slice = reviews.slice(start, start + pageSize);
+    container.innerHTML = slice.map(cardHtml).join('');
+    // Make newly injected cards visible (bypass reveal observer for dynamic content)
+    container.querySelectorAll('.reveal').forEach(el => el.classList.add('reveal-visible'));
+    // dots
+    const totalPages = Math.ceil(reviews.length / pageSize);
+    dotsEl.innerHTML = Array.from({ length: totalPages }).map((_, i) => `
+      <button class="pager-dot ${i === page ? 'active' : ''}" aria-label="Go to page ${i+1}"></button>
+    `).join('');
+    dotsEl.querySelectorAll('button').forEach((btn, i) => btn.addEventListener('click', () => { page = i; render(); }));
+    // controls state
+    if (prevBtn) {
+      if (page === 0) prevBtn.setAttribute('disabled', ''); else prevBtn.removeAttribute('disabled');
+    }
+    if (nextBtn) {
+      if (page >= totalPages - 1) nextBtn.setAttribute('disabled', ''); else nextBtn.removeAttribute('disabled');
+    }
+  }
+
+  prevBtn?.addEventListener('click', () => { if (page > 0) { page -= 1; render(); }});
+  nextBtn?.addEventListener('click', () => { const totalPages = Math.ceil(reviews.length / pageSize); if (page < totalPages - 1) { page += 1; render(); }});
+
+  render();
+});
 </script>
 
 </body></html>
