@@ -18,6 +18,10 @@
 <link rel="manifest" href="/manifest.webmanifest"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
+<link rel="preconnect" href="https://upload.wikimedia.org" crossorigin>
+<link rel="preconnect" href="https://tools.applemediaservices.com" crossorigin>
+<link rel="preconnect" href="https://play.google.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
@@ -49,8 +53,9 @@
       },
     };
   </script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<link rel="stylesheet" href="styles/theme.css" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" onload="this.onload=null;this.rel='stylesheet'"/>
+<link rel="preload" href="styles/theme.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="styles/theme.css"></noscript>
 <style>
     .text-contrast-on-primary {
       color: #102216;
@@ -372,10 +377,10 @@
 <p class="max-w-md text-base md:text-lg reveal slide-up delay-1 text-ink" data-i18n="heroSubtitle">One app for all your financial needs. Simple, fast, secure.</p>
 <div class="hidden md:flex items-center gap-4 mt-2 reveal slide-up delay-2">
   <a href="#" aria-label="Download on the App Store">
-    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=120x40" alt="Download on the App Store" class="h-10 w-auto" width="120" height="40" loading="lazy" decoding="async"/>
+    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=120x40" alt="Download on the App Store" class="h-10 w-auto" width="120" height="40" loading="lazy" decoding="async" fetchpriority="low"/>
   </a>
   <a href="#" aria-label="Get it on Google Play">
-    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-10 w-auto" width="180" height="70" loading="lazy" decoding="async"/>
+    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-10 w-auto" width="180" height="70" loading="lazy" decoding="async" fetchpriority="low"/>
   </a>
 </div>
 </div>
@@ -494,15 +499,15 @@
 <div class="rounded-xl p-4 space-y-3 mt-4 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur">
 <div class="flex justify-between items-center text-sm">
 <span class="text-gray-600 dark:text-gray-400" data-i18n="bankFee">Bank fee</span>
-<span class="font-semibold" id="transferFeeDisplay">$2.50</span>
+<span class="font-semibold" id="transferFeeDisplay" aria-live="polite" aria-atomic="true">$2.50</span>
 </div>
 <div class="flex justify-between items-center text-sm">
 <span class="text-gray-600 dark:text-gray-400" data-i18n="ourFee">Our fee</span>
-<span class="font-semibold" id="speedFeeDisplay">$5.00</span>
+<span class="font-semibold" id="speedFeeDisplay" aria-live="polite" aria-atomic="true">$5.00</span>
 </div>
 <div class="border-t border-gray-200 dark:border-gray-600 pt-3 flex justify-between items-center font-bold">
 <span data-i18n="totalToPay">Total to pay</span>
-<span id="totalPay" class="text-lg">$102.50</span>
+<span id="totalPay" class="text-lg" aria-live="polite" aria-atomic="true">$102.50</span>
 </div>
 </div>
 
@@ -532,7 +537,8 @@
 
 <!-- Payment & Collection dropdowns are now embedded into the cards below -->
 
-<button class="btn-primary w-full text-center text-lg hover-press mt-6 neon-soft shadow-lg" onclick="window.location.href='sign-up.html'" data-i18n="startTransfer">
+<p id="ctaHelper" class="text-center text-sm text-gray-500 mt-2 hidden" data-i18n="ctaHelper">Enter an amount to continue.</p>
+<button id="startTransferBtn" class="btn-primary w-full text-center text-lg hover-press mt-3 neon-soft shadow-lg disabled:opacity-50 disabled:cursor-not-allowed" onclick="window.location.href='sign-up.html'" data-i18n="startTransfer" disabled>
 Start your transfer
 </button>
 </div>
@@ -543,8 +549,8 @@ Start your transfer
 <section id="how-it-works" class="px-4 py-14 md:py-16 bg-background-light dark:bg-background-dark">
   <div class="max-w-3xl mx-auto">
     <h2 class="text-3xl md:text-4xl font-bold tracking-wide text-center mb-10" data-i18n="howWorksTitle">How it works</h2>
-    <!-- Steps grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+    <!-- Steps grid: 3 easy steps -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
       <div class="step-card reveal slide-up" role="group" aria-labelledby="step1-title">
         <span class="step-badge">1</span>
         <div class="flex items-start gap-3">
@@ -562,11 +568,11 @@ Start your transfer
         <span class="step-badge">2</span>
         <div class="flex items-start gap-3">
           <div class="step-icon">
-            <span class="material-symbols-outlined text-base">assignment_turned_in</span>
+            <span class="material-symbols-outlined text-base">person_add</span>
           </div>
           <div>
-            <h3 id="step2-title" class="font-bold text-base" data-i18n="step2Title">Confirm your order</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step2Desc">Review receiver's info, payment method, and speed.</p>
+            <h3 id="step2-title" class="font-bold text-base" data-i18n="step2Title">Add a recipient</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step2Desc">Add your recipient’s details securely.</p>
           </div>
         </div>
       </div>
@@ -578,36 +584,18 @@ Start your transfer
             <span class="material-symbols-outlined text-base">payments</span>
           </div>
           <div>
-            <h3 id="step3-title" class="font-bold text-base" data-i18n="step3Title">Make payment</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step3Desc">Choose your payment method and follow instructions.</p>
+            <h3 id="step3-title" class="font-bold text-base" data-i18n="step3Title">Pay</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step3Desc">Choose a payment method and pay.</p>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="step-card reveal slide-up delay-3" role="group" aria-labelledby="step4-title">
-        <span class="step-badge">4</span>
-        <div class="flex items-start gap-3">
-          <div class="step-icon">
-            <span class="material-symbols-outlined text-base">map</span>
-          </div>
-          <div>
-            <h3 id="step4-title" class="font-bold text-base" data-i18n="step4Title">Track your order</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step4Desc">Track your transaction in real-time from start to finish.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="step-card reveal slide-up delay-4 sm:col-span-2" role="group" aria-labelledby="step5-title">
-        <span class="step-badge">5</span>
-        <div class="flex items-start gap-3">
-          <div class="step-icon">
-            <span class="material-symbols-outlined text-base">task_alt</span>
-          </div>
-          <div>
-            <h3 id="step5-title" class="font-bold text-base" data-i18n="step5Title">Money delivered</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step5Desc">Get confirmation when your money reaches the recipient.</p>
-          </div>
-        </div>
+    <!-- Notes: notifications and tracking -->
+    <div class="mt-6 rounded-xl p-4 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur reveal slide-up">
+      <div class="flex items-start gap-3">
+        <span class="material-symbols-outlined text-primary" aria-hidden="true">notifications_active</span>
+        <p class="text-sm text-gray-700 dark:text-gray-300"><span data-i18n="notesNotifications">You'll get notifications when your order is approved and when it's completed.</span> <span data-i18n="notesTracking">You can track your order at any time.</span></p>
       </div>
     </div>
 
@@ -621,6 +609,7 @@ Start your transfer
         <li data-i18n="protection1">Partnered with regulated providers; funds are safeguarded.</li>
         <li data-i18n="protection2">Encryption and secure payment rails.</li>
         <li data-i18n="protection3">Real-time tracking and notifications.</li>
+        <li data-i18n="protection4">We comply with KYC/AML requirements with trusted partners.</li>
       </ul>
     </div>
 
@@ -630,16 +619,16 @@ Start your transfer
       <!-- Speeds FAQ (merged with list) -->
       <div class="divide-y divide-gray-200 dark:divide-gray-700 rounded-xl border border-white/30 dark:border-white/10 overflow-hidden">
         <button type="button" class="w-full text-left px-4 py-3 bg-white/70 dark:bg-white/5 hover:bg-white/80 dark:hover:bg-white/10 flex items-center justify-between" data-faq-toggle>
-          <span>What are the transfer speeds?</span>
+          <span data-i18n="speedsFaqQ">What are the transfer speeds?</span>
           <span class="material-symbols-outlined">expand_more</span>
         </button>
         <div class="px-4 py-3 hidden text-sm text-gray-700 dark:text-gray-300" data-faq-panel>
           <ul class="list-disc list-inside space-y-1">
-            <li><strong>Standard</strong>: First come, first served in the queue (lowest fee).</li>
-            <li><strong>Express</strong>: Faster processing — skip the queue (moderate fee).</li>
-            <li><strong>Urgent</strong>: Top priority for emergencies (highest fee).</li>
+            <li data-i18n="speedsStandard">Standard: First come, first served in the queue (lowest fee).</li>
+            <li data-i18n="speedsExpress">Express: Faster processing — skip the queue (moderate fee).</li>
+            <li data-i18n="speedsUrgent">Urgent: Top priority for emergencies (highest fee).</li>
           </ul>
-          <p class="mt-2">Most transfers are completed within 24 hours, and we guarantee all transactions will be completed within 3 working days.</p>
+          <p class="mt-2" data-i18n="speedsFaqIntro">Most transfers are completed within 24 hours, and we guarantee all transactions will be completed within 3 working days.</p>
         </div>
         <button type="button" class="w-full text-left px-4 py-3 bg-white/70 dark:bg-white/5 hover:bg-white/80 dark:hover:bg-white/10 flex items-center justify-between" data-faq-toggle>
           <span data-i18n="faq1Q">How long do transfers take?</span>
@@ -729,7 +718,9 @@ Start your transfer
     src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6XIGhoYQxsVnTnVfpqAcAyYUiCxgaQ4lZKwinZgEwyfxcVz8wY9Nd6oRhJZKoO0UYGWz4z9r3Qt9K7VX_lYaueD5sSLTg33YsFJpCJLj-UWarYuZV8IazFcy3ozwIgila6c02kgRBZC0d3PZonMjCNAokSBmcTyaTftrErioXeJXinqypt2-u9hdYBTJ3O6vRZVKNIvdwsLdFyTu-QLyqFC3kPknTMLlD6EBbJyRJZ6MEWnXnaq0tuC99IRFb-4jbrl7M84sHRQue" 
     alt="Real exchange rates illustration" 
     class="absolute inset-0 w-full h-full object-cover rounded-xl hover:scale-[1.02] transition-transform duration-300" 
-    loading="lazy" decoding="async" />
+    loading="lazy" decoding="async" width="1024" height="1024"
+    srcset="https://lh3.googleusercontent.com/aida-public/AB6AXuA6XIGhoYQxsVnTnVfpqAcAyYUiCxgaQ4lZKwinZgEwyfxcVz8wY9Nd6oRhJZKoO0UYGWz4z9r3Qt9K7VX_lYaueD5sSLTg33YsFJpCJLj-UWarYuZV8IazFcy3ozwIgila6c02kgRBZC0d3PZonMjCNAokSBmcTyaTftrErioXeJXinqypt2-u9hdYBTJ3O6vRZVKNIvdwsLdFyTu-QLyqFC3kPknTMLlD6EBbJyRJZ6MEWnXnaq0tuC99IRFb-4jbrl7M84sHRQue 1024w"
+    sizes="(min-width: 768px) 33vw, 100vw" />
   <div class="absolute inset-0 rounded-xl ring-1 ring-white/40 dark:ring-white/10" aria-hidden="true"></div>
 </div>
 <h3 class="font-bold text-lg" data-i18n="why1Title">Real exchange rates</h3>
@@ -741,7 +732,9 @@ Start your transfer
     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzJjwjwRgYoBn4vR3LFz27etJFBRqFSYPinlW0HixyPX70AW5CJhQNzAHhuR_0qr-m0Aie2cT5nfIz_4dFd5kGGi0EwHPXb_Z8sm0MniD-cKJ3DVBS_eQupOdRuCmsaK3mhYLmO7qe96RNnbKFjY9lz1mDUjmT5ptDPsdtqCpvhDLL3FDTzGFh26BQtkcImbxPZ1veacMd-xQtBnfPNd5oxqyAB3Zv3Um-zYyYjAXq4Fp35wYWcnPs_8Z5WGHraF8APXBE3FBK4Lg0" 
     alt="Transparent fees illustration" 
     class="absolute inset-0 w-full h-full object-cover rounded-xl hover:scale-[1.02] transition-transform duration-300" 
-    loading="lazy" decoding="async" />
+    loading="lazy" decoding="async" width="1024" height="1024"
+    srcset="https://lh3.googleusercontent.com/aida-public/AB6AXuCzJjwjwRgYoBn4vR3LFz27etJFBRqFSYPinlW0HixyPX70AW5CJhQNzAHhuR_0qr-m0Aie2cT5nfIz_4dFd5kGGi0EwHPXb_Z8sm0MniD-cKJ3DVBS_eQupOdRuCmsaK3mhYLmO7qe96RNnbKFjY9lz1mDUjmT5ptDPsdtqCpvhDLL3FDTzGFh26BQtkcImbxPZ1veacMd-xQtBnfPNd5oxqyAB3Zv3Um-zYyYjAXq4Fp35wYWcnPs_8Z5WGHraF8APXBE3FBK4Lg0 1024w"
+    sizes="(min-width: 768px) 33vw, 100vw" />
   <div class="absolute inset-0 rounded-xl ring-1 ring-white/40 dark:ring-white/10" aria-hidden="true"></div>
 </div>
 <h3 class="font-bold text-lg" data-i18n="why2Title">Low, transparent fees</h3>
@@ -753,7 +746,9 @@ Start your transfer
     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXdhxVLWZRy4calFWa9msBffor3o8h_658d2uOYB5QcxIztZW0u389FYEmSJYfTQg6S2_n7AgrA-qxCdzrTTXWCKfAae9XO0gDxEpY6rYC36GZFy_BIuXWvXMxq0iYN83lbxF8XWZo49ZH_W7LA5YDvdD1Ea80cxqoR0bFBV2x1yhj9ndMk3wmbfRrbiYZVJdJVimk7MM_AAf5OhdrtUcHiwmTjjfLEDo1s31mZFj1rf-F2nnBhNnuc5NeLTBnApWWU3wNmNAZYEv4" 
     alt="Fast transfers illustration" 
     class="absolute inset-0 w-full h-full object-cover rounded-xl hover:scale-[1.02] transition-transform duration-300" 
-    loading="lazy" decoding="async" />
+    loading="lazy" decoding="async" width="1024" height="1024"
+    srcset="https://lh3.googleusercontent.com/aida-public/AB6AXuCXdhxVLWZRy4calFWa9msBffor3o8h_658d2uOYB5QcxIztZW0u389FYEmSJYfTQg6S2_n7AgrA-qxCdzrTTXWCKfAae9XO0gDxEpY6rYC36GZFy_BIuXWvXMxq0iYN83lbxF8XWZo49ZH_W7LA5YDvdD1Ea80cxqoR0bFBV2x1yhj9ndMk3wmbfRrbiYZVJdJVimk7MM_AAf5OhdrtUcHiwmTjjfLEDo1s31mZFj1rf-F2nnBhNnuc5NeLTBnApWWU3wNmNAZYEv4 1024w"
+    sizes="(min-width: 768px) 33vw, 100vw" />
   <div class="absolute inset-0 rounded-xl ring-1 ring-white/40 dark:ring-white/10" aria-hidden="true"></div>
 </div>
 <h3 class="font-bold text-lg" data-i18n="why3Title">Fast transfers</h3>
@@ -775,33 +770,80 @@ Start your transfer
 <section id="reviews" class="py-24 md:py-20 px-4 bg-white dark:bg-background-dark border-t border-primary/20">
   <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
   <h2 class="text-3xl md:text-4xl font-bold tracking-wide" data-i18n="reviewsTitle">What our users say</h2>
-    <div class="flex items-center justify-center gap-2 text-gray-700 dark:text-gray-200 reveal slide-up" aria-label="Average rating 4.6 out of 5">
+  <div class="flex items-center justify-center gap-2 text-gray-700 dark:text-gray-200 reveal slide-up" aria-label="Average rating 4.6 out of 5" data-i18n-attr="aria-label:reviewsAriaAvg">
       <span class="material-symbols-outlined text-yellow-400">star</span>
       <span class="material-symbols-outlined text-yellow-400">star</span>
       <span class="material-symbols-outlined text-yellow-400">star</span>
       <span class="material-symbols-outlined text-yellow-400">star</span>
       <span class="material-symbols-outlined text-yellow-400">star_half</span>
-      <span class="text-sm ml-1">Rated 4.6/5 on Trustpilot</span>
+  <span class="text-sm ml-1" data-i18n="reviewsAvgText">Rated 4.6/5 on Trustpilot</span>
     </div>
     <div id="reviewsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full"></div>
     <div id="reviewsPagination" class="flex items-center justify-center gap-3 mt-6">
-      <button id="reviewsPrevBtn" class="pager-btn" aria-label="Previous reviews">
+      <button id="reviewsPrevBtn" class="pager-btn" aria-label="Previous reviews" data-i18n-attr="aria-label:reviewsPrevAria">
         <span class="material-symbols-outlined text-base">chevron_left</span>
       </button>
       <div id="reviewsDots" class="pager-dots"></div>
-      <button id="reviewsNextBtn" class="pager-btn" aria-label="Next reviews">
+      <button id="reviewsNextBtn" class="pager-btn" aria-label="Next reviews" data-i18n-attr="aria-label:reviewsNextAria">
         <span class="material-symbols-outlined text-base">chevron_right</span>
       </button>
     </div>
   </div>
 </section>
 <!-- Reviews Section End -->
+  <!-- Partners strip -->
+  <section class="px-4 py-12 bg-white dark:bg-background-dark border-t border-white/30 dark:border-white/10">
+    <div class="max-w-5xl mx-auto glass neo-edge accent-glow rounded-2xl ring-1 ring-white/30 dark:ring-white/10 p-6 md:p-8 flex flex-col md:flex-row items-stretch gap-8">
+      <!-- Left: Heading and CTA -->
+      <div class="flex-1 flex flex-col gap-3">
+        <div class="inline-flex items-center gap-2 rounded-full bg-primary/20 text-ink px-3 py-1 text-[11px] font-bold w-max">
+          <span class="material-symbols-outlined text-primary text-base" aria-hidden="true">handshake</span>
+          <span data-i18n="partnersTitle">For partners</span>
+        </div>
+        <p class="text-sm text-gray-700 dark:text-gray-300 max-w-prose" data-i18n="partnersSubtitle">Work with LULA to bring fair, fast finance to your customers.</p>
+        <div class="mt-1">
+          <a href="mailto:partners@lula.example" class="btn-dark inline-flex items-center gap-2" data-i18n="partnersCta">
+            Partner with us
+            <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+      <!-- Right: Feature chips -->
+      <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+        <div class="step-card">
+          <div class="flex items-start gap-3">
+            <div class="step-icon">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
+            </div>
+            <p class="text-sm text-gray-700 dark:text-gray-300" data-i18n="partnersCompliance">Compliance-first: KYC/AML and policy controls</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="flex items-start gap-3">
+            <div class="step-icon">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">shield</span>
+            </div>
+            <p class="text-sm text-gray-700 dark:text-gray-300" data-i18n="partnersRegulated">Regulated providers and safeguarded funds</p>
+          </div>
+        </div>
+        <div class="step-card sm:col-span-2">
+          <div class="flex items-start gap-3">
+            <div class="step-icon">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">monitor_heart</span>
+            </div>
+            <p class="text-sm text-gray-700 dark:text-gray-300" data-i18n="partnersUptime">Reliable platform and real-time tracking</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 <footer class="bg-background-light dark:bg-background-dark py-12 px-4">
 <div class="max-w-5xl mx-auto flex flex-col items-center gap-8">
 <p class="text-xs text-gray-600 dark:text-gray-400 text-center max-w-3xl">
-  LULA partners with regulated providers; your funds are safeguarded in line with applicable laws.
-  <a href="#protection" class="underline hover:text-primary">How your money is protected</a>.
+  <span data-i18n="footerSafeguard">LULA partners with regulated providers; your funds are safeguarded in line with applicable laws.</span>
+  <a href="#protection" class="underline hover:text-primary" data-i18n="protectionTitle">How your money is protected</a>.
 </p>
 <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
 <a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="privacy-policy.html" data-i18n="footerPrivacy">Privacy Policy</a>
@@ -923,6 +965,7 @@ function formatAmount(value, currencyCode, locale) {
 // Simple i18n strings
 const i18n = {
   en: {
+    howWorksTitle: 'How it works',
     howItWorks: 'How it works',
     signIn: 'Sign In',
     androidApp: 'Android app',
@@ -952,6 +995,19 @@ const i18n = {
   payingWith: 'Paying with',
   collectingWith: 'Collecting with',
   change: 'Change',
+  step1Title: 'Get a quote',
+  step1Desc: 'Enter amount and destination for a real-time rate.',
+  step2Title: 'Add a recipient',
+  step2Desc: 'Add your recipient’s details securely.',
+  step3Title: 'Pay',
+  step3Desc: 'Choose a payment method and pay.',
+  notesNotifications: "You'll get notifications when your order is approved and when it's completed.",
+  notesTracking: 'You can track your order at any time.',
+  ctaHelper: 'Enter an amount to continue.',
+  step4Title: 'Track your order',
+  step4Desc: 'Track your transaction in real-time from start to finish.',
+  step5Title: 'Money delivered',
+  step5Desc: 'Get confirmation when your money reaches the recipient.',
     getStartedSectionTitle: 'More than just transfers',
     getStartedSendMoney: 'Send Money',
     getStartedBuyData: 'Buy Data',
@@ -975,14 +1031,51 @@ const i18n = {
     review1Author: '— Tinashe M.',
     review2Text: '"No hidden fees and great support. I love the transparency."',
     review2Author: '— Amanda K.',
-    review3Text: '"The app is super intuitive and the card features are a game changer."',
-    review3Author: '— Brian D.',
+  review3Text: '"The app is super intuitive and the card features are a game changer."',
+  review3Author: '— Brian D.',
+  review4Text: 'Fast, fair, and reliable — my go-to for cross-border transfers.',
+  review4Author: '— Kuda N.',
+  review5Text: 'Clean design and transparent pricing. Love the experience.',
+  review5Author: '— Olga S.',
+  review6Text: 'Support was super helpful when I had a question. A+',
+  review6Author: '— Tariro P.',
+  review7Text: 'The debit card integration is seamless. Highly recommend.',
+  review7Author: '— Lesedi M.',
+  reviewsAriaAvg: 'Average rating 4.6 out of 5',
+  reviewsAvgText: 'Rated 4.6/5 on Trustpilot',
+  footerSafeguard: 'LULA partners with regulated providers; your funds are safeguarded in line with applicable laws.',
     footerPrivacy: 'Privacy Policy',
     footerTerms: 'Terms of Service',
     footerContact: 'Contact Us',
+    faqTitle: 'Frequently asked questions',
+    faq1Q: 'How long do transfers take?',
+    faq1A: 'Most transfers arrive within minutes on Instant, under a day on Express, and 1–3 days on Standard.',
+    faq2Q: 'What fees will I pay?',
+    faq2A: 'We show all fees upfront. Bank fees may vary by method; cash-to-cash and transfers to Russia have no bank fee.',
+    faq3Q: 'Can I track my transfer?',
+    faq3A: 'Yes. You can follow your transfer in real-time and receive notifications at each step.',
+    speedsFaqQ: 'What are the transfer speeds?',
+    speedsFaqIntro: 'Most transfers are completed within 24 hours, and we guarantee all transactions will be completed within 3 working days.',
+    speedsStandard: 'Standard: First come, first served in the queue (lowest fee).',
+    speedsExpress: 'Express: Faster processing — skip the queue (moderate fee).',
+    speedsUrgent: 'Urgent: Top priority for emergencies (highest fee).',
+    reviewsPrevAria: 'Previous reviews',
+    reviewsNextAria: 'Next reviews',
+    protectionTitle: 'How your money is protected',
+    protection1: 'Partnered with regulated providers; funds are safeguarded.',
+    protection2: 'Encryption and secure payment rails.',
+    protection3: 'Real-time tracking and notifications.',
+  protection4: 'We comply with KYC/AML requirements with trusted partners.',
+  partnersTitle: 'For partners',
+  partnersSubtitle: 'Work with LULA to bring fair, fast finance to your customers.',
+  partnersCompliance: 'Compliance-first: KYC/AML and policy controls',
+  partnersRegulated: 'Regulated providers and safeguarded funds',
+  partnersUptime: 'Reliable platform and real-time tracking',
+  partnersCta: 'Partner with us',
     footerCopyright: '© 2025 LULA. All rights reserved.'
   },
   ru: {
+    howWorksTitle: 'Как это работает',
     howItWorks: 'Как это работает',
     signIn: 'Войти',
     androidApp: 'Приложение Android',
@@ -1012,6 +1105,19 @@ const i18n = {
   payingWith: 'Оплата',
   collectingWith: 'Получение',
   change: 'Изменить',
+    step1Title: 'Получите расчёт',
+    step1Desc: 'Введите сумму и направление, чтобы увидеть курс в реальном времени.',
+  step2Title: 'Добавьте получателя',
+  step2Desc: 'Безопасно добавьте данные получателя.',
+  step3Title: 'Оплатите',
+  step3Desc: 'Выберите способ оплаты и оплатите.',
+  notesNotifications: 'Вы получите уведомления, когда заказ будет одобрен и когда он завершится.',
+  notesTracking: 'Вы можете отслеживать заказ в любое время.',
+  ctaHelper: 'Введите сумму, чтобы продолжить.',
+    step4Title: 'Отслеживайте перевод',
+    step4Desc: 'Следите за переводом в реальном времени от начала до конца.',
+    step5Title: 'Деньги доставлены',
+    step5Desc: 'Получите подтверждение, когда деньги дойдут до получателя.',
     getStartedSectionTitle: 'Больше, чем переводы',
     getStartedSendMoney: 'Отправить деньги',
     getStartedBuyData: 'Купить интернет',
@@ -1035,11 +1141,46 @@ const i18n = {
     review1Author: '— Тинаше М.',
     review2Text: '«Без скрытых комиссий и отличная поддержка. Люблю прозрачность.»',
     review2Author: '— Аманда К.',
-    review3Text: '«Приложение очень удобное, а функции карты — настоящая революция.»',
-    review3Author: '— Брайан Д.',
+  review3Text: '«Приложение очень удобное, а функции карты — настоящая революция.»',
+  review3Author: '— Брайан Д.',
+  review4Text: 'Быстро, честно и надёжно — мой выбор для международных переводов.',
+  review4Author: '— Куда Н.',
+  review5Text: 'Чистый дизайн и прозрачные комиссии. Нравится опыт использования.',
+  review5Author: '— Ольга С.',
+  review6Text: 'Поддержка очень помогла, когда у меня был вопрос. Отлично!',
+  review6Author: '— Тариро П.',
+  review7Text: 'Интеграция с дебетовой картой бесшовная. Рекомендую.',
+  review7Author: '— Леседи М.',
+  reviewsAriaAvg: 'Средняя оценка 4,6 из 5',
+  reviewsAvgText: 'Рейтинг 4,6/5 на Trustpilot',
+  footerSafeguard: 'LULA сотрудничает с регулируемыми провайдерами; ваши средства защищены в соответствии с применимым законодательством.',
     footerPrivacy: 'Политика конфиденциальности',
     footerTerms: 'Условия обслуживания',
-    footerContact: 'Связаться с нами',
+    faqTitle: 'Часто задаваемые вопросы',
+    faq1Q: 'Сколько времени занимает перевод?',
+    faq1A: 'Большинство переводов приходят за минуты на «Мгновенно», менее чем за день на «Экспресс» и за 1–3 дня на «Стандарт».',
+    faq2Q: 'Какие комиссии я заплачу?',
+    faq2A: 'Мы показываем все комиссии заранее. Банковская комиссия зависит от метода; для наличных-наличные и переводов в Россию банковской комиссии нет.',
+    faq3Q: 'Могу ли я отслеживать перевод?',
+    faq3A: 'Да. Вы сможете следить за переводом в реальном времени и получать уведомления на каждом этапе.',
+    speedsFaqQ: 'Какие есть скорости перевода?',
+    speedsFaqIntro: 'Большинство переводов завершается в течение 24 часов, а также мы гарантируем выполнение в течение 3 рабочих дней.',
+    speedsStandard: 'Стандарт: Очередь «первым пришёл — первым обслужен» (наименьшая комиссия).',
+    speedsExpress: 'Экспресс: Быстрая обработка — вне очереди (средняя комиссия).',
+    speedsUrgent: 'Срочно: Высший приоритет для неотложных случаев (наибольшая комиссия).',
+    reviewsPrevAria: 'Предыдущие отзывы',
+    reviewsNextAria: 'Следующие отзывы',
+    protectionTitle: 'Как мы защищаем ваши деньги',
+    protection1: 'Сотрудничаем с регулируемыми провайдерами; средства защищены.',
+    protection2: 'Шифрование и безопасные платёжные каналы.',
+    protection3: 'Отслеживание и уведомления в реальном времени.',
+  protection4: 'Мы соблюдаем требования KYC/AML совместно с надёжными партнёрами.',
+  partnersTitle: 'Партнёрам',
+  partnersSubtitle: 'Сотрудничайте с LULA, чтобы давать клиентам быстрые и честные финансовые сервисы.',
+  partnersCompliance: 'Приоритет соответствия: KYC/AML и контроль политик',
+  partnersRegulated: 'Регулируемые провайдеры и защищённые средства',
+  partnersUptime: 'Надёжная платформа и отслеживание в реальном времени',
+  partnersCta: 'Сотрудничать с нами',
     
     // Keep the year and brand literal to match original text
     footerCopyright: '© 2025 LULA. Все права защищены.'
@@ -1052,6 +1193,16 @@ function applyTranslations(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (dict[key]) el.textContent = dict[key];
+  });
+  // Translate attributes using data-i18n-attr="attr:key,attr2:key2"
+  document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+    const mappings = (el.getAttribute('data-i18n-attr') || '').split(',');
+    mappings.forEach(pair => {
+      const [attr, key] = pair.split(':').map(s => s && s.trim());
+      if (attr && key && dict[key]) {
+        el.setAttribute(attr, dict[key]);
+      }
+    });
   });
   // Set document language attribute
   document.documentElement.setAttribute('lang', lang);
@@ -1224,6 +1375,19 @@ function updateConversion() {
   }
   // Update speed card amounts with current symbol and current input amount
   updateSpeedCardAmounts(currentFromCurrency, sendAmount, locale);
+
+  // Enable/disable CTA
+  const cta = document.getElementById('startTransferBtn');
+  const helper = document.getElementById('ctaHelper');
+  if (cta && helper) {
+    if (sendAmount > 0) {
+      cta.removeAttribute('disabled');
+      helper.classList.add('hidden');
+    } else {
+      cta.setAttribute('disabled', '');
+      helper.classList.remove('hidden');
+    }
+  }
 
   // Keep cards equal height after content changes
   equalizeCardsHeight();
@@ -1401,6 +1565,14 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+
+  // Global Escape handler to close open menus
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      [langMenu, appMenu, mobileMenu, receiveCurrencyMenu, sendCurrencyMenu].forEach(menu => menu && menu.classList.add('hidden'));
+      [langBtn, appBtn, mobileMenuBtn, receiveCurrencyBtn, sendCurrencyBtn].forEach(btn => btn && btn.setAttribute('aria-expanded', 'false'));
+    }
+  });
   // App download dropdown interactions
   if (appBtn && appMenu) {
     appBtn.addEventListener('click', (e) => {
@@ -1877,17 +2049,16 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// --- Reviews pagination ---
-document.addEventListener('DOMContentLoaded', () => {
+// --- Reviews pagination (lazy-init) ---
+function initReviews() {
   const reviews = [
     { textKey: 'review1Text', authorKey: 'review1Author', stars: 4.5 },
     { textKey: 'review2Text', authorKey: 'review2Author', stars: 5 },
     { textKey: 'review3Text', authorKey: 'review3Author', stars: 5 },
-    // New reviews (use English literals by default; can add i18n later)
-    { text: 'Fast, fair, and reliable — my go-to for cross-border transfers.', author: '— Kuda N.', stars: 5 },
-    { text: 'Clean design and transparent pricing. Love the experience.', author: '— Olga S.', stars: 4.5 },
-    { text: 'Support was super helpful when I had a question. A+', author: '— Tariro P.', stars: 5 },
-    { text: 'The debit card integration is seamless. Highly recommend.', author: '— Lesedi M.', stars: 5 },
+    { textKey: 'review4Text', authorKey: 'review4Author', stars: 5 },
+    { textKey: 'review5Text', authorKey: 'review5Author', stars: 4.5 },
+    { textKey: 'review6Text', authorKey: 'review6Author', stars: 5 },
+    { textKey: 'review7Text', authorKey: 'review7Author', stars: 5 },
   ];
   const pageSize = 3;
   let page = 0;
@@ -1947,7 +2118,24 @@ document.addEventListener('DOMContentLoaded', () => {
   nextBtn?.addEventListener('click', () => { const totalPages = Math.ceil(reviews.length / pageSize); if (page < totalPages - 1) { page += 1; render(); }});
 
   render();
-});
+}
+
+// Defer reviews init until idle or when section enters viewport
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(() => initReviews());
+} else {
+  const reviewsSection = document.getElementById('reviews');
+  if ('IntersectionObserver' in window && reviewsSection) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { initReviews(); io.disconnect(); }
+      });
+    }, { rootMargin: '0px 0px -20% 0px' });
+    io.observe(reviewsSection);
+  } else {
+    document.addEventListener('DOMContentLoaded', initReviews);
+  }
+}
 </script>
 
 </body></html>
