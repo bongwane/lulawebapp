@@ -4,9 +4,14 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>LULA - How It Works</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+  (function(){
+    try{ const t = localStorage.getItem('lula_theme'); if(t==='dark') document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark'); }catch(e){}
+  })();
+  </script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <script>
     tailwind.config = {
@@ -25,7 +30,7 @@
             "border-dark": "#2a3f31",
           },
           fontFamily: {
-            "display": ["Manrope", "sans-serif"]
+            "sans": ["Sora", "ui-sans-serif", "system-ui"]
           },
           borderRadius: {
             "DEFAULT": "0.5rem",
@@ -37,10 +42,10 @@
       },
     }
   </script>
+<link rel="preload" href="styles/theme.css" as="style" />
+<link rel="stylesheet" href="styles/theme.css" />
 <style>
-    body {
-      font-family: 'Manrope', sans-serif;
-    }
+    body { font-family: 'Sora', ui-sans-serif, system-ui; }
   </style>
 <style>
     body {
@@ -48,7 +53,7 @@
     }
   </style>
   </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-foreground-light dark:text-foreground-dark">
+<body class="bg-background-light dark:bg-background-dark font-sans text-foreground-light dark:text-foreground-dark">
 <div class="min-h-screen flex flex-col">
 <header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
 <div class="container mx-auto px-4 py-3">

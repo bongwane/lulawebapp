@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Confirm Collection - Lula Agent</title>
+  <script>(function(){try{const t=localStorage.getItem('lula_theme')||'light';document.documentElement.classList.toggle('dark',t==='dark')}catch(e){}})();</script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
   <script>
     tailwind.config = {
@@ -21,7 +23,8 @@
             "surface-dark": "#172111",
           },
           fontFamily: {
-            display: ["Manrope"],
+            sans: ["Sora","system-ui","-apple-system","Segoe UI","Roboto","sans-serif"],
+            brand: ["Luckiest Guy","cursive"],
           },
           borderRadius: {
             DEFAULT: "0.5rem",
@@ -33,13 +36,15 @@
       },
     };
   </script>
+  <link rel="preload" href="styles/theme.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles/theme.css"></noscript>
   <style>
     body {
       min-height: max(884px, 100dvh);
     }
   </style>
 </head>
-<body class="font-display bg-background-light dark:bg-background-dark text-background-dark dark:text-background-light">
+<body class="bg-background-light dark:bg-background-dark font-sans text-ink dark:text-white">
   <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
     <header class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-2 backdrop-blur-sm">
       <div class="flex items-center gap-3">

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
+<html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Stitch Design</title>
 <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>(function(){try{const t=localStorage.getItem('lula_theme')||'light';document.documentElement.classList.toggle('dark',t==='dark')}catch(e){}})();</script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
         tailwind.config = {
@@ -18,11 +20,13 @@
                         "primary": "#9FE870",
                         "background-dark": "#0A140D",
                         "surface-dark": "#172111",
+                        "background-light": "#f7f8f6",
                         "text-main": "#FFFFFF",
-                        "text-secondary": "#FFFFFF99", // 60% opacity white
+                        "text-secondary": "#FFFFFF99",
                     },
                     fontFamily: {
-                        "display": ["Manrope"]
+                        sans: ["Sora","system-ui","-apple-system","Segoe UI","Roboto","sans-serif"],
+                        brand: ["Luckiest Guy","cursive"],
                     },
                     borderRadius: {
                         "DEFAULT": "0.5rem",
@@ -86,74 +90,76 @@
     body {
       min-height: max(884px, 100dvh);
     }
-  </style>
-  </head>
-<body class="bg-background-dark font-display text-text-main">
-<div class="relative flex h-dvh flex-col bg-background-dark">
-<header class="sticky top-0 z-10 flex items-center justify-between bg-background-dark p-4">
-  <button class="p-2 text-text-main" onclick="window.location.href='send-money.html'">
+</style>
+<link rel="preload" href="styles/theme.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="styles/theme.css"></noscript>
+    </head>
+<body class="bg-background-light dark:bg-background-dark font-sans text-ink dark:text-white">
+<div class="relative flex h-dvh flex-col bg-background-light dark:bg-background-dark">
+<header class="sticky top-0 z-10 flex items-center justify-between bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm p-4">
+    <button class="p-2 text-ink dark:text-white" onclick="window.location.href='send-money.html'">
     <span class="material-symbols-outlined">arrow_back</span>
   </button>
-  <h1 class="flex-1 text-center text-lg font-bold text-text-main">Select Recipient</h1>
+    <h1 class="flex-1 text-center text-lg font-bold">Select Recipient</h1>
   <div class="w-10"></div>
 </header>
 <main class="flex-1 overflow-y-auto px-4 w-full max-w-md mx-auto">
-<div class="sticky top-0 z-0 bg-background-dark py-4">
+<div class="sticky top-0 z-0 bg-background-light dark:bg-background-dark py-4">
 <div class="relative">
 <span class="material-symbols-outlined pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary">search</span>
-<input class="w-full rounded-full border-none bg-surface-dark py-3 pl-12 pr-4 text-text-main placeholder-text-secondary focus:ring-2 focus:ring-primary/50" placeholder="Search name, email or phone" type="text"/>
+<input class="w-full rounded-full border-none bg-white/80 dark:bg-surface-dark ring-1 ring-white/30 dark:ring-white/10 py-3 pl-12 pr-4 placeholder:text-gray-500 dark:placeholder:text-text-secondary focus:ring-2 focus:ring-primary/50" placeholder="Search name, email or phone" type="text"/>
 </div>
 </div>
 <section class="pb-24">
-<h2 class="mb-4 text-sm font-semibold text-text-secondary">Frequent</h2>
+<h2 class="mb-4 text-sm font-semibold text-gray-600 dark:text-text-secondary">Frequent</h2>
 <div class="grid grid-cols-1 gap-2">
-<div onclick="window.location.href='tracking.html'"  class="flex cursor-pointer items-center gap-4 rounded-xl bg-surface-dark p-3 transition-colors hover:bg-surface-dark/80">
+<div onclick="window.location.href='tracking.html'"  class="flex cursor-pointer items-center gap-4 rounded-xl bg-white/80 dark:bg-surface-dark ring-1 ring-white/30 dark:ring-white/10 p-3 transition-colors hover:bg-white/90 dark:hover:bg-surface-dark/80">
 <img alt="Nikiwe Nyoni" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9ssjASgug9l_XZgSM8ChgmnApW1EMoP_JFfkDF7HdH6mgERyLtvYCum-UZ95SM2M8ml_y_WKqrFpS5oG-K5PyMFmGgN6cDySyxU774KBhcs_RgOgpQ3QCTYKTTP4X4X_-F0kdKmzh793Sq-a_OLJJ_o4tQFEnpP5bdxDbENGZPIRNiZueQ_N61JG6x9L_tvWVb35v2OJQ0f4VJLAp7g6h4TJKMwOWulyLMs3PGBnxWtqzZhgxhwUZ6hEfWT4VfICDYjMqv6OyDns-"/>
 <div class="min-w-0 flex-1">
-<p class="truncate font-bold text-text-main">Nikiwe Nyoni</p>
-<p class="truncate text-sm text-text-secondary">nikiwe.nyoni@example.com</p>
+<p class="truncate font-bold">Nikiwe Nyoni</p>
+<p class="truncate text-sm text-gray-600 dark:text-text-secondary">nikiwe.nyoni@example.com</p>
 </div>
 </div>
-<div class="flex cursor-pointer items-center gap-4 rounded-xl bg-surface-dark p-3 transition-colors hover:bg-surface-dark/80">
+<div class="flex cursor-pointer items-center gap-4 rounded-xl bg-white/80 dark:bg-surface-dark ring-1 ring-white/30 dark:ring-white/10 p-3 transition-colors hover:bg-white/90 dark:hover:bg-surface-dark/80">
 <img alt="Zibusiso Nyoni" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ8Gtu4yeFmyDXP5DX4Os-TjWyjynYVCxRAQGBkY4A6nPtIOv7-ykjfNtNg9EBjmcJysEOQByZVo5x9CRfoZSkAp-HGObkpzqtNfRzvo6T5SQLcgRJ_OcYD7SMkMj5xgAfpBvO96l7C2AHA_XtSZxZSMcsRKq6_552O6mXPEbLb_sKBBCMerApdV1u2FwYekPimlt1WgV_MG8KmX3ygwwY5Id60NZVIWupQSXIbtY5KAepn2gmLSlDwmYYzxhOapPhpM7vs-Q10OA5"/>
 <div class="min-w-0 flex-1">
-<p class="truncate font-bold text-text-main">Zibusiso Nyoni</p>
-<p class="truncate text-sm text-text-secondary">+27 82 123 4567</p>
+<p class="truncate font-bold">Zibusiso Nyoni</p>
+<p class="truncate text-sm text-gray-600 dark:text-text-secondary">+27 82 123 4567</p>
 </div>
 </div>
-<div class="flex cursor-pointer items-center gap-4 rounded-xl bg-surface-dark p-3 transition-colors hover:bg-surface-dark/80">
+<div class="flex cursor-pointer items-center gap-4 rounded-xl bg-white/80 dark:bg-surface-dark ring-1 ring-white/30 dark:ring-white/10 p-3 transition-colors hover:bg-white/90 dark:hover:bg-surface-dark/80">
 <img alt="Thandiwe Khumalo" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsdGAsSsvoISEkqiF42kyqKXWUSKk7J9VhHUZqRSEy7uVBhPTvnyC7WlsMllFAZ0FzxW2Jfbpj78duzYanTaRPcNeJ4s2Q1fw8wjp41NT27E3VNOQJxUlx3qfXmTc5Z1MDew1O0tSbAu4ZRsjGHGmlgJs1FYbhOC_cRSpWbQt3WhOYBiz9Q51VZfMqzw9VVe2A_s6oVAbi-fKmbyHu__GkDFQrEsRe0CWNC3-5RHReXBAU56iwdNQklVFpEbCyzVAGEbm24jGpHcLZ"/>
 <div class="min-w-0 flex-1">
-<p class="truncate font-bold text-text-main">Thandiwe Khumalo</p>
-<p class="truncate text-sm text-text-secondary">**** **** **** 5678</p>
+<p class="truncate font-bold">Thandiwe Khumalo</p>
+<p class="truncate text-sm text-gray-600 dark:text-text-secondary">**** **** **** 5678</p>
 </div>
 </div>
-<div class="flex cursor-pointer items-center gap-4 rounded-xl bg-surface-dark p-3 transition-colors hover:bg-surface-dark/80">
+<div class="flex cursor-pointer items-center gap-4 rounded-xl bg-white/80 dark:bg-surface-dark ring-1 ring-white/30 dark:ring-white/10 p-3 transition-colors hover:bg-white/90 dark:hover:bg-surface-dark/80">
 <img alt="Lethabo Dlamini" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq0GbO_PJJKGV6JbCxulnBaIiK161IAETP-mN1rzY08owYf_ftzirzG-EkPyH8s6SGUH4TNbTT9KX7n_TrgLWlz_9pQ11wr7jvC1eZRpz50CoTk2TOas2ixUMStQPAnAY4MFYS1pFs3IHiu_317pDs5Ssz6ca5ps0VhNatR7kED9HTTc_1eoT3NKbLPbdhb6O_6ApdS_eFYMJJ5BHX7kBl3tfqrSbwG24xQ89msYmO_kNji9er6xjJuZ99dsORxHRSYh_AtQGfF5Ej"/>
 <div class="min-w-0 flex-1">
-<p class="truncate font-bold text-text-main">Lethabo Dlamini</p>
-<p class="truncate text-sm text-text-secondary">lethabo.dlamini@example.com</p>
+<p class="truncate font-bold">Lethabo Dlamini</p>
+<p class="truncate text-sm text-gray-600 dark:text-text-secondary">lethabo.dlamini@example.com</p>
 </div>
 </div>
-<div class="flex cursor-pointer items-center gap-4 rounded-xl bg-surface-dark p-3 transition-colors hover:bg-surface-dark/80">
+<div class="flex cursor-pointer items-center gap-4 rounded-xl bg-white/80 dark:bg-surface-dark ring-1 ring-white/30 dark:ring-white/10 p-3 transition-colors hover:bg-white/90 dark:hover:bg-surface-dark/80">
 <img alt="Ayanda Ndlovu" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsdGAsSsvoISEkqiF42kyqKXWUSKk7J9VhHUZqRSEy7uVBhPTvnyC7WlsMllFAZ0FzxW2Jfbpj78duzYanTaRPcNeJ4s2Q1fw8wjp41NT27E3VNOQJxUlx3qfXmTc5Z1MDew1O0tSbAu4ZRsjGHGmlgJs1FYbhOC_cRSpWbQt3WhOYBiz9Q51VZfMqzw9VVe2A_s6oVAbi-fKmbyHu__GkDFQrEsRe0CWNC3-5RHReXBAU56iwdNQklVFpEbCyzVAGEbm24jGpHcLZ"/>
 <div class="min-w-0 flex-1">
-<p class="truncate font-bold text-text-main">Ayanda Ndlovu</p>
-<p class="truncate text-sm text-text-secondary">ayanda.ndlovu@example.com</p>
+<p class="truncate font-bold">Ayanda Ndlovu</p>
+<p class="truncate text-sm text-gray-600 dark:text-text-secondary">ayanda.ndlovu@example.com</p>
 </div>
 </div>
-<div class="flex cursor-pointer items-center gap-4 rounded-xl bg-surface-dark p-3 transition-colors hover:bg-surface-dark/80">
+<div class="flex cursor-pointer items-center gap-4 rounded-xl bg-white/80 dark:bg-surface-dark ring-1 ring-white/30 dark:ring-white/10 p-3 transition-colors hover:bg-white/90 dark:hover:bg-surface-dark/80">
 <img alt="Bongani Zulu" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ8Gtu4yeFmyDXP5DX4Os-TjWyjynYVCxRAQGBkY4A6nPtIOv7-ykjfNtNg9EBjmcJysEOQByZVo5x9CRfoZSkAp-HGObkpzqtNfRzvo6T5SQLcgRJ_OcYD7SMkMj5xgAfpBvO96l7C2AHA_XtSZxZSMcsRKq6_552O6mXPEbLb_sKBBCMerApdV1u2FwYekPimlt1WgV_MG8KmX3ygwwY5Id60NZVIWupQSXIbtY5KAepn2gmLSlDwmYYzxhOapPhpM7vs-Q10OA5"/>
 <div class="min-w-0 flex-1">
-<p class="truncate font-bold text-text-main">Bongani Zulu</p>
-<p class="truncate text-sm text-text-secondary">+27 83 987 6543</p>
+<p class="truncate font-bold">Bongani Zulu</p>
+<p class="truncate text-sm text-gray-600 dark:text-text-secondary">+27 83 987 6543</p>
 </div>
 </div>
-<div class="flex cursor-pointer items-center gap-4 rounded-xl bg-surface-dark p-3 transition-colors hover:bg-surface-dark/80">
+<div class="flex cursor-pointer items-center gap-4 rounded-xl bg-white/80 dark:bg-surface-dark ring-1 ring-white/30 dark:ring-white/10 p-3 transition-colors hover:bg-white/90 dark:hover:bg-surface-dark/80">
 <img alt="Fatima Ali" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsdGAsSsvoISEkqiF42kyqKXWUSKk7J9VhHUZqRSEy7uVBhPTvnyC7WlsMllFAZ0FzxW2Jfbpj78duzYanTaRPcNeJ4s2Q1fw8wjp41NT27E3VNOQJxUlx3qfXmTc5Z1MDew1O0tSbAu4ZRsjGHGmlgJs1FYbhOC_cRSpWbQt3WhOYBiz9Q51VZfMqzw9VVe2A_s6oVAbi-fKmbyHu__GkDFQrEsRe0CWNC3-5RHReXBAU56iwdNQklVFpEbCyzVAGEbm24jGpHcLZ"/>
 <div class="min-w-0 flex-1">
-<p class="truncate font-bold text-text-main">Fatima Ali</p>
-<p class="truncate text-sm text-text-secondary">**** **** **** 8765</p>
+<p class="truncate font-bold">Fatima Ali</p>
+<p class="truncate text-sm text-gray-600 dark:text-text-secondary">**** **** **** 8765</p>
 </div>
 </div>
 </div>

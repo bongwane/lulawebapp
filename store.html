@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lula Store</title>
   <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,"/>
+  <script>
+    // Apply saved theme early to avoid FOUC
+    (function(){
+      try { if (localStorage.getItem('lula_theme') === 'dark') document.documentElement.classList.add('dark'); } catch(e) {}
+      try { const lang = localStorage.getItem('lula_lang'); if (lang) document.documentElement.setAttribute('lang', lang); } catch(e) {}
+    })();
+  </script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
   <script>
     tailwind.config = {
@@ -20,7 +27,7 @@
             "surface-dark": "#172111",
           },
           fontFamily: {
-            display: ["Manrope"],
+            display: ["Sora"],
           },
           borderRadius: {
             DEFAULT: "0.5rem",
@@ -55,65 +62,65 @@
 <body class="font-display bg-background-light dark:bg-background-dark text-background-dark dark:text-background-light">
   <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-2 backdrop-blur-sm">
-      <button onclick="history.back()" class="flex h-10 w-10 items-center justify-center rounded-full text-background-light">
+    <header class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between bg-white/80 dark:bg-background-dark/80 border-b border-black/5 dark:border-white/10 p-4 pb-2 backdrop-blur-sm">
+      <button onclick="history.back()" class="flex h-10 w-10 items-center justify-center rounded-full text-background-dark dark:text-background-light">
         <span class="material-symbols-outlined text-2xl">arrow_back</span>
       </button>
-      <h1 class="text-lg font-bold text-background-light">Store</h1>
+      <h1 class="text-lg font-bold text-background-dark dark:text-background-light">Store</h1>
       <div class="w-8"></div>
     </header>
     <!-- Main -->
     <main class="flex-grow px-4 pb-24 pt-20 max-w-2xl mx-auto w-full">
       <div class="mb-6">
-        <h2 class="text-2xl font-bold text-background-light mb-2 flex items-center gap-2">
+        <h2 class="text-2xl font-bold text-background-dark dark:text-background-light mb-2 flex items-center gap-2">
           <span class="material-symbols-outlined text-primary text-2xl">store</span>
           Store Categories
         </h2>
-        <p class="text-background-light/60 text-sm">Buy airtime, pay bills, get tickets, and more.</p>
+        <p class="text-background-dark/60 dark:text-background-light/60 text-sm">Buy airtime, pay bills, get tickets, and more.</p>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
         <!-- Airtime & Data -->
-        <a href="buy-airtime-data.html" class="group block rounded-2xl bg-surface-dark shadow-lg hover:shadow-xl hover:ring-2 hover:ring-primary/70 transition-all duration-200 overflow-hidden">
+        <a href="buy-airtime-data.html" class="group block rounded-2xl bg-white dark:bg-surface-dark shadow-sm dark:shadow-lg hover:shadow-md hover:ring-2 hover:ring-primary/70 transition-all duration-200 overflow-hidden border border-black/5 dark:border-transparent">
           <div class="flex flex-col items-center justify-center gap-3 p-6 aspect-square">
             <div class="bg-primary/20 rounded-full p-4 group-hover:bg-primary/40 transition">
               <span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition" style="font-variation-settings: 'FILL' 1;">signal_cellular_alt</span>
             </div>
-            <h3 class="text-background-light text-base font-semibold text-center">Airtime &amp; Data</h3>
+            <h3 class="text-background-dark dark:text-background-light text-base font-semibold text-center">Airtime &amp; Data</h3>
           </div>
         </a>
         <!-- Utility Bills -->
-        <a href="#" class="group block rounded-2xl bg-surface-dark shadow-lg hover:shadow-xl hover:ring-2 hover:ring-primary/70 transition-all duration-200 overflow-hidden">
+        <a href="#" class="group block rounded-2xl bg-white dark:bg-surface-dark shadow-sm dark:shadow-lg hover:shadow-md hover:ring-2 hover:ring-primary/70 transition-all duration-200 overflow-hidden border border-black/5 dark:border-transparent">
           <div class="flex flex-col items-center justify-center gap-3 p-6 aspect-square">
             <div class="bg-primary/20 rounded-full p-4 group-hover:bg-primary/40 transition">
               <span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
             </div>
-            <h3 class="text-background-light text-base font-semibold text-center">Utility Bills</h3>
+            <h3 class="text-background-dark dark:text-background-light text-base font-semibold text-center">Utility Bills</h3>
           </div>
         </a>
         <!-- Tickets -->
-        <a href="#" class="group block rounded-2xl bg-surface-dark shadow-lg hover:shadow-xl hover:ring-2 hover:ring-primary/70 transition-all duration-200 overflow-hidden">
+        <a href="#" class="group block rounded-2xl bg-white dark:bg-surface-dark shadow-sm dark:shadow-lg hover:shadow-md hover:ring-2 hover:ring-primary/70 transition-all duration-200 overflow-hidden border border-black/5 dark:border-transparent">
           <div class="flex flex-col items-center justify-center gap-3 p-6 aspect-square">
             <div class="bg-primary/20 rounded-full p-4 group-hover:bg-primary/40 transition">
               <span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition" style="font-variation-settings: 'FILL' 1;">local_activity</span>
             </div>
-            <h3 class="text-background-light text-base font-semibold text-center">Tickets</h3>
+            <h3 class="text-background-dark dark:text-background-light text-base font-semibold text-center">Tickets</h3>
           </div>
         </a>
         <!-- Mandla Coupons -->
-        <a href="#" class="group block rounded-2xl bg-surface-dark shadow-lg hover:shadow-xl hover:ring-2 hover:ring-primary/70 transition-all duration-200 overflow-hidden">
+        <a href="#" class="group block rounded-2xl bg-white dark:bg-surface-dark shadow-sm dark:shadow-lg hover:shadow-md hover:ring-2 hover:ring-primary/70 transition-all duration-200 overflow-hidden border border-black/5 dark:border-transparent">
           <div class="flex flex-col items-center justify-center gap-3 p-6 aspect-square">
             <div class="bg-primary/20 rounded-full p-4 group-hover:bg-primary/40 transition">
               <span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition" style="font-variation-settings: 'FILL' 1;">percent</span>
             </div>
-            <h3 class="text-background-light text-base font-semibold text-center">Mandla Coupons</h3>
+            <h3 class="text-background-dark dark:text-background-light text-base font-semibold text-center">Mandla Coupons</h3>
           </div>
         </a>
       </div>
     </main>
     <!-- Footer Navigation -->
-    <footer class="fixed bottom-0 left-0 right-0 z-10 bg-background-dark/80 backdrop-blur-sm">
+    <footer class="fixed bottom-0 left-0 right-0 z-10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm border-t border-black/5 dark:border-white/10">
       <nav class="flex justify-around pt-2 pb-5">
-        <a class="flex flex-col items-center gap-1 text-background-light/60" href="dashboard.html">
+        <a class="flex flex-col items-center gap-1 text-background-dark/60 dark:text-background-light/60" href="dashboard.html">
           <span class="material-symbols-outlined">home</span>
           <span class="text-xs font-medium">Home</span>
         </a>
@@ -121,15 +128,15 @@
           <span class="material-symbols-outlined">store</span>
           <span class="text-xs font-bold">Store</span>
         </a>
-        <a class="flex flex-col items-center gap-1 text-background-light/60" href="send-money.html">
+        <a class="flex flex-col items-center gap-1 text-background-dark/60 dark:text-background-light/60" href="send-money.html">
           <span class="material-symbols-outlined">send</span>
           <span class="text-xs font-medium">Send</span>
         </a>
-        <a class="flex flex-col items-center gap-1 text-background-light/60" href="cards.html">
+        <a class="flex flex-col items-center gap-1 text-background-dark/60 dark:text-background-light/60" href="cards.html">
           <span class="material-symbols-outlined">credit_card</span>
           <span class="text-xs font-medium">Cards</span>
         </a>
-        <a class="flex flex-col items-center gap-1 text-background-light/60" href="profile.html">
+        <a class="flex flex-col items-center gap-1 text-background-dark/60 dark:text-background-light/60" href="profile.html">
           <span class="material-symbols-outlined">person</span>
           <span class="text-xs font-medium">Profile</span>
         </a>

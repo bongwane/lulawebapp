@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
+<html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Cards</title>
 <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script>
+  // Init theme/lang early
+  (function(){
+  try { if (localStorage.getItem('lula_theme') === 'dark') document.documentElement.classList.add('dark'); } catch(e) {}
+  try { const lang = localStorage.getItem('lula_lang'); if (lang) document.documentElement.setAttribute('lang', lang); } catch(e) {}
+  })();
+  </script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&amp;display=swap" rel="stylesheet"/>
 <script>
@@ -17,11 +24,12 @@
                 extend: {
                     colors: {
                         "primary": "#98ea6c",
-                        "surface": "#172111",
+            "surface": "#172111",
+            "background-light": "#f7f8f6",
                         "background-dark": "#0A140D",
                     },
                     fontFamily: {
-                        "display": ["Manrope", "sans-serif"],
+            "display": ["Sora", "sans-serif"],
                         "lucky": ["'Luckiest Guy'", "cursive"]
                     },
                     borderRadius: {
@@ -54,15 +62,15 @@
     }
   </style>
   </head>
-<body class="bg-background-dark font-display text-white">
+<body class="bg-background-light dark:bg-background-dark font-display text-background-dark dark:text-white">
 <div class="flex flex-col h-screen">
-<header class="sticky top-0 z-10 bg-background-dark/80 backdrop-blur-sm">
+<header class="sticky top-0 z-10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-black/5 dark:border-white/10">
   <div class="flex items-center p-4">
-    <button class="p-2 -m-2" onclick="window.location.href='dashboard.html'">
+    <button class="p-2 -m-2 text-background-dark dark:text-white" onclick="window.location.href='dashboard.html'">
       <span class="material-symbols-outlined">arrow_back</span>
     </button>
-    <h1 class="flex-1 text-lg font-bold text-center">My Cards</h1>
-    <button class="p-2 -m-2" onclick="window.location.href='coming-soon.html'">
+    <h1 class="flex-1 text-lg font-bold text-center text-background-dark dark:text-white">My Cards</h1>
+    <button class="p-2 -m-2 text-background-dark dark:text-white" onclick="window.location.href='coming-soon.html'">
       <span class="material-symbols-outlined">add</span>
     </button>
   </div>
@@ -101,71 +109,71 @@
 </div>
     </div>
     <div class="grid grid-cols-2 gap-4 mt-6">
-      <button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface space-y-2">
+      <button class="flex flex-col items-center justify-center p-4 rounded-xl bg-white dark:bg-surface space-y-2 border border-black/5 dark:border-transparent">
 <span class="material-symbols-outlined text-primary">visibility</span>
-<span class="text-sm font-medium">Card Details</span>
+<span class="text-sm font-medium text-background-dark dark:text-white">Card Details</span>
 </button>
-<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface space-y-2">
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-white dark:bg-surface space-y-2 border border-black/5 dark:border-transparent">
 <span class="material-symbols-outlined text-primary">ac_unit</span>
-<span class="text-sm font-medium">Freeze Card</span>
+<span class="text-sm font-medium text-background-dark dark:text-white">Freeze Card</span>
 </button>
-<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface space-y-2">
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-white dark:bg-surface space-y-2 border border-black/5 dark:border-transparent">
 <span class="material-symbols-outlined text-primary">pin</span>
-<span class="text-sm font-medium">Manage PIN</span>
+<span class="text-sm font-medium text-background-dark dark:text-white">Manage PIN</span>
 </button>
-<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface space-y-2">
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-white dark:bg-surface space-y-2 border border-black/5 dark:border-transparent">
 <span class="material-symbols-outlined text-primary">history</span>
-<span class="text-sm font-medium">History</span>
+<span class="text-sm font-medium text-background-dark dark:text-white">History</span>
 </button>
     </div>
     <div class="mt-8">
-      <h2 class="text-lg font-bold mb-4">Transaction History</h2>
+      <h2 class="text-lg font-bold mb-4 text-background-dark dark:text-white">Transaction History</h2>
       <div class="space-y-4">
         <div class="flex items-center">
-<div class="p-3 rounded-full bg-surface mr-4">
+<div class="p-3 rounded-full bg-white dark:bg-surface mr-4 border border-black/5 dark:border-transparent">
 <span class="material-symbols-outlined text-primary">shopping_cart</span>
 </div>
 <div class="flex-1">
-<p class="font-semibold">Amazon</p>
-<p class="text-sm text-white/70">20 Jul, 2024</p>
+<p class="font-semibold text-background-dark dark:text-white">Amazon</p>
+<p class="text-sm text-background-dark/60 dark:text-white/70">20 Jul, 2024</p>
 </div>
-<p class="font-bold text-red-400">-$25.99</p>
+<p class="font-bold text-red-500">-$25.99</p>
 </div>
 <div class="flex items-center">
-<div class="p-3 rounded-full bg-surface mr-4">
+<div class="p-3 rounded-full bg-white dark:bg-surface mr-4 border border-black/5 dark:border-transparent">
 <span class="material-symbols-outlined text-primary">restaurant</span>
 </div>
 <div class="flex-1">
-<p class="font-semibold">Starbucks</p>
-<p class="text-sm text-white/70">19 Jul, 2024</p>
+<p class="font-semibold text-background-dark dark:text-white">Starbucks</p>
+<p class="text-sm text-background-dark/60 dark:text-white/70">19 Jul, 2024</p>
 </div>
-<p class="font-bold text-red-400">-$5.75</p>
+<p class="font-bold text-red-500">-$5.75</p>
 </div>
 <div class="flex items-center">
-<div class="p-3 rounded-full bg-surface mr-4">
+<div class="p-3 rounded-full bg-white dark:bg-surface mr-4 border border-black/5 dark:border-transparent">
 <span class="material-symbols-outlined text-primary">receipt_long</span>
 </div>
 <div class="flex-1">
-<p class="font-semibold">Salary</p>
-<p class="text-sm text-white/70">18 Jul, 2024</p>
+<p class="font-semibold text-background-dark dark:text-white">Salary</p>
+<p class="text-sm text-background-dark/60 dark:text-white/70">18 Jul, 2024</p>
 </div>
-<p class="font-bold text-green-400">+$2,500.00</p>
+<p class="font-bold text-green-600">+$2,500.00</p>
 </div>
       </div>
     </div>
   </div>
 </main>
-<footer class="fixed bottom-0 left-0 right-0 bg-background-dark/95 backdrop-blur-sm z-20 w-full">
+<footer class="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-background-dark/95 backdrop-blur-sm z-20 w-full border-t border-black/5 dark:border-white/10">
   <nav class="flex justify-around items-center h-20 w-full">
-    <a class="flex flex-col items-center p-2 rounded-lg space-y-1 text-white/60" href="dashboard.html">
+    <a class="flex flex-col items-center p-2 rounded-lg space-y-1 text-background-dark/60 dark:text-white/60" href="dashboard.html">
       <span class="material-symbols-outlined">home</span>
       <span class="text-xs font-medium">Home</span>
     </a>
-    <a class="flex flex-col items-center p-2 rounded-lg space-y-1 text-white/60" href="store.html">
+    <a class="flex flex-col items-center p-2 rounded-lg space-y-1 text-background-dark/60 dark:text-white/60" href="store.html">
       <span class="material-symbols-outlined">storefront</span>
       <span class="text-xs font-medium">Store</span>
     </a>
-    <a class="flex flex-col items-center p-2 rounded-lg space-y-1 text-white/60" href="send-money.html">
+    <a class="flex flex-col items-center p-2 rounded-lg space-y-1 text-background-dark/60 dark:text-white/60" href="send-money.html">
       <span class="material-symbols-outlined">send</span>
       <span class="text-xs font-medium">Send</span>
     </a>
@@ -173,7 +181,7 @@
       <span class="material-symbols-outlined">credit_card</span>
       <span class="text-xs font-medium">Cards</span>
     </a>
-    <a class="flex flex-col items-center p-2 rounded-lg space-y-1 text-white/60" href="profile.html">
+    <a class="flex flex-col items-center p-2 rounded-lg space-y-1 text-background-dark/60 dark:text-white/60" href="profile.html">
       <span class="material-symbols-outlined">person</span>
       <span class="text-xs font-medium">Profile</span>
     </a>

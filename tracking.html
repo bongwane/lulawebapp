@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
+<html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Transaction Receipt &amp; Tracking</title>
 <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script>
+  (function(){
+    try{ const t = localStorage.getItem('lula_theme'); if(t==='dark') document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark'); }catch(e){}
+  })();
+  </script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
         tailwind.config = {
@@ -17,10 +22,10 @@
                         "card-light": "#ffffff",
                         "card-dark": "#172111",
                     },
-                    fontFamily: {
-                        "display": ["Manrope", "sans-serif"],
-                        "mono": ["monospace"],
-                    },
+          fontFamily: {
+            "sans": ["Sora", "ui-sans-serif", "system-ui"],
+            "mono": ["monospace"],
+          },
                     borderRadius: {
                         "DEFAULT": "0.5rem",
                         "lg": "1rem",
@@ -32,8 +37,10 @@
         };
     </script>
 <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" onload="this.rel='stylesheet'" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link rel="preload" href="styles/theme.css" as="style" />
+<link rel="stylesheet" href="styles/theme.css" />
 <style>
         body {
             min-height: 100dvh;
@@ -55,7 +62,7 @@
     }
   </style>
   </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<body class="bg-background-light dark:bg-background-dark font-sans text-gray-800 dark:text-gray-200">
 <div class="flex h-screen flex-col">
 <header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm p-4">
   <div class="flex items-center justify-between">

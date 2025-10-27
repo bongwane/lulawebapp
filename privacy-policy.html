@@ -3,10 +3,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>LULA Privacy Policy</title>
+<script>(function(){try{const t=localStorage.getItem('lula_theme')||'light';document.documentElement.classList.toggle('dark',t==='dark')}catch(e){}})();</script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <script>
     tailwind.config = {
@@ -14,23 +16,27 @@
       theme: {
         extend: {
           colors: {
-            "primary": "#13ec5b",
-            "background-light": "#f6f8f6",
-            "background-dark": "#102216",
+            primary: "#98ea6c",
+            "background-light": "#f7f8f6",
+            "background-dark": "#0A140D",
+            "surface-dark": "#172111",
           },
           fontFamily: {
-            "display": ["Manrope"]
+            sans: ["Sora","system-ui","-apple-system","Segoe UI","Roboto","sans-serif"],
+            brand: ["Luckiest Guy","cursive"],
           },
           borderRadius: {
-            "DEFAULT": "0.5rem",
-            "lg": "1rem",
-            "xl": "1.5rem",
-            "full": "9999px"
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            full: "9999px"
           },
         },
       },
     }
   </script>
+  <link rel="preload" href="styles/theme.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles/theme.css"></noscript>
 <style>
     .material-symbols-outlined {
       font-variation-settings:
@@ -52,7 +58,7 @@
     }
   </style>
   </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
+<body class="bg-background-light dark:bg-background-dark font-sans text-ink dark:text-white">
 <div class="flex-grow w-full max-w-4xl mx-auto">
 <header class="sticky top-0 z-10 bg-background-light dark:bg-background-dark py-4 px-4 sm:px-6 flex items-center justify-between">
 <button class="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 dark:bg-primary/20 text-slate-800 dark:text-slate-200"

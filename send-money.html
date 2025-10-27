@@ -3,253 +3,516 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>LULA - Send Money</title>
+<script>
+  // Init theme/lang early
+  (function(){
+  try { if (localStorage.getItem('lula_theme') === 'dark') document.documentElement.classList.add('dark'); } catch(e) {}
+  try { const lang = localStorage.getItem('lula_lang'); if (lang) document.documentElement.setAttribute('lang', lang); } catch(e) {}
+  })();
+  </script>
 <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Sora:wght@400;500;600;700;800" onload="this.rel='stylesheet'" rel="stylesheet"/>
 <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          primary: "#98ea6c",
+          "background-light": "#f7f8f6",
+          "background-dark": "#0A140D",
+          "surface-dark": "#172111",
+        },
+        fontFamily: {
+          sans: ["Sora", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+          brand: ["Luckiest Guy", "cursive"],
+        },
+        borderRadius: {
+          DEFAULT: "0.5rem",
+          lg: "1rem",
+          xl: "1.5rem",
+          "2xl": "2rem",
+          full: "9999px",
+        },
+      },
+    },
+  };
+</script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <link rel="stylesheet" href="styles/theme.css" />
 <style>
         body {
             min-height: max(884px, 100dvh);
-            font-family: Manrope, "Noto Sans", sans-serif;
+            font-family: Sora, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
         }
-        :root {
-            --lula-green: #98ea6c;
-            --lula-dark: #0A140D;
-            --lula-gray-dark: #1A1A1A;
-            --lula-gray-light: #A3A3A3;
-            --lula-white: #FFFFFF;
-            --lula-green-dark: #2A3B2B;
-            --lula-card-bg: #172111;
-        }
+    :root { /* Light theme defaults */
+      --lula-green: #98ea6c;
+      --lula-dark: #f7f8f6; /* page bg in light */
+      --lula-gray-dark: #0A140D; /* text on light */
+      --lula-gray-light: #64748b; /* slate-500 */
+      --lula-white: #FFFFFF;
+      --lula-green-dark: #2A3B2B;
+      --lula-card-bg: #FFFFFF; /* card surface in light */
+    }
+    html.dark :root, html.dark { /* Dark overrides */
+      --lula-dark: #0A140D;
+      --lula-gray-dark: #1A1A1A;
+      --lula-gray-light: #A3A3A3;
+      --lula-card-bg: #172111;
+    }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
   </head>
-<body class="bg-[var(--lula-dark)]">
-<div class="relative flex h-screen w-full flex-col bg-[var(--lula-dark)] dark overflow-x-hidden">
-<header class="fixed top-0 left-0 right-0 z-10 flex items-center bg-[var(--lula-dark)] p-4 pb-2 justify-between">
+<body class="bg-background-light dark:bg-background-dark text-ink dark:text-white">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="fixed top-0 left-0 right-0 z-10 flex items-center bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-black/5 dark:border-white/10 p-4 pb-2 justify-between">
 <button 
-  class="text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-[var(--lula-gray-dark)] transition-colors"
+  class="text-ink dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-[var(--lula-gray-dark)] transition-colors"
   onclick="window.location.href='dashboard.html'"
 >
   <span class="material-symbols-outlined">close</span>
 </button>
-<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-10" data-i18n="title">Send Money</h2>
-<div class="shrink-0">
-  <button id="langSwitcherButton" class="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-xs font-bold py-1.5 px-3 rounded-full border border-white/20 transition">
-    <img id="langBtnFlag" src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="EN" class="h-4 w-4 rounded-full object-cover" />
-    <span id="langCode">EN</span>
-    <span class="material-symbols-outlined text-sm">expand_more</span>
-  </button>
-  <div id="langMenu" class="absolute right-4 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-36 p-1 hidden z-50">
-    <button class="w-full flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 text-gray-800" data-lang="en">
-      <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="English" class="h-4 w-4 rounded-full object-cover" />
-      <span>English</span>
-    </button>
-    <button class="w-full flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 text-gray-800" data-lang="ru">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg" alt="Русский" class="h-4 w-4 rounded-full object-cover" />
-      <span>Русский</span>
-    </button>
+<h2 class="text-ink dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-10" data-i18n="title">Send Money</h2>
+<div class="shrink-0 w-10"></div>
+ </header>
+<main class="flex-1 overflow-y-auto pt-16 pb-10 px-4">
+  <div class="max-w-3xl mx-auto glass neo-edge rounded-2xl p-6 md:p-8 accent-glow ring-1 ring-white/30 dark:ring-white/10 transition shadow-xl">
+    <div class="space-y-4">
+  <div id="youSendCard" class="rounded-xl p-1.5 md:p-2 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur transition-shadow focus-within:ring-2 focus-within:ring-[#9FE870]/60 hover:shadow-md">
+        <div class="flex flex-col">
+          <div class="flex items-center justify-between mb-0.5">
+            <label for="sendAmount" class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400"><span data-i18n="youSend">You send</span></label>
+            <!-- Balance display (difference from index) -->
+            <div class="flex items-center gap-1 text-xs text-black dark:text-gray-300 shrink-0 whitespace-nowrap">
+              <span class="material-symbols-outlined text-base text-black dark:text-gray-300">account_balance_wallet</span>
+              <span class="text-black dark:text-gray-300" data-i18n="balance">Balance:</span>
+              <span id="balanceValue" class="font-semibold text-black dark:text-white">1,007.77 ♛</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-[1fr_auto] items-center gap-2">
+            <input id="sendAmount" class="bg-transparent text-2xl md:text-3xl font-bold text-black dark:text-white placeholder-gray-400 border-none outline-none flex-1 min-w-0 input-glow ring-1 ring-black/5 dark:ring-white/10 focus:ring-2 focus:ring-primary focus:border-primary rounded-lg" placeholder="100" type="text" value="100" oninput="updateConversion()" onfocus="unformatInput(this)" onblur="formatInput(this, 2)" aria-describedby="sendCurrencyButton" inputmode="decimal" step="0.01" min="0" />
+            <div class="relative inline-block">
+              <button id="sendCurrencyButton" aria-expanded="false" aria-controls="sendCurrencyMenu" class="flex items-center gap-2 rounded-full bg-white px-1 py-0.5 hover:bg-gray-50 dark:hover:bg-gray-700/40 transition-colors ring-1 ring-black/5 dark:ring-white/10 focus:ring-2 focus:ring-primary focus:outline-none force-light-chip">
+                <img alt="Zimbabwe flag" class="h-5 w-5 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg"/>
+                <span class="font-bold text-2xl md:text-3xl leading-none text-black dark:text-white">USD</span>
+                <span class="material-symbols-outlined text-2xl md:text-3xl leading-none text-black dark:text-white">expand_more</span>
+              </button>
+              <div id="sendCurrencyMenu" class="absolute right-0 mt-2 bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg w-40 p-2 hidden z-50 backdrop-blur-md" role="menu" aria-labelledby="sendCurrencyButton">
+                <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-curr="USD" role="menuitem">
+                  <img alt="USD" class="h-4 w-4 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg" />
+                  <span>USD</span>
+                </button>
+                <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-curr="RUB" role="menuitem">
+                  <img alt="RUB" class="h-4 w-4 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg" />
+                  <span>RUB</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-end mt-1">
+            <div class="relative inline-block">
+              <button id="paymentMethodButton" aria-expanded="false" aria-controls="paymentMethodMenu" class="w-auto flex items-center gap-2 justify-between md:justify-center rounded-full bg-white border border-gray-200 px-2 py-1 text-sm font-medium hover:bg-gray-50 min-w-[160px] md:min-w-[200px] ring-1 ring-black/5 dark:ring-white/10 focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600 force-light-chip">
+                <span class="material-symbols-outlined text-base text-black dark:text-[#EAF7E4]" id="paymentMethodIcon">credit_card</span>
+                <span id="paymentMethodLabel" class="text-black dark:text-[#EAF7E4]">—</span>
+                <span class="material-symbols-outlined text-sm text-black dark:text-[#EAF7E4]">expand_more</span>
+              </button>
+              <div id="paymentMethodMenu" class="absolute right-0 mt-2 w-56 bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-lg p-2 hidden z-50 backdrop-blur-md" role="menu" aria-labelledby="paymentMethodButton"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative flex items-center justify-center">
+        <div class="h-px w-full bg-gray-200 dark:bg-gray-700"></div>
+        <div id="swapButton" class="absolute z-20 flex h-10 w-10 items-center justify-center rounded-full bg-[#9FE870] text-[#163300] shadow-lg ring-2 ring-white/60 dark:ring-white/10 hover:bg-[#8BD45F] active:bg-[#163300] active:text-[#9FE870] transition-colors cursor-pointer will-change-transform" onclick="swapCurrencies()" aria-label="Swap currencies">
+          <span class="material-symbols-outlined">swap_vert</span>
+        </div>
+      </div>
+
+  <div id="theyGetCard" class="rounded-xl p-1.5 md:p-2 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur -mt-5 md:-mt-6 will-change-transform transition-shadow focus-within:ring-2 focus-within:ring-[#9FE870]/60 hover:shadow-md">
+        <div class="flex items-center justify-between mb-1">
+          <label for="receiveAmount" class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400"><span data-i18n="theyGet">They get</span></label>
+          <span class="px-2 py-1 rounded-full bg-white/60 dark:bg-gray-700/60 text-[11px] text-black dark:text-gray-200 rate-pill"><span data-i18n="rateLabel">Rate</span>: 1 USD = <span id="exchangeRate">78.62</span> <span id="toCurrency">RUB</span></span>
+        </div>
+        <div class="grid grid-cols-[1fr_auto] items-center gap-2 mb-1.5 md:mb-2">
+          <input id="receiveAmount" class="bg-transparent text-2xl md:text-3xl font-bold text-black dark:text-white placeholder-gray-400 border-none outline-none flex-1 min-w-0 input-glow ring-1 ring-black/5 dark:ring-white/10 focus:ring-2 focus:ring-primary focus:border-primary rounded-lg" placeholder="0.00" type="text" value="7862.00" oninput="updateFromReceive()" onfocus="unformatInput(this)" onblur="formatInput(this, 2)" aria-describedby="receiveCurrencyButton" inputmode="decimal" step="1" min="0" />
+          <div class="relative inline-block">
+            <button id="receiveCurrencyButton" aria-expanded="false" aria-controls="receiveCurrencyMenu" class="flex items-center gap-2 rounded-full bg-white px-1 py-0.5 hover:bg-gray-50 dark:hover:bg-gray-700/40 transition-colors ring-1 ring-black/5 dark:ring-white/10 focus:ring-2 focus:ring-primary focus:outline-none force-light-chip">
+              <img alt="RUB flag" class="h-5 w-5 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg"/>
+              <span class="font-bold text-2xl md:text-3xl leading-none text-black dark:text-white">RUB</span>
+              <span class="material-symbols-outlined text-2xl md:text-3xl leading-none text-black dark:text-white">expand_more</span>
+            </button>
+            <div id="receiveCurrencyMenu" class="absolute right-0 mt-2 bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg w-40 p-2 hidden z-50 backdrop-blur-md" role="menu" aria-labelledby="receiveCurrencyButton">
+              <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-curr="RUB" role="menuitem">
+                <img alt="RUB" class="h-4 w-4 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg" />
+                <span>RUB</span>
+              </button>
+              <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-curr="USD" role="menuitem">
+                <img alt="USD" class="h-4 w-4 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg" />
+                <span>USD</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-end">
+          <div class="relative inline-block">
+            <button id="collectionMethodButton" aria-expanded="false" aria-controls="collectionMethodMenu" class="w-auto flex items-center gap-2 justify-between md:justify-center rounded-full bg-white border border-gray-200 px-2 py-1 text-sm font-medium hover:bg-gray-50 min-w-[160px] md:min-w-[200px] ring-1 ring-black/5 dark:ring-white/10 focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-600 force-light-chip">
+              <span class="material-symbols-outlined text-base text-black dark:text-[#EAF7E4]" id="collectionMethodIcon">account_balance</span>
+              <span id="collectionMethodLabel" class="text-black dark:text-[#EAF7E4]">—</span>
+              <span class="material-symbols-outlined text-sm text-black dark:text-[#EAF7E4]">expand_more</span>
+            </button>
+            <div id="collectionMethodMenu" class="absolute right-0 mt-2 w-56 bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-lg p-2 hidden z-50 backdrop-blur-md" role="menu" aria-labelledby="collectionMethodButton"></div>
+          </div>
+        </div>
+      </div>
+
+  <div class="rounded-xl p-4 space-y-3 mt-4 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur">
+        <div class="flex justify-between items-center text-sm">
+          <span class="text-gray-600 dark:text-gray-400" data-i18n="bankFee">Bank fee</span>
+          <span class="font-semibold text-black dark:text-white" id="transferFeeDisplay" aria-live="polite" aria-atomic="true">$2.50</span>
+        </div>
+        <div class="flex justify-between items-center text-sm">
+          <span class="text-gray-600 dark:text-gray-400" data-i18n="ourFee">Our fee</span>
+          <span class="font-semibold text-black dark:text-white" id="speedFeeDisplay" aria-live="polite" aria-atomic="true">$5.00</span>
+        </div>
+        <div class="border-t border-gray-200 dark:border-gray-600 pt-3 flex justify-between items-center font-bold">
+          <span data-i18n="totalToPay">Total to pay</span>
+          <span id="totalPay" class="text-lg text-black dark:text-white" aria-live="polite" aria-atomic="true">$102.50</span>
+        </div>
+      </div>
+
+      <div class="space-y-3 mt-6 md:mt-8">
+        <div class="grid grid-cols-3 gap-3 md:gap-4">
+          <button class="flex flex-col items-center justify-center gap-2 rounded-xl bg-white/70 dark:bg-white/5 border border-white/30 dark:border-white/10 p-3 text-center hover:bg-white hover:shadow-md dark:hover:bg-white/10 hover-rise speed-option cursor-pointer transition" data-speed="standard" data-percent="0.03">
+            <span class="material-symbols-outlined text-xl text-primary">schedule</span>
+            <div class="text-xs font-medium" data-i18n="speedStandard">Standard</div>
+            <div class="text-[10px] text-gray-500" data-i18n="speedStandardTime">1-3 days</div>
+            <div class="text-sm font-bold speed-amount text-black dark:text-white">$0.00</div>
+          </button>
+          <button class="flex flex-col items-center justify-center gap-2 rounded-xl bg-black/5 dark:bg-white/10 border border-white/30 dark:border-white/10 p-3 text-center hover:shadow-md hover-rise speed-option speed-selected cursor-pointer transition" data-speed="express" data-percent="0.05">
+            <span class="material-symbols-outlined text-xl text-primary">bolt</span>
+            <div class="text-xs font-medium" data-i18n="speedExpress">Express</div>
+            <div class="text-[10px] text-gray-500" data-i18n="speedExpressTime">Under 1 day</div>
+            <div class="text-sm font-bold speed-amount text-black dark:text-white">$0.00</div>
+          </button>
+          <button class="flex flex-col items-center justify-center gap-2 rounded-xl bg-white/70 dark:bg-white/5 border border-white/30 dark:border-white/10 p-3 text-center hover:bg-white hover:shadow-md dark:hover:bg-white/10 hover-rise speed-option cursor-pointer transition" data-speed="urgent" data-percent="0.10">
+            <span class="material-symbols-outlined text-xl text-primary">rocket_launch</span>
+            <div class="text-xs font-medium" data-i18n="speedInstant">Instant</div>
+            <div class="text-[10px] text-gray-500" data-i18n="speedInstantTime">Minutes</div>
+            <div class="text-sm font-bold speed-amount text-black dark:text-white">$0.00</div>
+          </button>
+        </div>
+      </div>
+
+      <p id="ctaHelper" class="text-center text-sm text-gray-500 mt-2 hidden" data-i18n="ctaHelper">Enter an amount to continue.</p>
+      <button id="startTransferBtn" class="btn-primary w-full text-center text-lg hover-press mt-3 neon-soft shadow-lg disabled:opacity-50 disabled:cursor-not-allowed" onclick="window.location.href='select-recipient.html'" data-i18n="startTransfer" disabled>
+        Continue
+      </button>
+    </div>
   </div>
-  
-  <script>
-    const i18nSM = {
-      en: {
-        title: 'Send Money',
-        youSend: 'You send',
-        balance: 'Balance:',
-        theyGet: 'They get',
-        paymentMethod: 'Payment method',
-        wallet: 'Wallet',
-        collectionMethod: 'Collection method',
-        card: 'Card',
-        exchangeRate: 'Exchange rate',
-        bankFee: 'Bank Fee',
-        transferSpeed: 'Transfer speed',
-        speedStandard: 'Standard',
-        speedExpress: 'Express',
-        speedUrgent: 'Urgent',
-        payTotal: 'Pay total:'
-      },
-      ru: {
-        title: 'Отправить деньги',
-        youSend: 'Вы отправляете',
-        balance: 'Баланс:',
-        theyGet: 'Они получат',
-        paymentMethod: 'Способ оплаты',
-        wallet: 'Кошелёк',
-        collectionMethod: 'Способ получения',
-        card: 'Карта',
-        exchangeRate: 'Курс обмена',
-        bankFee: 'Банковская комиссия',
-        transferSpeed: 'Скорость перевода',
-        speedStandard: 'Стандарт',
-        speedExpress: 'Экспресс',
-        speedUrgent: 'Срочно',
-        payTotal: 'К оплате:'
-      }
-    };
-    let langSM = 'en';
-    function applySM(lang) {
-      const d = i18nSM[lang] || i18nSM.en;
-      document.documentElement.setAttribute('lang', lang);
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (d[key]) el.textContent = d[key];
-      });
-      const f = document.getElementById('langBtnFlag');
-      const c = document.getElementById('langCode');
-      if (f && c) {
-        if (lang === 'ru') {
-          f.src = 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg';
-          c.textContent = 'RU';
-        } else {
-          f.src = 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg';
-          c.textContent = 'EN';
-        }
-      }
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      try {
-        const saved = localStorage.getItem('lula_lang');
-        if (saved && (saved === 'en' || saved === 'ru')) langSM = saved;
-      } catch (e) {}
-      applySM(langSM);
-      const btn = document.getElementById('langSwitcherButton');
-      const menu = document.getElementById('langMenu');
-      if (btn && menu) {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          menu.classList.toggle('hidden');
-        });
-        menu.querySelectorAll('[data-lang]').forEach(item => {
-          item.addEventListener('click', (e) => {
-            langSM = e.currentTarget.getAttribute('data-lang');
-            try { localStorage.setItem('lula_lang', langSM); } catch (e) {}
-            applySM(langSM);
-            menu.classList.add('hidden');
-          });
-        });
-        document.addEventListener('click', () => menu.classList.add('hidden'));
-      }
-    });
-  </script>
-</div>
-</header>
-<main class="flex-1 overflow-y-auto pt-16 pb-28 flex justify-center">
-  <div class="w-full max-w-md">
-    <div class="flex flex-col items-center px-4">
-      <div class="w-full">
-        <div class="bg-[var(--lula-card-bg)] rounded-xl p-4">
-<div class="flex flex-col">
-<div class="flex items-center justify-between">
-<span class="text-sm text-[var(--lula-gray-light)]" data-i18n="youSend">You send</span>
-<div class="flex items-center gap-1 text-xs text-[var(--lula-gray-light)]">
-<span class="material-symbols-outlined text-base">account_balance_wallet</span>
-<span data-i18n="balance">Balance:</span>
-<span class="font-semibold text-white">1,007.77 ♛</span>
-</div>
-</div>
-<div class="flex items-end justify-between">
-<input class="form-input w-full min-w-0 resize-none overflow-hidden rounded-md text-white focus:outline-0 focus:ring-0 border-none bg-transparent h-12 placeholder:text-[var(--lula-gray-light)] p-0 text-5xl font-bold leading-normal" placeholder="0" type="text" value="100"/>
-<button class="flex items-center gap-2 rounded-full bg-black/20 px-4 py-2 text-white flex-shrink-0">
-<img alt="Zimbabwe flag" class="h-6 w-6 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg"/>
-<span class="font-bold">USD</span>
-<span class="material-symbols-outlined text-lg">expand_more</span>
-</button>
-</div>
-</div>
-</div>
-<div class="relative flex items-center justify-center my-2">
-<div class="h-px w-full bg-[var(--lula-card-bg)]"></div>
-<div class="absolute flex h-8 w-8 items-center justify-center rounded-full bg-[var(--lula-card-bg)] border-2 border-[var(--lula-dark)]">
-<span class="material-symbols-outlined text-white text-lg">swap_vert</span>
-</div>
-</div>
-<div class="bg-[var(--lula-card-bg)] rounded-xl p-4">
-<div class="flex items-center justify-between">
-<div class="flex flex-col">
-<span class="text-sm text-[var(--lula-gray-light)]" data-i18n="theyGet">They get</span>
-<div class="text-5xl font-bold text-white">8,134.38</div>
-</div>
-<button class="flex items-center gap-2 rounded-full bg-black/20 px-4 py-2 text-white">
-<img alt="Russia flag" class="h-6 w-6 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg"/>
-<span class="font-bold">RUB</span>
-<span class="material-symbols-outlined text-lg">expand_more</span>
-</button>
-</div>
-</div>
-<div class="mt-4 space-y-3 text-sm text-[var(--lula-gray-light)]">
-<div class="bg-[var(--lula-card-bg)] p-4 rounded-xl">
-<button class="w-full flex justify-between items-center">
-<span class="text-white" data-i18n="paymentMethod">Payment method</span>
-<div class="flex items-center gap-2 text-white">
-<span class="material-symbols-outlined text-lg">account_balance_wallet</span>
-<span data-i18n="wallet">Wallet</span>
-<span class="material-symbols-outlined text-lg text-[var(--lula-gray-light)]">chevron_right</span>
-</div>
-</button>
-</div>
-<div class="bg-[var(--lula-card-bg)] p-4 rounded-xl">
-<button class="w-full flex justify-between items-center">
-<span class="text-white" data-i18n="collectionMethod">Collection method</span>
-<div class="flex items-center gap-2 text-white">
-<span class="material-symbols-outlined text-lg">credit_card</span>
-<span data-i18n="card">Card</span>
-<span class="material-symbols-outlined text-lg text-[var(--lula-gray-light)]">chevron_right</span>
-</div>
-</button>
-</div>
-<div class="bg-[var(--lula-card-bg)] p-4 rounded-xl space-y-3">
-<div class="flex justify-between items-center text-xs text-[var(--lula-gray-light)]">
-<span data-i18n="exchangeRate">Exchange rate</span>
-<span>1 USD = 81.3438 RUB</span>
-</div>
-<div class="flex justify-between items-center text-xs text-[var(--lula-gray-light)]">
-<span data-i18n="bankFee">Bank Fee</span>
-<span class="text-white">$1.00</span>
-</div>
-</div>
-<div class="space-y-2">
-<label class="text-xs text-[var(--lula-gray-light)] px-4" data-i18n="transferSpeed">Transfer speed</label>
-<div class="grid grid-cols-3 gap-2">
-<button class="flex flex-col items-center justify-center gap-1 rounded-xl border border-transparent bg-[var(--lula-card-bg)] p-3 text-center hover:border-[var(--lula-green)]">
-<span class="material-symbols-outlined text-xl text-[var(--lula-green)]">schedule</span>
-<div class="text-xs text-white" data-i18n="speedStandard">Standard</div>
-<div class="text-xs font-bold text-white">$1.00</div>
-</button>
-<button class="flex flex-col items-center justify-center gap-1 rounded-xl border-2 border-[var(--lula-green)] bg-[var(--lula-card-bg)] p-3 text-center">
-<span class="material-symbols-outlined text-xl text-[var(--lula-green)]">bolt</span>
-<div class="text-xs text-white" data-i18n="speedExpress">Express</div>
-<div class="text-xs font-bold text-white">$3.00</div>
-</button>
-<button class="flex flex-col items-center justify-center gap-1 rounded-xl border border-transparent bg-[var(--lula-card-bg)] p-3 text-center hover:border-[var(--lula-green)]">
-<span class="material-symbols-outlined text-xl text-[var(--lula-green)]">rocket_launch</span>
-<div class="text-xs text-white" data-i18n="speedUrgent">Urgent</div>
-<div class="text-xs font-bold text-white">$5.00</div>
-</button>
-</div>
-</div>
-</div>
-</div>
-</div>
 </main>
-<div class="fixed bottom-4 left-0 right-0 z-30 flex justify-center pointer-events-none">
-  <button 
-    onclick="window.location.href='select-recipient.html'"
-    class="pointer-events-auto w-[90%] max-w-md flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-[var(--lula-green)] text-black text-lg font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-opacity shadow-lg">
-  <span class="truncate"><span data-i18n="payTotal">Pay total:</span> 103.00 ♛</span>
-  </button>
 </div>
-</div>
+<script>
+// ---- Rate calculator functionality (ported from index) ----
+const exchangeRates = {
+  'USD': { 'EUR': 1.35, 'GBP': 0.85, 'CAD': 1.45, 'AUD': 1.55, 'JPY': 110, 'ZWL': 400, 'RUB': 78.62 },
+  'EUR': { 'USD': 0.74, 'GBP': 0.63, 'CAD': 1.07, 'AUD': 1.15, 'JPY': 81, 'ZWL': 296 },
+  'GBP': { 'USD': 1.18, 'EUR': 1.59, 'CAD': 1.71, 'AUD': 1.83, 'JPY': 129, 'ZWL': 472 },
+  'CAD': { 'USD': 0.69, 'EUR': 0.93, 'GBP': 0.58, 'AUD': 0.93, 'JPY': 76, 'ZWL': 276 },
+  'AUD': { 'USD': 0.65, 'EUR': 0.87, 'GBP': 0.55, 'CAD': 0.93, 'JPY': 71, 'ZWL': 258 },
+  'JPY': { 'USD': 0.0091, 'EUR': 0.012, 'GBP': 0.0077, 'CAD': 0.013, 'AUD': 0.014, 'ZWL': 3.64 },
+  'ZWL': { 'USD': 0.0025, 'EUR': 0.0034, 'GBP': 0.0021, 'CAD': 0.0036, 'AUD': 0.0039, 'JPY': 0.27 },
+  'RUB': { 'USD': 0.01272 }
+};
+const flagUrls = {
+  'USD': 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg',
+  'RUB': 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg'
+};
+let currentFromCurrency = 'USD';
+let currentToCurrency = 'RUB';
+let baseTransferFeePercent = 0.02; // default 2%
+let speedFee = 0.00;
+let currentSpeedPercent = 0.05; // default express 5%
+const currencySymbols = { 'USD': '$', 'EUR': '€', 'GBP': '£', 'JPY': '¥', 'CAD': '$', 'AUD': '$', 'ZWL': 'Z$', 'RUB': '₽' };
+// Methods configuration
+const paymentMethodsBySource = { USD: ['methodBank', 'methodMobileMoney', 'methodCashPickup'], RUB: ['methodBank', 'methodCashPickup'] };
+const collectionMethodsByDest = { USD: ['methodBank', 'methodMobileMoney', 'methodCashPickup'], RUB: ['methodBank', 'methodCashPickup'] };
+const defaultPaymentBySource = { USD: 'methodCashPickup', RUB: 'methodBank' };
+const defaultCollectionByDest = { USD: 'methodCashPickup', RUB: 'methodBank' };
+let selectedPaymentMethod = null;
+let selectedCollectionMethod = null;
+let lastMethodsPair = { from: null, to: null };
+
+// i18n subset used by the playground
+const i18n = {
+  en: {
+    youSend: 'You send',
+    theyGet: 'They get',
+    rateLabel: 'Rate',
+    bankFee: 'Bank fee',
+    ourFee: 'Our fee',
+    totalToPay: 'Total to pay',
+    speedStandard: 'Standard',
+    speedStandardTime: '1-3 days',
+    speedExpress: 'Express',
+    speedExpressTime: 'Under 1 day',
+    speedInstant: 'Instant',
+    speedInstantTime: 'Minutes',
+  startTransfer: 'Continue',
+    paymentMethodLabel: 'Payment method',
+    collectionMethodLabel: 'Collection method',
+    methodBankCard: 'Bank card',
+    methodBank: 'Bank',
+    methodCashPickup: 'Cash',
+    methodMobileMoney: 'Mobile Money',
+    payingWith: 'Paying with',
+    collectingWith: 'Collecting with',
+    ctaHelper: 'Enter an amount to continue.',
+    balance: 'Balance:'
+  },
+  ru: {
+    youSend: 'Вы отправляете',
+    theyGet: 'Они получат',
+    rateLabel: 'Курс',
+    bankFee: 'Банковская комиссия',
+    ourFee: 'Наша комиссия',
+    totalToPay: 'Итого к оплате',
+    speedStandard: 'Стандарт',
+    speedStandardTime: '1–3 дня',
+    speedExpress: 'Экспресс',
+    speedExpressTime: 'До 1 дня',
+    speedInstant: 'Мгновенно',
+    speedInstantTime: 'Минуты',
+  startTransfer: 'Продолжить',
+    paymentMethodLabel: 'Способ оплаты',
+    collectionMethodLabel: 'Способ получения',
+    methodBankCard: 'Банковская карта',
+    methodBank: 'Банк',
+    methodCashPickup: 'Наличные',
+    methodMobileMoney: 'Мобильные деньги',
+    payingWith: 'Оплата',
+    collectingWith: 'Получение',
+    ctaHelper: 'Введите сумму, чтобы продолжить.',
+    balance: 'Баланс:'
+  }
+};
+let currentLang = (function(){ try { const l = localStorage.getItem('lula_lang'); return (l==='ru'||l==='en')? l : 'en'; } catch(e){ return 'en'; } })();
+function applyTranslations(lang) {
+  const dict = i18n[lang] || i18n.en;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) el.textContent = dict[key];
+  });
+  document.documentElement.setAttribute('lang', lang);
+}
+
+// Helpers
+function getLocale() { return currentLang === 'ru' ? 'ru-RU' : 'en-US'; }
+function unformatInput(input) { if (!input) return; input.value = String(input.value).replace(/[\s,]/g, ''); }
+function formatInput(input, decimals = 2) {
+  if (!input) return;
+  const raw = parseFloat(String(input.value).replace(/[^0-9.-]/g, ''));
+  if (isNaN(raw)) return;
+  const fmt = new Intl.NumberFormat(getLocale(), { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  input.value = fmt.format(raw);
+}
+function formatAmount(value, currencyCode, locale) {
+  try {
+    const fmt = new Intl.NumberFormat(locale || getLocale(), { style: 'currency', currency: currencyCode, minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return fmt.format(Number(value));
+  } catch (e) { const sym = currencySymbols[currencyCode] || ''; return `${sym}${Number(value).toFixed(2)}`; }
+}
+function tweenNumber(el, target, decimals = 2, duration = 450) {
+  if (!el) return; const parse = (t)=>{ const n=parseFloat(String(t).replace(/[^0-9.-]/g,'')); return isNaN(n)?0:n; };
+  const start = parse(el.textContent); const end = typeof target === 'number'? target : parse(target); const startTime = performance.now();
+  const ease = (t)=> 1 - Math.pow(1-t,3);
+  function frame(now){ const p=Math.min(1,(now-startTime)/duration); const val=start+(end-start)*ease(p); el.textContent = Number(val).toFixed(decimals); if (p<1) requestAnimationFrame(frame); }
+  requestAnimationFrame(frame);
+}
+function tweenCurrency(el, target, currencyCode, locale, decimals = 2, duration = 420) {
+  if (!el) return; const parse=(t)=>{ const n=parseFloat(String(t).replace(/[^0-9.-]/g,'')); return isNaN(n)?0:n; };
+  const start=parse(el.textContent); const end= typeof target==='number'? target : parse(target);
+  if (isNaN(start) || isNaN(end)) { el.textContent = formatAmount(end||0, currencyCode, locale||getLocale()); return; }
+  const startTime=performance.now(); const ease=(t)=> t<0.5? 2*t*t: 1 - Math.pow(-2*t + 2, 2)/2;
+  function frame(now){ const p=Math.min(1,(now-startTime)/duration); const val=start+(end-start)*ease(p); el.textContent = formatAmount(Number(val), currencyCode, locale||getLocale()); if (p<1) requestAnimationFrame(frame); }
+  requestAnimationFrame(frame);
+}
+function highlightElement(el){ if(!el) return; el.classList.add('number-tween'); el.classList.remove('flash-updated'); void el.offsetWidth; el.classList.add('flash-updated'); setTimeout(()=> el.classList.remove('flash-updated'), 320); }
+function animateInputValue(inputEl, target, decimals = 2, duration = 350, locale = 'en-US') {
+  if (!inputEl) return; const current = parseFloat(inputEl.value||'0'); const end = typeof target==='number'? target : parseFloat(target||'0');
+  if (isNaN(current) || isNaN(end)) { const fmt = new Intl.NumberFormat(locale,{ minimumFractionDigits:decimals, maximumFractionDigits:decimals }); inputEl.value = fmt.format(end||0); return; }
+  const startTime=performance.now(); const ease=(t)=> t<0.5? 2*t*t: 1 - Math.pow(-2*t + 2, 2)/2;
+  function frame(now){ const p=Math.min(1,(now-startTime)/duration); const val=current+(end-current)*ease(p); const fmt=new Intl.NumberFormat(locale,{ minimumFractionDigits:decimals, maximumFractionDigits:decimals }); inputEl.value = fmt.format(Number(val)); if (p<1) requestAnimationFrame(frame); }
+  requestAnimationFrame(frame);
+}
+
+function updateSpeedCardAmounts(currencyCode, sendAmount, locale){
+  document.querySelectorAll('.speed-option').forEach((opt)=>{
+    const pct = parseFloat(opt.dataset.percent || '0');
+    const amount = sendAmount * pct; const amtEl = opt.querySelector('.speed-amount');
+    if (amtEl) amtEl.textContent = formatAmount(amount, currencyCode, locale);
+  });
+}
+
+function equalizeCardsHeight(){ const sendCard = document.getElementById('youSendCard'); const getCard = document.getElementById('theyGetCard'); if(!sendCard||!getCard) return; sendCard.style.height=''; getCard.style.height=''; const sendH=sendCard.getBoundingClientRect().height; const getH=getCard.getBoundingClientRect().height; const target=Math.max(sendH, getH); sendCard.style.height=`${target}px`; getCard.style.height=`${target}px`; }
+
+function updateConversion() {
+  const sendRaw = document.getElementById('sendAmount').value;
+  const sendAmount = parseFloat(String(sendRaw).replace(/[^0-9.-]/g, '')) || 0;
+  const rate = (exchangeRates[currentFromCurrency] && exchangeRates[currentFromCurrency][currentToCurrency]) ? exchangeRates[currentFromCurrency][currentToCurrency] : 1;
+  const receiveAmount = (sendAmount * rate).toFixed(2);
+  speedFee = sendAmount * currentSpeedPercent;
+  const cashKey = 'methodCashPickup';
+  let effectiveBankFeePercent = baseTransferFeePercent;
+  if (currentToCurrency === 'RUB') { effectiveBankFeePercent = 0; }
+  else if (selectedPaymentMethod === cashKey && selectedCollectionMethod === cashKey) { effectiveBankFeePercent = 0; }
+  const bankFee = sendAmount * effectiveBankFeePercent;
+  const totalPay = (sendAmount + bankFee + speedFee).toFixed(2);
+  const receiveInputEl = document.getElementById('receiveAmount');
+  if (receiveInputEl && document.activeElement !== receiveInputEl) { animateInputValue(receiveInputEl, receiveAmount, 2, 350, getLocale()); }
+  const theyCard = document.getElementById('theyGetCard'); if (theyCard) { theyCard.classList.remove('squish-once'); void theyCard.offsetWidth; theyCard.classList.add('squish-once'); }
+  tweenNumber(document.getElementById('exchangeRate'), rate, 4);
+  const locale = getLocale();
+  const totalEl = document.getElementById('totalPay');
+  const speedEl = document.getElementById('speedFeeDisplay');
+  const bankEl = document.getElementById('transferFeeDisplay');
+  if (totalEl) { tweenCurrency(totalEl, Number(totalPay), currentFromCurrency, locale); highlightElement(totalEl); }
+  if (speedEl) { tweenCurrency(speedEl, speedFee, currentFromCurrency, locale); highlightElement(speedEl); }
+  if (bankEl) { tweenCurrency(bankEl, bankFee, currentFromCurrency, locale); highlightElement(bankEl); }
+  document.getElementById('toCurrency').textContent = currentToCurrency;
+  if (lastMethodsPair.from !== currentFromCurrency || lastMethodsPair.to !== currentToCurrency) {
+    renderMethodOptions(currentFromCurrency, currentToCurrency);
+    lastMethodsPair = { from: currentFromCurrency, to: currentToCurrency };
+  }
+  updateSpeedCardAmounts(currentFromCurrency, sendAmount, locale);
+  const cta = document.getElementById('startTransferBtn');
+  const helper = document.getElementById('ctaHelper');
+  if (cta && helper) {
+    if (sendAmount > 0) { cta.removeAttribute('disabled'); helper.classList.add('hidden'); }
+    else { cta.setAttribute('disabled', ''); helper.classList.remove('hidden'); }
+  }
+  equalizeCardsHeight();
+  const sendInputEl = document.getElementById('sendAmount');
+  if (document.activeElement === sendInputEl) { sendInputEl.classList.remove('pulse-on-input'); void sendInputEl.offsetWidth; sendInputEl.classList.add('pulse-on-input'); }
+}
+
+function updateFromReceive() {
+  const receiveEl = document.getElementById('receiveAmount');
+  const raw = String(receiveEl.value).replace(/[^0-9.-]/g, '');
+  const rate = (exchangeRates[currentFromCurrency] && exchangeRates[currentFromCurrency][currentToCurrency]) ? exchangeRates[currentFromCurrency][currentToCurrency] : 1;
+  if (raw === '') { document.getElementById('sendAmount').value = ''; updateConversion(); return; }
+  const receiveAmount = parseFloat(raw) || 0;
+  const sendAmount = receiveAmount / rate;
+  document.getElementById('sendAmount').value = sendAmount.toFixed(2);
+  updateConversion();
+  if (document.activeElement === receiveEl) { receiveEl.classList.remove('pulse-on-input'); void receiveEl.offsetWidth; receiveEl.classList.add('pulse-on-input'); }
+}
+
+function swapCurrencies() {
+  const temp = currentFromCurrency; currentFromCurrency = currentToCurrency; currentToCurrency = temp; updateConversion();
+  const sendBtn = document.getElementById('sendCurrencyButton'); const recvBtn = document.getElementById('receiveCurrencyButton');
+  if (sendBtn) { const img=sendBtn.querySelector('img'); const span=sendBtn.querySelector('span'); if (img) img.src = flagUrls[currentFromCurrency]; if (span) span.textContent = currentFromCurrency; }
+  if (recvBtn) { const img=recvBtn.querySelector('img'); const span=recvBtn.querySelector('span'); if (img) img.src = flagUrls[currentToCurrency]; if (span) span.textContent = currentToCurrency; }
+  try { localStorage.setItem('lula_pair', JSON.stringify({ from: currentFromCurrency, to: currentToCurrency })); } catch (e) {}
+  const swapBtn = document.getElementById('swapButton'); if (swapBtn) { swapBtn.classList.remove('bounce-once','rotate-tilt'); void swapBtn.offsetWidth; swapBtn.classList.add('bounce-once','rotate-tilt'); }
+  setTimeout(equalizeCardsHeight, 0);
+}
+
+function renderMethodOptions(sourceCurrency, destCurrency) {
+  const paymentMenu = document.getElementById('paymentMethodMenu');
+  const collectionMenu = document.getElementById('collectionMethodMenu');
+  const paymentLabel = document.getElementById('paymentMethodLabel');
+  const collectionLabel = document.getElementById('collectionMethodLabel');
+  const paymentIcon = document.getElementById('paymentMethodIcon');
+  const collectionIcon = document.getElementById('collectionMethodIcon');
+  const paymentBtn = document.getElementById('paymentMethodButton');
+  const collectionBtn = document.getElementById('collectionMethodButton');
+  if (!paymentMenu || !collectionMenu || !paymentLabel || !collectionLabel || !paymentBtn || !collectionBtn) return;
+  const paymentCard = paymentBtn.closest('.rounded-xl');
+  const collectionCard = collectionBtn.closest('.rounded-xl');
+  const elevate = (cardEl, on) => { if (!cardEl) return; if (on) { cardEl.classList.add('relative','z-[100]'); } else { cardEl.classList.remove('z-[100]'); } };
+  paymentMenu.innerHTML = ''; collectionMenu.innerHTML = '';
+  const dict = i18n[currentLang] || i18n.en;
+  const methodIconMap = { methodBank: 'account_balance', methodBankCard: 'credit_card', methodCashPickup: 'payments', methodMobileMoney: 'smartphone' };
+  const makeItem = (key, group) => {
+    const a = document.createElement('a'); a.href = '#'; a.className = 'flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100'; a.setAttribute('role','menuitemradio'); a.setAttribute('aria-checked', String((group==='payment'? selectedPaymentMethod : selectedCollectionMethod) === key));
+    const icon=document.createElement('span'); icon.className='material-symbols-outlined text-base'; icon.textContent = methodIconMap[key] || 'tune';
+    const label=document.createElement('span'); label.textContent = dict[key] || key;
+    a.appendChild(icon); a.appendChild(label);
+    a.addEventListener('click', (e)=>{
+      e.preventDefault();
+      if (group==='payment') { selectedPaymentMethod = key; paymentLabel.textContent = dict[key] || key; paymentMenu.classList.add('hidden'); paymentBtn.setAttribute('aria-expanded','false'); paymentMenu.style.zIndex=''; elevate(paymentCard,false); if (paymentIcon) paymentIcon.textContent = methodIconMap[key] || 'tune'; }
+      else { selectedCollectionMethod = key; collectionLabel.textContent = dict[key] || key; collectionMenu.classList.add('hidden'); collectionBtn.setAttribute('aria-expanded','false'); collectionMenu.style.zIndex=''; elevate(collectionCard,false); if (collectionIcon) collectionIcon.textContent = methodIconMap[key] || 'tune'; }
+      try { localStorage.setItem('lula_methods', JSON.stringify({ payment: selectedPaymentMethod, collection: selectedCollectionMethod })); } catch(e){}
+      renderMethodOptions(sourceCurrency, destCurrency);
+      updateConversion();
+    });
+    return a;
+  };
+  const payOptions = paymentMethodsBySource[sourceCurrency] || ['methodBank'];
+  const colOptions = collectionMethodsByDest[destCurrency] || ['methodBank'];
+  if (!selectedPaymentMethod || !payOptions.includes(selectedPaymentMethod)) { const defPay = defaultPaymentBySource[sourceCurrency] || payOptions[0]; selectedPaymentMethod = payOptions.includes(defPay)? defPay : payOptions[0]; try { localStorage.setItem('lula_methods', JSON.stringify({ payment: selectedPaymentMethod, collection: selectedCollectionMethod })); } catch(e){} setTimeout(updateConversion,0);} 
+  if (!selectedCollectionMethod || !colOptions.includes(selectedCollectionMethod)) { const defCol = defaultCollectionByDest[destCurrency] || colOptions[0]; selectedCollectionMethod = colOptions.includes(defCol)? defCol : colOptions[0]; try { localStorage.setItem('lula_methods', JSON.stringify({ payment: selectedPaymentMethod, collection: selectedCollectionMethod })); } catch(e){} }
+  payOptions.forEach(k => paymentMenu.appendChild(makeItem(k, 'payment')));
+  colOptions.forEach(k => collectionMenu.appendChild(makeItem(k, 'collection')));
+  paymentLabel.textContent = selectedPaymentMethod ? (dict[selectedPaymentMethod] || selectedPaymentMethod) : '—';
+  collectionLabel.textContent = selectedCollectionMethod ? (dict[selectedCollectionMethod] || selectedCollectionMethod) : '—';
+  if (paymentIcon) paymentIcon.textContent = selectedPaymentMethod ? (methodIconMap[selectedPaymentMethod] || 'tune') : 'credit_card';
+  if (collectionIcon) collectionIcon.textContent = selectedCollectionMethod ? (methodIconMap[selectedCollectionMethod] || 'tune') : 'account_balance';
+  if (paymentBtn) paymentBtn.setAttribute('aria-label', `${dict.payingWith || 'Paying with'}: ${paymentLabel.textContent}`);
+  if (collectionBtn) collectionBtn.setAttribute('aria-label', `${dict.collectingWith || 'Collecting with'}: ${collectionLabel.textContent}`);
+  setTimeout(updateConversion, 0);
+  const openPayment = (e)=>{ e.stopPropagation(); const willOpen = paymentMenu.classList.contains('hidden'); paymentMenu.classList.toggle('hidden'); paymentBtn.setAttribute('aria-expanded', String(willOpen)); collectionMenu.classList.add('hidden'); collectionBtn.setAttribute('aria-expanded','false'); if (willOpen) { elevate(paymentCard,true); elevate(collectionCard,false); paymentMenu.style.zIndex='9999'; collectionMenu.style.zIndex=''; } else { elevate(paymentCard,false); paymentMenu.style.zIndex=''; } };
+  const openCollection = (e)=>{ e.stopPropagation(); const willOpen = collectionMenu.classList.contains('hidden'); collectionMenu.classList.toggle('hidden'); collectionBtn.setAttribute('aria-expanded', String(willOpen)); paymentMenu.classList.add('hidden'); paymentBtn.setAttribute('aria-expanded','false'); if (willOpen) { elevate(collectionCard,true); elevate(paymentCard,false); collectionMenu.style.zIndex='9999'; paymentMenu.style.zIndex=''; } else { elevate(collectionCard,false); collectionMenu.style.zIndex=''; } };
+  paymentBtn.onclick = openPayment; collectionBtn.onclick = openCollection;
+  if (!window._methodsClickBound) { document.addEventListener('click', ()=>{ if (!paymentMenu.classList.contains('hidden')) { paymentMenu.classList.add('hidden'); paymentBtn.setAttribute('aria-expanded','false'); paymentMenu.style.zIndex=''; elevate(paymentCard,false);} if (!collectionMenu.classList.contains('hidden')) { collectionMenu.classList.add('hidden'); collectionBtn.setAttribute('aria-expanded','false'); collectionMenu.style.zIndex=''; elevate(collectionCard,false);} }); window._methodsClickBound = true; }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize language
+  applyTranslations(currentLang);
+  // Speed options
+  const speedOptions = document.querySelectorAll('.speed-option');
+  speedOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      speedOptions.forEach(opt => {
+        opt.classList.remove('bg-primary/10','dark:bg-primary/20','bg-black/5','dark:bg-white/10','bg-white','bg-white/70','bg-white/80','dark:bg-gray-800','dark:bg-white/5','speed-selected');
+        opt.classList.add('bg-white/70','dark:bg-white/5');
+      });
+      this.classList.remove('bg-white/70','dark:bg-white/5');
+      this.classList.add('bg-black/5','dark:bg-white/10','speed-selected');
+      currentSpeedPercent = parseFloat(this.dataset.percent || '0');
+      updateConversion();
+    });
+  });
+  const defaultOption = document.querySelector('.speed-option[data-speed="express"]') || speedOptions[1];
+  if (defaultOption) defaultOption.click();
+  // Restore pair and methods from storage
+  try {
+    const savedPair = localStorage.getItem('lula_pair');
+    if (savedPair) {
+      const p = JSON.parse(savedPair);
+      if (p && p.from && p.to && exchangeRates[p.from] && exchangeRates[p.from][p.to]) {
+        currentFromCurrency = p.from;
+        currentToCurrency = (p.to === 'ZWL') ? 'USD' : p.to;
+        const sendBtn = document.getElementById('sendCurrencyButton');
+        const recvBtn = document.getElementById('receiveCurrencyButton');
+        if (sendBtn) { const img=sendBtn.querySelector('img'); const span=sendBtn.querySelector('span'); if (img) img.src = flagUrls[currentFromCurrency]; if (span) span.textContent = currentFromCurrency; }
+        if (recvBtn) { const img=recvBtn.querySelector('img'); const span=recvBtn.querySelector('span'); if (img) img.src = flagUrls[currentToCurrency]; if (span) span.textContent = currentToCurrency; }
+      }
+    } else { try { localStorage.setItem('lula_pair', JSON.stringify({ from: currentFromCurrency, to: currentToCurrency })); } catch(e){} }
+    const savedMethods = localStorage.getItem('lula_methods');
+    if (savedMethods) { const m = JSON.parse(savedMethods); if (m) { selectedPaymentMethod = m.payment || null; selectedCollectionMethod = m.collection || null; } }
+  } catch(e) {}
+  renderMethodOptions(currentFromCurrency, currentToCurrency);
+  lastMethodsPair = { from: currentFromCurrency, to: currentToCurrency };
+  // Set initial formatting and layout sync
+  setTimeout(()=>{ const s=document.getElementById('sendAmount'); const r=document.getElementById('receiveAmount'); if (s && document.activeElement !== s) formatInput(s,2); if (r && document.activeElement !== r) formatInput(r,2); equalizeCardsHeight(); }, 0);
+  window.addEventListener('resize', equalizeCardsHeight);
+});
+
+// Kick off first compute
+updateConversion();
+</script>
 </body></html>

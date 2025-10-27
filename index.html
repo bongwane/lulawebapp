@@ -3,9 +3,70 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>LULA - Digital Wallet</title>
+<meta name="description" content="LULA is a fast, secure money app for sending, spending, and managing your money with fair fees and great rates."/>
+<link rel="canonical" href="https://www.lula.example/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="LULA — Your money, your way"/>
+<meta property="og:description" content="Send and spend globally with fair fees, great rates, and a beautiful experience."/>
+<meta property="og:image" content="/assets/og-image.jpg"/>
+<meta property="og:url" content="https://www.lula.example/"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="LULA — Your money, your way"/>
+<meta name="twitter:description" content="Send and spend globally with fair fees, great rates, and a beautiful experience."/>
+<meta name="twitter:image" content="/assets/og-image.jpg"/>
+<meta name="theme-color" content="#9FE870"/>
+<link rel="manifest" href="/manifest.webmanifest"/>
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LULA",
+  "url": "https://www.lula.example/",
+  "logo": "/assets/og-image.jpg",
+  "sameAs": []
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long do transfers take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most transfers arrive within minutes on Instant, under a day on Express, and 1–3 days on Standard."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What fees will I pay?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We show all fees upfront. Bank fees may vary by method; cash-to-cash and transfers to Russia have no bank fee."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I track my transfer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can follow your transfer in real-time and receive notifications at each step."
+      }
+    }
+  ]
+}
+</script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
+<link rel="preconnect" href="https://upload.wikimedia.org" crossorigin>
+<link rel="preconnect" href="https://tools.applemediaservices.com" crossorigin>
+<link rel="preconnect" href="https://play.google.com" crossorigin>
+<!-- Fonts: minimalist, futuristic sans for readability  -->
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
@@ -20,9 +81,10 @@
             "surface-dark": "#172111",
           },
           fontFamily: {
-            sans: ["Manrope", "sans-serif"],
+            // Primary UI font (default)
+            sans: ["Sora", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+            // Logo/brand marks
             brand: ["Luckiest Guy", "cursive"],
-            display: ["Manrope"],
           },
           borderRadius: {
             DEFAULT: "0.5rem",
@@ -35,7 +97,9 @@
       },
     };
   </script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" onload="this.onload=null;this.rel='stylesheet'"/>
+<link rel="preload" href="styles/theme.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="styles/theme.css"></noscript>
 <style>
     .text-contrast-on-primary {
       color: #102216;
@@ -43,155 +107,793 @@
     body {
       min-height: max(884px, 100dvh);
     }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
+    :root {
+      --lula-green: #98ea6c;
+      --lula-dark: #0A140D;
+      --lula-gray-dark: #1A1A1A;
+      --lula-gray-light: #A3A3A3;
+      --lula-white: #FFFFFF;
+      --lula-green-dark: #2A3B2B;
+      --lula-card-bg: #172111;
+      /* Brand harmonization */
+      --brand-green: #9FE870;
+      --brand-ink: #163300;
+      /* Wise secondary (from wise.design) */
+      --wise-bright-orange: #FFC091;
+      --wise-bright-yellow: #FFEB69;
+      --wise-bright-blue: #A0E1E1;
+      --wise-bright-pink: #FFD7EF;
+    }
+    /* Brand utilities for consistent styling */
+    .text-ink { color: var(--brand-ink) !important; }
+    .bg-brand { background-color: var(--brand-green) !important; }
+    .btn-primary {
+      background-color: var(--brand-green);
+      color: var(--brand-ink);
+      border-radius: 9999px;
+      font-weight: 600;
+      padding: 0.9rem 1.25rem;
+      transition: background-color 180ms ease, transform 150ms ease, box-shadow 180ms ease;
+    }
+    .btn-primary:hover { background-color: #8BD45F; }
+    .btn-primary:active { background-color: var(--brand-ink); color: var(--brand-green); }
+    .btn-dark {
+      background-color: var(--brand-ink);
+      color: var(--brand-green);
+      border-radius: 9999px;
+      font-weight: 700;
+      padding: 0.85rem 1.25rem;
+      transition: background-color 180ms ease, transform 150ms ease, box-shadow 180ms ease;
+    }
+    .btn-dark:hover { background-color: #1E3A00; }
+    .btn-dark:active { background-color: var(--brand-green); color: var(--brand-ink); }
+    /* Futuristic minimalist utilities */
+    .glass { background: rgba(255,255,255,0.6); backdrop-filter: saturate(120%) blur(14px); border: 1px solid rgba(255,255,255,0.35); }
+    .dark .glass { background: rgba(23, 33, 17, 0.5); border-color: rgba(255,255,255,0.08); }
+    .neo-edge { box-shadow: 0 1px 0 0 rgba(255,255,255,0.15) inset, 0 8px 30px -8px rgba(0,0,0,0.25); }
+    .neon-soft { box-shadow: 0 0 0 1px rgba(152, 234, 108, 0.28), 0 0 24px rgba(152, 234, 108, 0.2); }
+    .btn-neo { border: 1px solid rgba(255,255,255,0.28); background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); color: #102216; }
+    .dark .btn-neo { border-color: rgba(255,255,255,0.08); background: rgba(23,33,17,0.5); color: #EAF7E4; }
+    .btn-ghost { border: 1px solid rgba(255,255,255,0.25); background: transparent; }
+    .grid-lines { background-image: linear-gradient(transparent 0, transparent calc(100% - 1px), rgba(255,255,255,0.08) calc(100% - 1px)), linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(255,255,255,0.08) calc(100% - 1px)); background-size: 24px 24px, 24px 24px; background-position: top left, top left; }
+    .accent-glow { position: relative; }
+    .accent-glow:before { content:""; position:absolute; inset:-1px; border-radius:inherit; pointer-events:none; box-shadow: 0 0 0 1px rgba(152,234,108,0.2), 0 0 60px rgba(152,234,108,0.12) inset; }
+      /* How it works: minimalist step cards */
+      .step-card { position: relative; border-radius: 0.75rem; background: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.35); -webkit-backdrop-filter: saturate(120%) blur(10px); backdrop-filter: saturate(120%) blur(10px); padding: 1rem; }
+      .dark .step-card { background: rgba(23,33,17,0.35); border-color: rgba(255,255,255,0.08); }
+      .step-card:hover { box-shadow: 0 10px 24px -12px rgba(0,0,0,0.25); transform: translateY(-2px); transition: box-shadow 220ms ease, transform 180ms ease; }
+      .step-icon { width: 40px; height: 40px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; background: var(--brand-green); color: var(--brand-ink); box-shadow: 0 0 0 4px rgba(159,232,112,0.25); }
+      .dark .step-icon { box-shadow: 0 0 0 4px rgba(159,232,112,0.18); }
+      .step-badge { position: absolute; top: 8px; right: 8px; font-size: 11px; font-weight: 700; color: var(--brand-ink); background: rgba(159,232,112,0.85); border: 1px solid rgba(22,51,0,0.15); padding: 2px 8px; border-radius: 9999px; }
+  /* Wise secondary duotone tints for brighter imagery */
+  .duotone { position: relative; border-radius: 0.75rem; overflow: hidden; }
+  .duotone img { filter: saturate(1.1) contrast(1.06) brightness(1.04); }
+  .duotone::before { content: ""; position: absolute; inset: 0; border-radius: inherit; mix-blend-mode: screen; background: rgba(255,255,255,0.06); pointer-events: none; }
+  .duotone::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; mix-blend-mode: color; }
+  .duotone--blue::after { background: linear-gradient(135deg, rgba(160,225,225,0.62), rgba(255,255,255,0.12)); }
+  .duotone--yellow::after { background: linear-gradient(135deg, rgba(255,235,105,0.58), rgba(255,255,255,0.12)); }
+  .duotone--orange::after { background: linear-gradient(135deg, rgba(255,192,145,0.6), rgba(255,255,255,0.12)); }
+  .dark .duotone::before { background: rgba(255,255,255,0.08); }
+  .dark .duotone--blue::after { background: linear-gradient(135deg, rgba(160,225,225,0.55), rgba(255,255,255,0.08)); }
+  .dark .duotone--yellow::after { background: linear-gradient(135deg, rgba(255,235,105,0.5), rgba(255,255,255,0.08)); }
+  .dark .duotone--orange::after { background: linear-gradient(135deg, rgba(255,192,145,0.52), rgba(255,255,255,0.08)); }
+  /* Brand duotone tint for images */
+  .brand-duotone { position: relative; border-radius: 0.75rem; overflow: hidden; }
+  .brand-duotone img { filter: grayscale(30%) saturate(1.1) contrast(1.05); }
+  .brand-duotone::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(135deg, rgba(159,232,112,0.55), rgba(22,51,0,0.55)); mix-blend-mode: color; pointer-events: none; z-index: 5; }
+  .dark .brand-duotone::after { background: linear-gradient(135deg, rgba(159,232,112,0.45), rgba(22,51,0,0.65)); }
+  /* Minimalist pagination */
+  .pager-btn { width: 40px; height: 40px; border-radius: 9999px; border: 1px solid rgba(22,51,0,0.15); background: rgba(255,255,255,0.4); color: var(--brand-ink); display: inline-flex; align-items: center; justify-content: center; -webkit-backdrop-filter: saturate(140%) blur(8px); backdrop-filter: saturate(140%) blur(8px); transition: transform 150ms ease, background 180ms ease, box-shadow 180ms ease; }
+  .pager-btn:hover { background: rgba(255,255,255,0.6); }
+  .pager-btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+  .dark .pager-btn { background: rgba(23,33,17,0.3); border-color: rgba(255,255,255,0.08); color: #EAF7E4; }
+  .pager-dots { display: inline-flex; align-items: center; gap: 6px; }
+  .pager-dot { width: 6px; height: 6px; border-radius: 9999px; background: #d1d5db; transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease; }
+  .dark .pager-dot { background: #374151; }
+  .pager-dot.active { background: var(--brand-green); transform: scale(1.25); box-shadow: 0 0 0 2px rgba(22,51,0,0.25); }
+      /* Focus-visible rings for a11y */
+      .btn-primary:focus-visible, .btn-dark:focus-visible, .btn-liquid:focus-visible, .btn-liquid-item:focus-visible, .speed-option:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(22, 51, 0, 0.9), 0 0 0 6px rgba(159, 232, 112, 0.5);
+        border-radius: 9999px;
+      }
+      input:focus-visible { border-radius: 8px; }
+    /* Micro bounce animation for swap button */
+    @keyframes micro-bounce {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.08); }
+      60% { transform: scale(0.98); }
+      100% { transform: scale(1); }
+    }
+    .bounce-once { animation: micro-bounce 420ms cubic-bezier(.2,.8,.2,1); }
+    /* Reveal animation utilities */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 500ms ease, transform 500ms cubic-bezier(.2,.8,.2,1); }
+    .reveal.reveal-visible { opacity: 1; transform: none; }
+    .reveal.fade { transform: none; }
+    .reveal.slide-up { transform: translateY(18px); }
+    .reveal.slide-left { transform: translateX(18px); }
+    .reveal.slide-right { transform: translateX(-18px); }
+    .reveal.delay-1 { transition-delay: 80ms; }
+    .reveal.delay-2 { transition-delay: 160ms; }
+    .reveal.delay-3 { transition-delay: 240ms; }
+    .reveal.delay-4 { transition-delay: 320ms; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal.reveal-visible { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+    /* Liquid glass button - borderless frosted style */
+    .btn-liquid { 
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      border: none;
+      -webkit-backdrop-filter: saturate(140%) blur(12px);
+      backdrop-filter: saturate(140%) blur(12px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 8px 24px rgba(0,0,0,0.18);
+      transition: background 180ms ease, box-shadow 220ms ease, transform 160ms ease;
+      position: relative; overflow: hidden;
+    }
+    .btn-liquid:hover { 
+      background: rgba(255, 255, 255, 0.22);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 10px 28px rgba(0,0,0,0.22);
+    }
+    .btn-liquid::before { content: ""; position: absolute; inset: 1px; border-radius: inherit; pointer-events: none; background: linear-gradient(180deg, rgba(255,255,255,0.25), rgba(255,255,255,0.04)); opacity: 0.0; transition: opacity 200ms ease; }
+    .btn-liquid:hover::before { opacity: 1; }
+    .btn-liquid:active { 
+      transform: translateY(1px);
+      background: rgba(255, 255, 255, 0.28);
+    }
+    .dark .btn-liquid {
+      background: rgba(23, 33, 17, 0.45);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 24px rgba(0,0,0,0.35);
+    }
+    .dark .btn-liquid:hover { background: rgba(23, 33, 17, 0.55); }
+  /* Liquid glass variant for dropdown items (keeps text colors) */
+  .btn-liquid-item { position: relative; border: none; background: transparent; -webkit-backdrop-filter: saturate(140%) blur(8px); backdrop-filter: saturate(140%) blur(8px); transition: background 160ms ease, box-shadow 200ms ease; }
+  .btn-liquid-item::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgba(255,255,255,0.12); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18); opacity: 0; transition: opacity 160ms ease; }
+  .btn-liquid-item:hover::before { opacity: 1; }
+  .dark .btn-liquid-item::before { background: rgba(23,33,17,0.35); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06); }
+  /* Satisfying input + number animations */
+  .input-glow { transition: box-shadow 180ms ease, background-color 180ms ease; }
+  .input-glow:focus { outline: none; box-shadow: 0 0 0 3px rgba(159, 232, 112, 0.45); background-color: rgba(159, 232, 112, 0.06); }
+  @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(159,232,112,0.5) } 100% { box-shadow: 0 0 0 14px rgba(159,232,112,0) } }
+  .pulse-on-input { animation: pulse-green 650ms ease-out; }
+  .number-tween { transition: color 240ms ease; }
+  .flash-updated { color: #163300 !important; background: linear-gradient(transparent 60%, rgba(159,232,112,0.35)); border-radius: 4px; }
+  /* Removed rotation effect per request */
+  /* Squish animation for value updates */
+  @keyframes squishY { 0% { transform: scaleY(0.98); } 100% { transform: scaleY(1); } }
+  .squish-once { animation: squishY 180ms ease-out; }
+  /* Rotate during bounce for swap button */
+  .bounce-once { animation: micro-bounce 420ms cubic-bezier(.2,.8,.2,1); }
+  .rotate-tilt { transform: rotate(8deg); }
+    @media (prefers-reduced-motion: no-preference) {
+      .hover-rise { transition: transform 180ms ease, box-shadow 240ms ease, background 240ms ease; }
+      .hover-rise:hover { transform: translateY(-2px); }
+      .hover-press { transition: transform 180ms ease; }
+      .hover-press:hover { transform: translateY(-1px) scale(1.01); }
     }
   </style>
+  <!-- Structured data: Aggregate rating for app (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "LULA",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "iOS, Android",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.6",
+      "ratingCount": 1284,
+      "reviewCount": 1284
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "LULA",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "iOS, Android, Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.6",
+      "ratingCount": 1284
+    }
+  }
+  </script>
   </head>
 <body class="bg-background-light dark:bg-background-dark font-sans text-text-light dark:text-text-dark">
 <div class="relative w-full overflow-x-hidden">
-<header class="absolute top-0 left-0 right-0 z-10 flex justify-between items-center p-4">
-<div class="text-white text-4xl font-brand tracking-wider">LULA</div>
-<div class="flex items-center gap-2">
-<a class="border border-white/50 text-white text-sm font-bold py-2 px-4 rounded-full" href="how-it-works.html">How it works</a>
-<a class="bg-primary/20 dark:bg-primary/30 text-white text-sm font-bold py-2 px-4 rounded-full" href="sign-in.html">Sign In</a>
-</div>
+<header class="absolute top-0 left-0 right-0 z-50 flex justify-between items-center p-4">
+  <div class="flex items-center gap-3">
+  <div class="text-ink text-4xl font-brand tracking-wider">LULA</div>
+  </div>
+  <!-- Desktop actions -->
+  <div class="items-center gap-2 hidden md:flex">
+  
+    <!-- App download dropdown (desktop hidden to avoid duplication with badges) -->
+    <div class="relative md:hidden">
+      <button id="appDownloadButton" aria-expanded="false" aria-controls="appMenu"
+        class="flex items-center gap-2 btn-liquid text-white text-sm font-bold py-2 px-3 rounded-full">
+        <span class="material-symbols-outlined text-base">download</span>
+        <span class="hidden sm:inline" data-i18n="downloadApp">Download app</span>
+        <span class="material-symbols-outlined text-sm">expand_more</span>
+      </button>
+  <div id="appMenu" class="absolute right-0 mt-2 bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg w-48 p-2 hidden z-50 backdrop-blur-md" role="menu" aria-labelledby="appDownloadButton">
+        <a href="#" class="flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" role="menuitem" aria-label="Android app">
+          <span class="material-symbols-outlined text-base">android</span>
+          <span data-i18n="androidApp">Android app</span>
+        </a>
+        <a href="#" class="flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" role="menuitem" aria-label="iOS app">
+          <span class="material-symbols-outlined text-base">apple</span>
+          <span data-i18n="iosApp">iOS app</span>
+        </a>
+      </div>
+    </div>
+    <!-- Language Switcher (desktop) -->
+    <div class="relative">
+  <button id="langSwitcherButton" aria-expanded="false" class="flex items-center gap-2 btn-liquid text-ink text-sm font-bold py-2 px-3 rounded-full">
+        <img id="langBtnFlag" src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="EN" class="h-4 w-4 rounded-full object-cover" />
+        <span id="langCode">EN</span>
+        <span class="material-symbols-outlined text-sm">expand_more</span>
+      </button>
+      <div id="langMenu" class="absolute right-0 mt-2 bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg w-40 p-2 hidden z-50 backdrop-blur-md" role="menu">
+        <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-lang="en" role="menuitem">
+          <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="English" class="h-4 w-4 rounded-full object-cover" />
+          <span>English</span>
+        </button>
+        <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-lang="ru" role="menuitem">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg" alt="Русский" class="h-4 w-4 rounded-full object-cover" />
+          <span>Русский</span>
+        </button>
+      </div>
+    </div>
+    <!-- End Language Switcher -->
+  <a class="btn-liquid text-ink text-sm font-bold py-2 px-4 rounded-full" href="sign-in.html" data-i18n="signIn">Sign In</a>
+  </div>
+  
+  <!-- Mobile hamburger -->
+  <button id="mobileMenuButton" aria-controls="mobileMenu" aria-expanded="false" class="md:hidden text-white flex h-10 w-10 items-center justify-center rounded-full btn-liquid" aria-label="Open menu">
+    <span class="material-symbols-outlined">menu</span>
+  </button>
+  <!-- Backdrop for mobile menu -->
+  <div id="mobileBackdrop" class="md:hidden fixed inset-0 bg-black/40 hidden z-40"></div>
+  <!-- Mobile slide-in panel -->
+  <div id="mobileMenu" role="dialog" aria-modal="true" class="md:hidden fixed top-0 right-0 h-screen w-72 max-w-[80%] bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 shadow-2xl p-3 hidden z-50 transform translate-x-full transition-transform duration-300 overflow-y-auto">
+    <div class="flex items-center justify-between mb-2">
+  <span class="text-sm font-semibold text-gray-500 dark:text-gray-400" data-i18n="menuLabel">Menu</span>
+      <button id="mobileMenuClose" class="text-gray-600 dark:text-gray-300 flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" aria-label="Close menu">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+  
+    <div class="h-px my-2 bg-gray-200 dark:bg-gray-700"></div>
+    <!-- Mobile: Download app dropdown -->
+    <button id="mobileAppToggle" class="w-full flex items-center justify-between gap-2 px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-100">
+      <span class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">download</span>
+        <span data-i18n="downloadApp">Download app</span>
+      </span>
+      <span class="material-symbols-outlined text-sm" id="mobileAppChevron">expand_more</span>
+    </button>
+    <div id="mobileAppMenu" class="ml-10 mt-1 flex-col hidden" role="menu" aria-label="Download app submenu">
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" role="menuitem" aria-label="Android app">
+        <span class="material-symbols-outlined text-base">android</span>
+        <span data-i18n="androidApp">Android app</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-3 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" role="menuitem" aria-label="iOS app">
+        <span class="material-symbols-outlined text-base">apple</span>
+        <span data-i18n="iosApp">iOS app</span>
+      </a>
+    </div>
+    <div class="h-px my-2 bg-gray-200 dark:bg-gray-700"></div>
+    <div class="px-3 py-2">
+      <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-1" data-i18n="languageLabel">Language</p>
+      <div class="flex items-center gap-2">
+        <button class="lang-select flex items-center gap-2 px-2 py-1 rounded border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-100" data-lang="en">
+          <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="English" class="h-4 w-4 rounded-full object-cover" />
+          <span>EN</span>
+        </button>
+        <button class="lang-select flex items-center gap-2 px-2 py-1 rounded border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-100" data-lang="ru">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg" alt="Русский" class="h-4 w-4 rounded-full object-cover" />
+          <span>RU</span>
+        </button>
+      </div>
+    </div>
+    <div class="h-px my-2 bg-gray-200 dark:bg-gray-700"></div>
+    <a href="sign-in.html" class="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-100">
+      <span class="material-symbols-outlined text-base">login</span>
+      <span data-i18n="signIn">Sign In</span>
+    </a>
+  </div>
 </header>
 <main>
-<section class="relative min-h-[50vh] flex items-end justify-center text-center p-4 bg-cover bg-center" style='background-image: linear-gradient(to top, rgba(16, 34, 22, 1) 0%, rgba(16, 34, 22, 0.7) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBbEM_duBpGABpsoiSxGPF5oQ5Xc3y5wHmvkU_zJqI2f4fDYGKzE4OVKUInHNIGvqncRn3fxiP_zMXp5VINexBMoWlQzM5B1lpbDqjWGtTHxtYECRPqOtom7CBwyLT2fRzGdmAhb1vJUZCADwVOC104BQAM6QTnm-NkcGITol5zAZOJkGrCZxFUR3BCEGtGArbvUv59R2mUvHnbxZsZJ618GYh0lCADZlN-5HzahfvnNBsZM0Nm1CvvBQDQh0TC5Xs_3myMCVn-DmXF");'>
-<div class="flex flex-col gap-4 items-center pb-8">
-<h1 class="text-white text-5xl md:text-6xl font-bold leading-tight tracking-wide">Your money, your way.</h1>
-<p class="text-white/80 max-w-md text-base md:text-lg">One app for all your financial needs. Simple, fast, secure.</p>
+<section class="relative min-h-[50vh] flex items-end justify-center text-center p-4 pt-8 bg-cover bg-center z-30 bg-brand" style="background-color: #9FE870;">
+<div class="absolute inset-0 grid-lines opacity-20"></div>
+<div class="flex flex-col gap-3 items-center pb-28 relative">
+<h1 class="text-5xl md:text-6xl font-semibold leading-tight tracking-tight reveal slide-up text-ink" data-i18n="heroTitle">Your money, your way.</h1>
+<p class="max-w-md text-base md:text-lg reveal slide-up delay-1 text-ink" data-i18n="heroSubtitle">One app for all your financial needs. Simple, fast, secure.</p>
+<div class="hidden md:flex items-center gap-4 mt-2 reveal slide-up delay-2">
+  <a href="#" aria-label="Download on the App Store">
+    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=120x40" alt="Download on the App Store" class="h-10 w-auto" width="120" height="40" loading="lazy" decoding="async" fetchpriority="low"/>
+  </a>
+  <a href="#" aria-label="Get it on Google Play">
+    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="h-10 w-auto" width="180" height="70" loading="lazy" decoding="async" fetchpriority="low"/>
+  </a>
+</div>
+</div>
+
+<!-- End hero section -->
+</section>
+
+<!-- Rate Playground Section - Similar to Wise -->
+<section class="px-4 pb-20 md:pb-16 @container -mt-20 md:-mt-24 relative z-30">
+<div class="max-w-3xl mx-auto glass neo-edge rounded-2xl p-6 md:p-8 accent-glow ring-1 ring-white/30 dark:ring-white/10 shadow-xl reveal slide-up delay-2">
+
+<!-- Rate Calculator -->
+<div class="space-y-4">
+<!-- You Send Section -->
+<div id="youSendCard" class="rounded-xl p-1.5 md:p-2 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur transition-shadow focus-within:ring-2 focus-within:ring-[#9FE870]/60 hover:shadow-md">
+<div class="flex flex-col">
+<div class="flex items-center justify-between mb-0.5">
+<label for="sendAmount" class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400"><span data-i18n="youSend">You send</span></label>
+ </div>
+<div class="grid grid-cols-[1fr_auto] items-center gap-2">
+  <input 
+    id="sendAmount" 
+    class="bg-transparent text-2xl md:text-3xl font-bold text-gray-900 dark:text-white placeholder-gray-400 border-none outline-none flex-1 min-w-0 input-glow" 
+    placeholder="100" 
+    type="text" 
+    value="100"
+    oninput="updateConversion()" onfocus="unformatInput(this)" onblur="formatInput(this, 2)" aria-describedby="sendCurrencyButton" inputmode="decimal" step="0.01" min="0"
+  />
+  <div class="relative inline-block">
+    <button id="sendCurrencyButton" aria-expanded="false" aria-controls="sendCurrencyMenu" class="flex items-center gap-2 rounded-full bg-transparent px-1 py-0.5 hover:bg-white/40 dark:hover:bg-gray-700/40 transition-colors">
+        <img alt="Zimbabwe flag" class="h-5 w-5 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg"/>
+        <span class="font-bold text-2xl md:text-3xl leading-none">USD</span>
+        <span class="material-symbols-outlined text-2xl md:text-3xl leading-none">expand_more</span>
+      </button>
+      <div id="sendCurrencyMenu" class="absolute right-0 mt-2 bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg w-40 p-2 hidden z-50 backdrop-blur-md" role="menu" aria-labelledby="sendCurrencyButton">
+        <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-curr="USD" role="menuitem">
+          <img alt="USD" class="h-4 w-4 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg" />
+          <span>USD</span>
+        </button>
+        <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-curr="RUB" role="menuitem">
+          <img alt="RUB" class="h-4 w-4 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg" />
+          <span>RUB</span>
+        </button>
+      </div>
+  </div>
+</div>
+<div class="flex justify-end mt-1">
+  <div class="relative inline-block">
+    <button id="paymentMethodButton" aria-expanded="false" aria-controls="paymentMethodMenu" class="w-auto flex items-center gap-2 justify-between md:justify-center rounded-full bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-2 py-1 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-600 min-w-[160px] md:min-w-[200px]">
+      <span class="material-symbols-outlined text-base text-[#102216] dark:text-[#EAF7E4]" id="paymentMethodIcon">credit_card</span>
+      <span id="paymentMethodLabel" class="text-[#102216] dark:text-[#EAF7E4]">—</span>
+      <span class="material-symbols-outlined text-sm text-[#102216] dark:text-[#EAF7E4]">expand_more</span>
+    </button>
+    <div id="paymentMethodMenu" class="absolute right-0 mt-2 w-56 bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-lg p-2 hidden z-50 backdrop-blur-md" role="menu" aria-labelledby="paymentMethodButton"></div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- Conversion Arrow -->
+<div class="relative flex items-center justify-center">
+<div class="h-px w-full bg-gray-200 dark:bg-gray-700"></div>
+<div id="swapButton" class="absolute z-20 flex h-10 w-10 items-center justify-center rounded-full bg-[#9FE870] text-[#163300] shadow-lg ring-2 ring-white/60 dark:ring-white/10 hover:bg-[#8BD45F] active:bg-[#163300] active:text-[#9FE870] transition-colors cursor-pointer will-change-transform" onclick="swapCurrencies()" aria-label="Swap currencies">
+<span class="material-symbols-outlined">swap_vert</span>
+</div>
+</div>
+
+<!-- They Get Section -->
+<div id="theyGetCard" class="rounded-xl p-1.5 md:p-2 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur -mt-5 md:-mt-6 will-change-transform transition-shadow focus-within:ring-2 focus-within:ring-[#9FE870]/60 hover:shadow-md">
+<div class="flex items-center justify-between mb-1">
+<label for="receiveAmount" class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400"><span data-i18n="theyGet">They get</span></label>
+<span class="px-2 py-1 rounded-full bg-white/60 dark:bg-gray-700/60 text-[11px] text-gray-700 dark:text-gray-200"><span data-i18n="rateLabel">Rate</span>: 1 USD = <span id="exchangeRate">78.62</span> <span id="toCurrency">RUB</span></span>
+</div>
+<div class="grid grid-cols-[1fr_auto] items-center gap-2 mb-1.5 md:mb-2">
+  <input 
+    id="receiveAmount" 
+    class="bg-transparent text-2xl md:text-3xl font-bold text-gray-900 dark:text-white placeholder-gray-400 border-none outline-none flex-1 min-w-0 input-glow" 
+    placeholder="0.00" 
+    type="text" 
+    value="7862.00"
+    oninput="updateFromReceive()" onfocus="unformatInput(this)" onblur="formatInput(this, 2)" aria-describedby="receiveCurrencyButton" inputmode="decimal" step="1" min="0"
+  />
+  <div class="relative inline-block">
+    <button id="receiveCurrencyButton" aria-expanded="false" aria-controls="receiveCurrencyMenu" class="flex items-center gap-2 rounded-full bg-transparent px-1 py-0.5 hover:bg-white/40 dark:hover:bg-gray-700/40 transition-colors">
+        <img alt="RUB flag" class="h-5 w-5 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg"/>
+        <span class="font-bold text-2xl md:text-3xl leading-none">RUB</span>
+        <span class="material-symbols-outlined text-2xl md:text-3xl leading-none">expand_more</span>
+      </button>
+      <div id="receiveCurrencyMenu" class="absolute right-0 mt-2 bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg w-40 p-2 hidden z-50 backdrop-blur-md" role="menu" aria-labelledby="receiveCurrencyButton">
+        <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-curr="RUB" role="menuitem">
+          <img alt="RUB" class="h-4 w-4 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg" />
+          <span>RUB</span>
+        </button>
+        <button class="w-full flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100" data-curr="USD" role="menuitem">
+          <img alt="USD" class="h-4 w-4 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg" />
+          <span>USD</span>
+        </button>
+      </div>
+  </div>
+</div>
+<div class="flex justify-end">
+  <div class="relative inline-block">
+    <button id="collectionMethodButton" aria-expanded="false" aria-controls="collectionMethodMenu" class="w-auto flex items-center gap-2 justify-between md:justify-center rounded-full bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-2 py-1 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-600 min-w-[160px] md:min-w-[200px]">
+      <span class="material-symbols-outlined text-base text-[#102216] dark:text-[#EAF7E4]" id="collectionMethodIcon">account_balance</span>
+      <span id="collectionMethodLabel" class="text-[#102216] dark:text-[#EAF7E4]">—</span>
+      <span class="material-symbols-outlined text-sm text-[#102216] dark:text-[#EAF7E4]">expand_more</span>
+    </button>
+    <div id="collectionMethodMenu" class="absolute right-0 mt-2 w-56 bg-white/90 dark:bg-gray-800/90 rounded-lg shadow-lg p-2 hidden z-50 backdrop-blur-md" role="menu" aria-labelledby="collectionMethodButton"></div>
+  </div>
+</div>
+</div>
+
+</div>
+
+<!-- Fee Breakdown -->
+<div class="rounded-xl p-4 space-y-3 mt-4 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur">
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-600 dark:text-gray-400" data-i18n="bankFee">Bank fee</span>
+<span class="font-semibold" id="transferFeeDisplay" aria-live="polite" aria-atomic="true">$2.50</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-gray-600 dark:text-gray-400" data-i18n="ourFee">Our fee</span>
+<span class="font-semibold" id="speedFeeDisplay" aria-live="polite" aria-atomic="true">$5.00</span>
+</div>
+<div class="border-t border-gray-200 dark:border-gray-600 pt-3 flex justify-between items-center font-bold">
+<span data-i18n="totalToPay">Total to pay</span>
+<span id="totalPay" class="text-lg" aria-live="polite" aria-atomic="true">$102.50</span>
+</div>
+</div>
+
+<!-- Speed Options -->
+<div class="space-y-3 mt-6 md:mt-8">
+<div class="grid grid-cols-3 gap-3 md:gap-4">
+<button class="flex flex-col items-center justify-center gap-2 rounded-xl bg-white/70 dark:bg-white/5 border border-white/30 dark:border-white/10 p-3 text-center hover:bg-white hover:shadow-md dark:hover:bg-white/10 hover-rise speed-option cursor-pointer" data-speed="standard" data-percent="0.03">
+<span class="material-symbols-outlined text-xl text-primary">schedule</span>
+<div class="text-xs font-medium" data-i18n="speedStandard">Standard</div>
+<div class="text-[10px] text-gray-500" data-i18n="speedStandardTime">1-3 days</div>
+<div class="text-sm font-bold speed-amount">$0.00</div>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 rounded-xl bg-primary/10 dark:bg-primary/20 border border-white/30 dark:border-white/10 p-3 text-center hover:shadow-md hover-rise speed-option cursor-pointer" data-speed="express" data-percent="0.05">
+<span class="material-symbols-outlined text-xl text-primary">bolt</span>
+<div class="text-xs font-medium" data-i18n="speedExpress">Express</div>
+<div class="text-[10px] text-gray-500" data-i18n="speedExpressTime">Under 1 day</div>
+<div class="text-sm font-bold speed-amount">$0.00</div>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 rounded-xl bg-white/70 dark:bg-white/5 border border-white/30 dark:border-white/10 p-3 text-center hover:bg-white hover:shadow-md dark:hover:bg-white/10 hover-rise speed-option cursor-pointer" data-speed="urgent" data-percent="0.10">
+<span class="material-symbols-outlined text-xl text-primary">rocket_launch</span>
+<div class="text-xs font-medium" data-i18n="speedInstant">Instant</div>
+<div class="text-[10px] text-gray-500" data-i18n="speedInstantTime">Minutes</div>
+<div class="text-sm font-bold speed-amount">$0.00</div>
+</button>
+</div>
+</div>
+
+<!-- Payment & Collection dropdowns are now embedded into the cards below -->
+
+<p id="ctaHelper" class="text-center text-sm text-gray-500 mt-2 hidden" data-i18n="ctaHelper">Enter an amount to continue.</p>
+<button id="startTransferBtn" class="btn-primary w-full text-center text-lg hover-press mt-3 neon-soft shadow-lg disabled:opacity-50 disabled:cursor-not-allowed" onclick="window.location.href='sign-up.html'" data-i18n="startTransfer" disabled>
+Start your transfer
+</button>
+</div>
 </div>
 </section>
-<section class="px-4 pb-16 @container -mt-16">
-<div class="max-w-md mx-auto bg-white dark:bg-background-dark rounded-2xl shadow-2xl p-6">
-<h2 class="text-3xl font-bold text-center mb-6">Get Started Now!</h2>
-<div class="grid grid-cols-2 gap-4 text-center">
-<a class="flex flex-col items-center gap-2 p-4 bg-background-light dark:bg-border-dark/30 rounded-xl hover:bg-primary/20 transition-colors" href="#">
-<div class="bg-primary/20 p-3 rounded-full">
-<span class="material-symbols-outlined text-primary text-2xl">send</span>
+
+<!-- How it works Section (embedded) -->
+<section id="how-it-works" class="px-4 py-14 md:py-16 bg-background-light dark:bg-background-dark">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold tracking-wide text-center mb-10" data-i18n="howWorksTitle">How it works</h2>
+    <!-- Steps grid: 3 easy steps -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+      <div class="step-card reveal slide-up" role="group" aria-labelledby="step1-title">
+        <span class="step-badge">1</span>
+        <div class="flex items-start gap-3">
+          <div class="step-icon">
+            <span class="material-symbols-outlined text-base">calculate</span>
+          </div>
+          <div>
+            <h3 id="step1-title" class="font-bold text-base" data-i18n="step1Title">Get a quote</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step1Desc">Enter amount and destination for a real-time rate.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card reveal slide-up delay-1" role="group" aria-labelledby="step2-title">
+        <span class="step-badge">2</span>
+        <div class="flex items-start gap-3">
+          <div class="step-icon">
+            <span class="material-symbols-outlined text-base">person_add</span>
+          </div>
+          <div>
+            <h3 id="step2-title" class="font-bold text-base" data-i18n="step2Title">Add a recipient</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step2Desc">Add your recipient’s details securely.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card reveal slide-up delay-2" role="group" aria-labelledby="step3-title">
+        <span class="step-badge">3</span>
+        <div class="flex items-start gap-3">
+          <div class="step-icon">
+            <span class="material-symbols-outlined text-base">payments</span>
+          </div>
+          <div>
+            <h3 id="step3-title" class="font-bold text-base" data-i18n="step3Title">Pay</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300" data-i18n="step3Desc">Choose a payment method and pay.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes: notifications and tracking -->
+    <div class="mt-6 rounded-xl p-4 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur reveal slide-up">
+      <div class="flex items-start gap-3">
+        <span class="material-symbols-outlined text-primary" aria-hidden="true">notifications_active</span>
+        <p class="text-sm text-gray-700 dark:text-gray-300"><span data-i18n="notesNotifications">You'll get notifications when your order is approved and when it's completed.</span> <span data-i18n="notesTracking">You can track your order at any time.</span></p>
+      </div>
+    </div>
+
+    <!-- Protection callout -->
+    <div id="protection" class="mt-10 rounded-xl p-4 border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur reveal slide-up">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="material-symbols-outlined text-primary">shield_lock</span>
+        <h3 class="font-bold" data-i18n="protectionTitle">How your money is protected</h3>
+      </div>
+      <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-300 space-y-1">
+        <li data-i18n="protection1">Partnered with regulated providers; funds are safeguarded.</li>
+        <li data-i18n="protection2">Encryption and secure payment rails.</li>
+        <li data-i18n="protection3">Real-time tracking and notifications.</li>
+        <li data-i18n="protection4">We comply with KYC/AML requirements with trusted partners.</li>
+      </ul>
+    </div>
+
+    <!-- FAQ -->
+    <div class="mt-10 reveal slide-up">
+      <h3 class="text-lg font-bold mb-3" data-i18n="faqTitle">Frequently asked questions</h3>
+      <!-- Speeds FAQ (merged with list) -->
+      <div class="divide-y divide-gray-200 dark:divide-gray-700 rounded-xl border border-white/30 dark:border-white/10 overflow-hidden">
+        <button type="button" class="w-full text-left px-4 py-3 bg-white/70 dark:bg-white/5 hover:bg-white/80 dark:hover:bg-white/10 flex items-center justify-between" data-faq-toggle>
+          <span data-i18n="speedsFaqQ">What are the transfer speeds?</span>
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <div class="px-4 py-3 hidden text-sm text-gray-700 dark:text-gray-300" data-faq-panel>
+          <ul class="list-disc list-inside space-y-1">
+            <li data-i18n="speedsStandard">Standard: First come, first served in the queue (lowest fee).</li>
+            <li data-i18n="speedsExpress">Express: Faster processing — skip the queue (moderate fee).</li>
+            <li data-i18n="speedsUrgent">Urgent: Top priority for emergencies (highest fee).</li>
+          </ul>
+          <p class="mt-2" data-i18n="speedsFaqIntro">Most transfers are completed within 24 hours, and we guarantee all transactions will be completed within 3 working days.</p>
+        </div>
+        <button type="button" class="w-full text-left px-4 py-3 bg-white/70 dark:bg-white/5 hover:bg-white/80 dark:hover:bg-white/10 flex items-center justify-between" data-faq-toggle>
+          <span data-i18n="faq1Q">How long do transfers take?</span>
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <div class="px-4 py-3 hidden text-sm text-gray-700 dark:text-gray-300" data-faq-panel>
+          <p data-i18n="faq1A">Most transfers arrive within minutes on Instant, under a day on Express, and 1–3 days on Standard.</p>
+        </div>
+
+        <button type="button" class="w-full text-left px-4 py-3 bg-white/70 dark:bg-white/5 hover:bg-white/80 dark:hover:bg-white/10 flex items-center justify-between" data-faq-toggle>
+          <span data-i18n="faq2Q">What fees will I pay?</span>
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <div class="px-4 py-3 hidden text-sm text-gray-700 dark:text-gray-300" data-faq-panel>
+          <p data-i18n="faq2A">We show all fees upfront. Bank fees may vary by method; cash-to-cash and transfers to Russia have no bank fee.</p>
+        </div>
+
+        <button type="button" class="w-full text-left px-4 py-3 bg-white/70 dark:bg-white/5 hover:bg-white/80 dark:hover:bg-white/10 flex items-center justify-between" data-faq-toggle>
+          <span data-i18n="faq3Q">Can I track my transfer?</span>
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <div class="px-4 py-3 hidden text-sm text-gray-700 dark:text-gray-300" data-faq-panel>
+          <p data-i18n="faq3A">Yes. You can follow your transfer in real-time and receive notifications at each step.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="max-w-md mx-auto mt-10">
+      <a href="sign-in.html" class="w-full block">
+        <button class="w-full bg-primary text-[#102216] font-bold py-3 px-5 rounded-xl text-base h-14 hover:bg-primary/90 transition-colors" data-i18n="getStarted">
+          Get started
+        </button>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Get Started Section -->
+<section class="px-4 pb-20 md:pb-16 @container">
+<div class="max-w-md mx-auto bg-[#163300] rounded-2xl shadow-lg p-6">
+<h2 class="text-2xl font-bold text-center mb-6 text-[#9FE870]" data-i18n="getStartedSectionTitle">More than just transfers</h2>
+<div class="flex flex-col gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <a class="flex flex-col items-center gap-2 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors text-white" href="send-money.html">
+      <div class="bg-[#9FE870]/20 p-3 rounded-full">
+        <span class="material-symbols-outlined text-[#9FE870] text-2xl">send</span>
+      </div>
+      <h3 class="font-bold text-base" data-i18n="getStartedSendMoney">Send Money</h3>
+    </a>
+  <a class="flex flex-col items-center gap-2 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors text-white" href="buy-airtime-data.html">
+      <div class="bg-[#9FE870]/20 p-3 rounded-full">
+        <span class="material-symbols-outlined text-[#9FE870] text-2xl">phone_iphone</span>
+      </div>
+      <h3 class="font-bold text-base" data-i18n="getStartedBuyData">Buy Data</h3>
+    </a>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <a class="flex flex-col items-center gap-2 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors text-white" href="cards.html">
+      <div class="bg-[#9FE870]/20 p-3 rounded-full">
+        <span class="material-symbols-outlined text-[#9FE870] text-2xl">credit_card</span>
+      </div>
+      <h3 class="font-bold text-base" data-i18n="getStartedDebitCard">Debit Card</h3>
+    </a>
+  <a class="flex flex-col items-center gap-2 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors text-white" href="store.html">
+      <div class="bg-[#9FE870]/20 p-3 rounded-full">
+        <span class="material-symbols-outlined text-[#9FE870] text-2xl">confirmation_number</span>
+      </div>
+      <h3 class="font-bold text-base" data-i18n="getStartedGetCoupons">Get Coupons</h3>
+    </a>
+  </div>
+  <a class="bg-[#163300] text-[#9FE870] w-full text-center font-bold py-4 px-6 rounded-full text-lg transition-transform hover:scale-105 hover:bg-[#1E3A00] active:bg-[#9FE870] active:text-[#163300] transition-colors mt-8 block" href="sign-up.html" data-i18n="createFreeAccount"> Create Free Account </a>
 </div>
-<h3 class="font-bold text-base">Send Money</h3>
-</a>
-<a class="flex flex-col items-center gap-2 p-4 bg-background-light dark:bg-border-dark/30 rounded-xl hover:bg-primary/20 transition-colors" href="#">
-<div class="bg-primary/20 p-3 rounded-full">
-<span class="material-symbols-outlined text-primary text-2xl">phone_iphone</span>
-</div>
-<h3 class="font-bold text-base">Buy Data</h3>
-</a>
-<a class="flex flex-col items-center gap-2 p-4 bg-background-light dark:bg-border-dark/30 rounded-xl hover:bg-primary/20 transition-colors" href="#">
-<div class="bg-primary/20 p-3 rounded-full">
-<span class="material-symbols-outlined text-primary text-2xl">credit_card</span>
-</div>
-<h3 class="font-bold text-base">Debit Card</h3>
-</a>
-<a class="flex flex-col items-center gap-2 p-4 bg-background-light dark:bg-border-dark/30 rounded-xl hover:bg-primary/20 transition-colors" href="#">
-<div class="bg-primary/20 p-3 rounded-full">
-<span class="material-symbols-outlined text-primary text-2xl">confirmation_number</span>
-</div>
-<h3 class="font-bold text-base">Get Coupons</h3>
-</a>
-</div>
-<a class="bg-primary text-contrast-on-primary w-full text-center font-bold py-4 px-6 rounded-full text-lg transition-transform hover:scale-105 mt-8 block" href="sign-up.html"> Create Free Account </a>
 </div>
 </section>
-<section class="py-16 px-4 bg-background-light dark:bg-background-dark">
+
+<section class="py-20 md:py-16 px-4 bg-background-light dark:bg-background-dark">
 <div class="max-w-4xl mx-auto flex flex-col gap-12">
 <div class="text-center">
-<h2 class="text-4xl md:text-5xl font-bold tracking-wide">Why choose LULA?</h2>
-<p class="text-text-muted-light dark:text-text-muted-dark mt-2 max-w-2xl mx-auto">Experience banking that is simple, secure, and designed for you.</p>
+<h2 class="text-4xl md:text-5xl font-bold tracking-wide" data-i18n="whyChooseTitle">Why choose LULA?</h2>
+<p class="text-text-muted-light dark:text-text-muted-dark mt-2 max-w-2xl mx-auto" data-i18n="whyChooseSubtitle">Experience banking that is simple, secure, and designed for you.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<div class="flex flex-col gap-4 text-center items-center">
-<div class="w-full aspect-square rounded-xl bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6XIGhoYQxsVnTnVfpqAcAyYUiCxgaQ4lZKwinZgEwyfxcVz8wY9Nd6oRhJZKoO0UYGWz4z9r3Qt9K7VX_lYaueD5sSLTg33YsFJpCJLj-UWarYuZV8IazFcy3ozwIgila6c02kgRBZC0d3PZonMjCNAokSBmcTyaTftrErioXeJXinqypt2-u9hdYBTJ3O6vRZVKNIvdwsLdFyTu-QLyqFC3kPknTMLlD6EBbJyRJZ6MEWnXnaq0tuC99IRFb-4jbrl7M84sHRQue");'></div>
-<h3 class="font-bold text-lg">Fast and secure</h3>
-<p class="text-text-muted-light dark:text-text-muted-dark text-sm">Your money is protected with industry-leading security measures.</p>
+<div class="flex flex-col gap-4 text-center items-center reveal slide-up">
+<div class="relative w-full aspect-square duotone duotone--blue">
+  <img 
+    src="images/white-businessman.jpeg" 
+    alt="Real exchange rates illustration"
+    class="absolute inset-0 w-full h-full object-cover rounded-xl hover:scale-[1.02] transition-transform duration-300" 
+    loading="lazy" decoding="async" width="1024" height="1024"
+  srcset="images/white-businessman.jpeg 1024w"
+    sizes="(min-width: 768px) 33vw, 100vw" />
+  <div class="absolute inset-0 rounded-xl ring-1 ring-white/40 dark:ring-white/10" aria-hidden="true"></div>
 </div>
-<div class="flex flex-col gap-4 text-center items-center">
-<div class="w-full aspect-square rounded-xl bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCzJjwjwRgYoBn4vR3LFz27etJFBRqFSYPinlW0HixyPX70AW5CJhQNzAHhuR_0qr-m0Aie2cT5nfIz_4dFd5kGGi0EwHPXb_Z8sm0MniD-cKJ3DVBS_eQupOdRuCmsaK3mhYLmO7qe96RNnbKFjY9lz1mDUjmT5ptDPsdtqCpvhDLL3FDTzGFh26BQtkcImbxPZ1veacMd-xQtBnfPNd5oxqyAB3Zv3Um-zYyYjAXq4Fp35wYWcnPs_8Z5WGHraF8APXBE3FBK4Lg0");'></div>
-<h3 class="font-bold text-lg">No hidden fees</h3>
-<p class="text-text-muted-light dark:text-text-muted-dark text-sm">We believe in transparency. No surprises, just simple fees.</p>
+<h3 class="font-bold text-lg" data-i18n="why1Title">Real exchange rates</h3>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm" data-i18n="why1Desc">Always get the mid-market rate with no hidden markups.</p>
 </div>
-<div class="flex flex-col gap-4 text-center items-center">
-<div class="w-full aspect-square rounded-xl bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCXdhxVLWZRy4calFWa9msBffor3o8h_658d2uOYB5QcxIztZW0u389FYEmSJYfTQg6S2_n7AgrA-qxCdzrTTXWCKfAae9XO0gDxEpY6rYC36GZFy_BIuXWvXMxq0iYN83lbxF8XWZo49ZH_W7LA5YDvdD1Ea80cxqoR0bFBV2x1yhj9ndMk3wmbfRrbiYZVJdJVimk7MM_AAf5OhdrtUcHiwmTjjfLEDo1s31mZFj1rf-F2nnBhNnuc5NeLTBnApWWU3wNmNAZYEv4");'></div>
-<h3 class="font-bold text-lg">24/7 support</h3>
-<p class="text-text-muted-light dark:text-text-muted-dark text-sm">Our support team is here for you whenever you need assistance.</p>
+<div class="flex flex-col gap-4 text-center items-center reveal slide-up delay-1">
+<div class="relative w-full aspect-square duotone duotone--yellow">
+  <img 
+    src="images/black-girl-student.jpeg" 
+    alt="Transparent fees illustration"
+    class="absolute inset-0 w-full h-full object-cover rounded-xl hover:scale-[1.02] transition-transform duration-300" 
+    loading="lazy" decoding="async" width="1024" height="1024"
+  srcset="images/black-girl-student.jpeg 1024w"
+    sizes="(min-width: 768px) 33vw, 100vw" />
+  <div class="absolute inset-0 rounded-xl ring-1 ring-white/40 dark:ring-white/10" aria-hidden="true"></div>
+</div>
+<h3 class="font-bold text-lg" data-i18n="why2Title">Low, transparent fees</h3>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm" data-i18n="why2Desc">No surprises, just fair fees shown upfront.</p>
+</div>
+<div class="flex flex-col gap-4 text-center items-center reveal slide-up delay-2">
+<div class="relative w-full aspect-square duotone duotone--orange">
+  <img 
+    src="images/black-grandmother.jpeg" 
+    alt="Fast transfers illustration"
+    class="absolute inset-0 w-full h-full object-cover rounded-xl hover:scale-[1.02] transition-transform duration-300" 
+    loading="lazy" decoding="async" width="1024" height="1024"
+  srcset="images/black-grandmother.jpeg 1024w"
+    sizes="(min-width: 768px) 33vw, 100vw" />
+  <div class="absolute inset-0 rounded-xl ring-1 ring-white/40 dark:ring-white/10" aria-hidden="true"></div>
+</div>
+<h3 class="font-bold text-lg" data-i18n="why3Title">Fast transfers</h3>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm" data-i18n="why3Desc">Choose your speed - from minutes to a few days.</p>
 </div>
 </div>
 </div>
 </section>
-<section class="py-20 px-4 bg-primary/10 dark:bg-primary/5">
-  <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
-    <h2 class="text-4xl md:text-5xl font-bold tracking-wide">Ready to take control?</h2>
-    <p class="text-text-muted-light dark:text-text-muted-dark max-w-xl">Join thousands of users who trust LULA for their financial needs.</p>
-    <a class="bg-primary text-contrast-on-primary font-bold py-3 px-6 rounded-full text-lg transition-transform hover:scale-105 mt-2" href="sign-up.html"> Get started </a>
-    <!-- Reviews Button Start -->
-    <a href="#reviews"
-       class="inline-flex items-center gap-2 bg-white dark:bg-background-dark border border-primary text-primary font-bold py-3 px-6 rounded-full text-lg shadow transition-transform hover:scale-105 mt-2 hover:bg-primary/10 dark:hover:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-      <span class="material-symbols-outlined text-xl">star_rate</span>
-      <span>See Reviews</span>
-    </a>
-    <!-- Reviews Button End -->
+<section class="py-24 md:py-20 px-4 bg-[#9FE870]/10">
+  <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-6 reveal slide-up">
+    <h2 class="text-4xl md:text-5xl font-bold tracking-wide" data-i18n="ctaTitle">Ready to take control?</h2>
+    <p class="text-text-muted-light dark:text-text-muted-dark max-w-xl" data-i18n="whyChooseSubtitle">Join thousands of users who trust LULA for their financial needs.</p>
+  <a class="btn-dark transition-transform hover:scale-105 mt-2" href="sign-up.html" data-i18n="ctaGetStarted"> Get started </a>
+    
+    
   </div>
 </section>
 <!-- Reviews Section Start -->
-<section id="reviews" class="py-20 px-4 bg-white dark:bg-background-dark border-t border-primary/20">
-  <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-10">
-    <h2 class="text-3xl md:text-4xl font-bold tracking-wide text-black dark:text-black mb-4">What our users say</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-      <div class="bg-background-light dark:bg-surface-dark rounded-xl shadow p-6 flex flex-col items-center">
-        <span class="material-symbols-outlined text-primary text-4xl mb-2">format_quote</span>
-        <p class="text-lg font-medium mb-4">"LULA made sending money so easy and fast. Highly recommended!"</p>
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star_half</span>
-        </div>
-        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">— Tinashe M.</p>
-      </div>
-      <div class="bg-background-light dark:bg-surface-dark rounded-xl shadow p-6 flex flex-col items-center">
-        <span class="material-symbols-outlined text-primary text-4xl mb-2">format_quote</span>
-        <p class="text-lg font-medium mb-4">"No hidden fees and great support. I love the transparency."</p>
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-        </div>
-        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">— Amanda K.</p>
-      </div>
-      <div class="bg-background-light dark:bg-surface-dark rounded-xl shadow p-6 flex flex-col items-center">
-        <span class="material-symbols-outlined text-primary text-4xl mb-2">format_quote</span>
-        <p class="text-lg font-medium mb-4">"The app is super intuitive and the card features are a game changer."</p>
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-          <span class="material-symbols-outlined text-yellow-400">star</span>
-        </div>
-        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">— Brian D.</p>
-      </div>
+<section id="reviews" class="py-24 md:py-20 px-4 bg-white dark:bg-background-dark border-t border-primary/20">
+  <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
+  <h2 class="text-3xl md:text-4xl font-bold tracking-wide" data-i18n="reviewsTitle">What our users say</h2>
+  <div class="flex items-center justify-center gap-2 text-gray-700 dark:text-gray-200 reveal slide-up" aria-label="Average rating 4.6 out of 5" data-i18n-attr="aria-label:reviewsAriaAvg">
+      <span class="material-symbols-outlined text-yellow-400">star</span>
+      <span class="material-symbols-outlined text-yellow-400">star</span>
+      <span class="material-symbols-outlined text-yellow-400">star</span>
+      <span class="material-symbols-outlined text-yellow-400">star</span>
+      <span class="material-symbols-outlined text-yellow-400">star_half</span>
+  <span class="text-sm ml-1" data-i18n="reviewsAvgText">Rated 4.6/5 on Trustpilot</span>
+    </div>
+    <div id="reviewsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full"></div>
+    <div id="reviewsPagination" class="flex items-center justify-center gap-3 mt-6">
+      <button id="reviewsPrevBtn" class="pager-btn" aria-label="Previous reviews" data-i18n-attr="aria-label:reviewsPrevAria">
+        <span class="material-symbols-outlined text-base">chevron_left</span>
+      </button>
+      <div id="reviewsDots" class="pager-dots"></div>
+      <button id="reviewsNextBtn" class="pager-btn" aria-label="Next reviews" data-i18n-attr="aria-label:reviewsNextAria">
+        <span class="material-symbols-outlined text-base">chevron_right</span>
+      </button>
     </div>
   </div>
 </section>
 <!-- Reviews Section End -->
+  <!-- Partners strip -->
+  <section class="px-4 py-12 bg-white dark:bg-background-dark border-t border-white/30 dark:border-white/10">
+    <div class="max-w-5xl mx-auto glass neo-edge accent-glow rounded-2xl ring-1 ring-white/30 dark:ring-white/10 p-6 md:p-8 flex flex-col md:flex-row items-stretch gap-8">
+      <!-- Left: Heading and CTA -->
+      <div class="flex-1 flex flex-col gap-3">
+        <div class="inline-flex items-center gap-2 rounded-full bg-primary/20 text-ink px-3 py-1 text-[11px] font-bold w-max">
+          <span class="material-symbols-outlined text-primary text-base" aria-hidden="true">handshake</span>
+          <span data-i18n="partnersTitle">For partners</span>
+        </div>
+        <p class="text-sm text-gray-700 dark:text-gray-300 max-w-prose" data-i18n="partnersSubtitle">Work with LULA to bring fair, fast finance to your customers.</p>
+        <div class="mt-1">
+          <a href="mailto:partners@lula.example" class="btn-dark inline-flex items-center gap-2" data-i18n="partnersCta">
+            Partner with us
+            <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+      <!-- Right: Feature chips -->
+      <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+        <div class="step-card">
+          <div class="flex items-start gap-3">
+            <div class="step-icon">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">verified</span>
+            </div>
+            <p class="text-sm text-gray-700 dark:text-gray-300" data-i18n="partnersCompliance">Compliance-first: KYC/AML and policy controls</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="flex items-start gap-3">
+            <div class="step-icon">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">shield</span>
+            </div>
+            <p class="text-sm text-gray-700 dark:text-gray-300" data-i18n="partnersRegulated">Regulated providers and safeguarded funds</p>
+          </div>
+        </div>
+        <div class="step-card sm:col-span-2">
+          <div class="flex items-start gap-3">
+            <div class="step-icon">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">monitor_heart</span>
+            </div>
+            <p class="text-sm text-gray-700 dark:text-gray-300" data-i18n="partnersUptime">Reliable platform and real-time tracking</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 <footer class="bg-background-light dark:bg-background-dark py-12 px-4">
 <div class="max-w-5xl mx-auto flex flex-col items-center gap-8">
+<p class="text-xs text-gray-600 dark:text-gray-400 text-center max-w-3xl">
+  <span data-i18n="footerSafeguard">LULA partners with regulated providers; your funds are safeguarded in line with applicable laws.</span>
+  <a href="#protection" class="underline hover:text-primary" data-i18n="protectionTitle">How your money is protected</a>.
+</p>
 <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
-<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="privacy-policy.html">Privacy Policy</a>
-<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="terms-of-service.html">Terms of Service</a>
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="privacy-policy.html" data-i18n="footerPrivacy">Privacy Policy</a>
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="terms-of-service.html" data-i18n="footerTerms">Terms of Service</a>
+    <a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="#reviews" data-i18n="ctaSeeReviews">See Reviews</a>
 <a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" 
    href="https://wa.me/263777374641?text=Hello%2C%20I%E2%80%99m%20interested%20in%20your%20services" 
    target="_blank">
-  Contact Us
+  <span data-i18n="footerContact">Contact Us</span>
 </a>
 </div>
 <div class="flex justify-center gap-6">
@@ -202,7 +904,7 @@
 </a>
 <a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="#">
 <svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"></path>
+<path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80a40,40,0,0,1,40-40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"></path>
 </svg>
 </a>
 <a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary" href="#">
@@ -211,19 +913,1283 @@
 </svg>
 </a>
 </div>
-<p class="text-text-muted-light dark:text-text-muted-dark text-sm">© 2025 LULA. All rights reserved.</p>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm" data-i18n="footerCopyright">© 2025 LULA. All rights reserved.</p>
 </div>
 </footer>
 </div>
 
-<!-- Floating WhatsApp Button -->
-<a href="https://wa.me/263777374641?text=Hello%2C%20I%E2%80%99m%20interested%20in%20your%20services" 
-   target="_blank"
-   class="fixed bottom-6 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 transition">
-  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="28" height="28" viewBox="0 0 256 256">
-    <path d="M128,24A104,104,0,0,0,24,128a103.34,103.34,0,0,0,15.44,54.76L24.58,231.42a8,8,0,0,0,10,10l48.66-15.06A103.34,103.34,0,0,0,128,232h0a104,104,0,0,0,0-208Zm0,192a87.51,87.51,0,0,1-45.11-12.42,8,8,0,0,0-6.94-.63l-36.8,11.39 11.39-36.8a8,8,0,0,0-.63-6.94A87.51,87.51,0,1,1,128,216Zm39.59-64.79c-2.17-1.09-12.8-6.34-14.77-7.06s-3.42-1.09-4.86,1.09-5.6,7.06-6.86,8.54-2.51,1.63-4.68.54a71.36,71.36,0,0,1-21-12.92,77.65,77.65,0,0,1-14.29-17.69c-1.17-2,0-3.11.88-4.19s2-2.51,3-3.77a15.48,15.48,0,0,0,2-3.37,3.75,3.75,0,0,0-.17-3.63c-.5-1.09-4.86-11.7-6.66-16.07s-3.53-3.52-4.86-3.58a9.58,9.58,0,0,0-4.11,0,7.86,7.86,0,0,0-5.6,2.6,23.72,23.72,0,0,0-7.46,17.58c0,10.36,7.6,20.39,8.68,21.75s15,23.07,36.29,32.33c5.08,2.19,9,3.5,12.07,4.48a29,29,0,0,0,13.36.83c4.08-.61,12.8-5.23,14.6-10.28s1.8-9.37,1.26-10.28S169.74,152.33,167.59,151.21Z"/>
-  </svg>
-</a>
-<!-- End Floating WhatsApp Button -->
+<!-- Floating WhatsApp Support -->
+<div class="fixed right-6 flex items-center gap-2" style="bottom: calc(1.5rem + env(safe-area-inset-bottom));">
+  <span class="px-3 py-1 rounded-full bg-white text-gray-800 text-xs shadow border border-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:border-white/10" data-i18n="supportPill">Support</span>
+  <a href="https://wa.me/263777374641?text=Hello%2C%20I%E2%80%99m%20interested%20in%20your%20services" 
+    target="_blank"
+    class="w-14 h-14 flex items-center justify-center rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 transition focus:outline-none focus:ring-2 focus:ring-green-300"
+    data-i18n-attr="aria-label:whatsappAria,title:whatsappAria"
+    aria-label="Chat with us on WhatsApp"
+    title="Chat with us on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="28" height="28" viewBox="0 0 256 256" aria-hidden="true">
+      <path d="M128,24A104,104,0,0,0,24,128a103.34,103.34,0,0,0,15.44,54.76L24.58,231.42a8,8,0,0,0,10,10l48.66-15.06A103.34,103.34,0,0,0,128,232h0a104,104,0,0,0,0-208Zm0,192a87.51,87.51,0,0,1-45.11-12.42,8,8,0,0,0-6.94-.63l-36.8,11.39 11.39-36.8a8,8,0,0,0-.63-6.94A87.51,87.51,0,1,1,128,216Zm39.59-64.79c-2.17-1.09-12.8-6.34-14.77-7.06s-3.42-1.09-4.86,1.09-5.6,7.06-6.86,8.54-2.51,1.63-4.68.54a71.36,71.36,0,0,1-21-12.92,77.65,77.65,0,0,1-14.29-17.69c-1.17-2,0-3.11.88-4.19s2-2.51,3-3.77a15.48,15.48,0,0,0,2-3.37,3.75,3.75,0,0,0-.17-3.63c-.5-1.09-4.86-11.7-6.66-16.07s-3.53-3.52-4.86-3.58a9.58,9.58,0,0,0-4.11,0,7.86,7.86,0,0,0-5.6,2.6,23.72,23.72,0,0,0-7.46,17.58c0,10.36,7.6,20.39,8.68,21.75s15,23.07,36.29,32.33c5.08,2.19,9,3.5,12.07,4.48a29,29,0,0,0,13.36.83c4.08-.61,12.8-5.23,14.6-10.28s1.8-9.37,1.26-10.28S169.74,152.33,167.59,151.21Z"/>
+    </svg>
+  </a>
+</div>
+<!-- End Floating WhatsApp Support -->
+
+<!-- Font switcher removed per request -->
+
+<script>
+// Font switcher removed per request
+
+// Rate calculator functionality
+const exchangeRates = {
+  'USD': { 'EUR': 1.35, 'GBP': 0.85, 'CAD': 1.45, 'AUD': 1.55, 'JPY': 110, 'ZWL': 400, 'RUB': 78.62 },
+  'EUR': { 'USD': 0.74, 'GBP': 0.63, 'CAD': 1.07, 'AUD': 1.15, 'JPY': 81, 'ZWL': 296 },
+  'GBP': { 'USD': 1.18, 'EUR': 1.59, 'CAD': 1.71, 'AUD': 1.83, 'JPY': 129, 'ZWL': 472 },
+  'CAD': { 'USD': 0.69, 'EUR': 0.93, 'GBP': 0.58, 'AUD': 0.93, 'JPY': 76, 'ZWL': 276 },
+  'AUD': { 'USD': 0.65, 'EUR': 0.87, 'GBP': 0.55, 'CAD': 0.93, 'JPY': 71, 'ZWL': 258 },
+  'JPY': { 'USD': 0.0091, 'EUR': 0.012, 'GBP': 0.0077, 'CAD': 0.013, 'AUD': 0.014, 'ZWL': 3.64 },
+  'ZWL': { 'USD': 0.0025, 'EUR': 0.0034, 'GBP': 0.0021, 'CAD': 0.0036, 'AUD': 0.0039, 'JPY': 0.27 },
+  'RUB': { 'USD': 0.01272 }
+};
+
+const flagUrls = {
+  // Use Zimbabwe flag alongside USD as requested
+  'USD': 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Flag_of_Zimbabwe.svg',
+  'RUB': 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg'
+};
+
+let currentFromCurrency = 'USD';
+let currentToCurrency = 'RUB';
+let baseTransferFeePercent = 0.02; // default 2% bank fee (overridden by methods)
+let speedFee = 0.00; // computed from percentage
+let currentSpeedPercent = 0.05; // default express 5%
+// Spin animation is applied on next recompute when user selects a method
+// Removed spin flag per request; we only tween numbers now
+
+const currencySymbols = {
+  'USD': '$',
+  'EUR': '€',
+  'GBP': '£',
+  'JPY': '¥',
+  'CAD': '$',
+  'AUD': '$',
+  'ZWL': 'Z$',
+  'RUB': '₽'
+};
+
+// Methods configuration decoupled: payment by SOURCE currency, collection by DESTINATION currency
+const paymentMethodsBySource = {
+  // Zimbabwe (USD) should always have Mobile Money as an option
+  USD: ['methodBank', 'methodMobileMoney', 'methodCashPickup'],
+  // Russia (RUB) sending side does not have Mobile Money
+  RUB: ['methodBank', 'methodCashPickup']
+};
+const collectionMethodsByDest = {
+  // Zimbabwe (USD) destination supports Mobile Money for collection
+  USD: ['methodBank', 'methodMobileMoney', 'methodCashPickup'],
+  // Russia (RUB) destination has no Mobile Money
+  RUB: ['methodBank', 'methodCashPickup']
+};
+const defaultPaymentBySource = {
+  USD: 'methodCashPickup',
+  RUB: 'methodBank'
+};
+const defaultCollectionByDest = {
+  USD: 'methodCashPickup',
+  RUB: 'methodBank'
+};
+let selectedPaymentMethod = null;
+let selectedCollectionMethod = null;
+let lastMethodsPair = { from: null, to: null }; // track last pair for rerender
+
+function formatAmount(value, currencyCode, locale) {
+  try {
+    const fmt = new Intl.NumberFormat(locale || getLocale(), { style: 'currency', currency: currencyCode, minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return fmt.format(Number(value));
+  } catch (e) {
+    // Fallback to symbol + fixed if Intl fails
+    const sym = currencySymbols[currencyCode] || '';
+    return `${sym}${Number(value).toFixed(2)}`;
+  }
+}
+
+// Simple i18n strings
+const i18n = {
+  en: {
+    howWorksTitle: 'How it works',
+    howItWorks: 'How it works',
+    signIn: 'Sign In',
+    androidApp: 'Android app',
+    iosApp: 'iOS app',
+    downloadApp: 'Download app',
+    heroTitle: 'Your money, your way.',
+    heroSubtitle: 'One app for all your financial needs. Simple, fast, secure.',
+    youSend: 'You send',
+    theyGet: 'They get',
+    rateLabel: 'Rate',
+    bankFee: 'Bank fee',
+    ourFee: 'Our fee',
+    totalToPay: 'Total to pay',
+    speedStandard: 'Standard',
+    speedStandardTime: '1-3 days',
+    speedExpress: 'Express',
+    speedExpressTime: 'Under 1 day',
+    speedInstant: 'Instant',
+    speedInstantTime: 'Minutes',
+    startTransfer: 'Start your transfer',
+  paymentMethodLabel: 'Payment method',
+  collectionMethodLabel: 'Collection method',
+  methodBankCard: 'Bank card',
+  methodBank: 'Bank',
+  methodCashPickup: 'Cash',
+  methodMobileMoney: 'Mobile Money',
+  payingWith: 'Paying with',
+  collectingWith: 'Collecting with',
+  change: 'Change',
+  step1Title: 'Get a quote',
+  step1Desc: 'Enter amount and destination for a real-time rate.',
+  step2Title: 'Add a recipient',
+  step2Desc: 'Add your recipient’s details securely.',
+  step3Title: 'Pay',
+  step3Desc: 'Choose a payment method and pay.',
+  notesNotifications: "You'll get notifications when your order is approved and when it's completed.",
+  notesTracking: 'You can track your order at any time.',
+  ctaHelper: 'Enter an amount to continue.',
+  step4Title: 'Track your order',
+  step4Desc: 'Track your transaction in real-time from start to finish.',
+  step5Title: 'Money delivered',
+  step5Desc: 'Get confirmation when your money reaches the recipient.',
+    getStartedSectionTitle: 'More than just transfers',
+    getStartedSendMoney: 'Send Money',
+    getStartedBuyData: 'Buy Data',
+    getStartedDebitCard: 'Debit Card',
+    getStartedGetCoupons: 'Get Coupons',
+    createFreeAccount: 'Create Free Account',
+    whyChooseTitle: 'Why choose LULA?',
+    whyChooseSubtitle: 'Experience banking that is simple, secure, and designed for you.',
+    why1Title: 'Real exchange rates',
+    why1Desc: 'Always get the mid-market rate with no hidden markups.',
+    why2Title: 'Low, transparent fees',
+    why2Desc: 'No surprises, just fair fees shown upfront.',
+    why3Title: 'Fast transfers',
+    why3Desc: 'Choose your speed - from minutes to a few days.',
+  ctaTitle: 'Ready to take control?',
+    ctaGetStarted: 'Get started',
+  menuLabel: 'Menu',
+    ctaSeeReviews: 'See Reviews',
+    reviewsTitle: 'What our users say',
+    review1Text: '"LULA made sending money so easy and fast. Highly recommended!"',
+    review1Author: '— Tinashe M.',
+    review2Text: '"No hidden fees and great support. I love the transparency."',
+    review2Author: '— Amanda K.',
+  review3Text: '"The app is super intuitive and the card features are a game changer."',
+  review3Author: '— Brian D.',
+  review4Text: 'Fast, fair, and reliable — my go-to for cross-border transfers.',
+  review4Author: '— Kuda N.',
+  review5Text: 'Clean design and transparent pricing. Love the experience.',
+  review5Author: '— Olga S.',
+  review6Text: 'Support was super helpful when I had a question. A+',
+  review6Author: '— Tariro P.',
+  review7Text: 'The debit card integration is seamless. Highly recommend.',
+  review7Author: '— Lesedi M.',
+  reviewsAriaAvg: 'Average rating 4.6 out of 5',
+  reviewsAvgText: 'Rated 4.6/5 on Trustpilot',
+  footerSafeguard: 'LULA partners with regulated providers; your funds are safeguarded in line with applicable laws.',
+    footerPrivacy: 'Privacy Policy',
+    footerTerms: 'Terms of Service',
+    footerContact: 'Contact Us',
+    faqTitle: 'Frequently asked questions',
+    faq1Q: 'How long do transfers take?',
+    faq1A: 'Most transfers arrive within minutes on Instant, under a day on Express, and 1–3 days on Standard.',
+    faq2Q: 'What fees will I pay?',
+    faq2A: 'We show all fees upfront. Bank fees may vary by method; cash-to-cash and transfers to Russia have no bank fee.',
+    faq3Q: 'Can I track my transfer?',
+    faq3A: 'Yes. You can follow your transfer in real-time and receive notifications at each step.',
+    speedsFaqQ: 'What are the transfer speeds?',
+    speedsFaqIntro: 'Most transfers are completed within 24 hours, and we guarantee all transactions will be completed within 3 working days.',
+    speedsStandard: 'Standard: First come, first served in the queue (lowest fee).',
+    speedsExpress: 'Express: Faster processing — skip the queue (moderate fee).',
+    speedsUrgent: 'Urgent: Top priority for emergencies (highest fee).',
+    reviewsPrevAria: 'Previous reviews',
+    reviewsNextAria: 'Next reviews',
+    protectionTitle: 'How your money is protected',
+    protection1: 'Partnered with regulated providers; funds are safeguarded.',
+    protection2: 'Encryption and secure payment rails.',
+    protection3: 'Real-time tracking and notifications.',
+  protection4: 'We comply with KYC/AML requirements with trusted partners.',
+  partnersTitle: 'For partners',
+  partnersSubtitle: 'Work with LULA to bring fair, fast finance to your customers.',
+  partnersCompliance: 'Compliance-first: KYC/AML and policy controls',
+  partnersRegulated: 'Regulated providers and safeguarded funds',
+  partnersUptime: 'Reliable platform and real-time tracking',
+  partnersCta: 'Partner with us',
+  supportPill: 'Support',
+  whatsappAria: 'Chat with us on WhatsApp',
+    footerCopyright: '© 2025 LULA. All rights reserved.'
+  },
+  ru: {
+    howWorksTitle: 'Как это работает',
+    howItWorks: 'Как это работает',
+    signIn: 'Войти',
+    androidApp: 'Приложение Android',
+    iosApp: 'Приложение iOS',
+    downloadApp: 'Скачать приложение',
+    heroTitle: 'Ваши деньги — по‑вашему.',
+    heroSubtitle: 'Одно приложение для всех финансовых задач. Просто, быстро, безопасно.',
+    youSend: 'Вы отправляете',
+    theyGet: 'Они получат',
+    rateLabel: 'Курс',
+    bankFee: 'Банковская комиссия',
+    ourFee: 'Наша комиссия',
+    totalToPay: 'Итого к оплате',
+    speedStandard: 'Стандарт',
+    speedStandardTime: '1–3 дня',
+    speedExpress: 'Экспресс',
+    speedExpressTime: 'До 1 дня',
+    speedInstant: 'Мгновенно',
+    speedInstantTime: 'Минуты',
+    startTransfer: 'Начать перевод',
+  paymentMethodLabel: 'Способ оплаты',
+  collectionMethodLabel: 'Способ получения',
+  methodBankCard: 'Банковская карта',
+  methodBank: 'Банк',
+  methodCashPickup: 'Наличные',
+  methodMobileMoney: 'Мобильные деньги',
+  payingWith: 'Оплата',
+  collectingWith: 'Получение',
+  change: 'Изменить',
+    step1Title: 'Получите расчёт',
+    step1Desc: 'Введите сумму и направление, чтобы увидеть курс в реальном времени.',
+  step2Title: 'Добавьте получателя',
+  step2Desc: 'Безопасно добавьте данные получателя.',
+  step3Title: 'Оплатите',
+  step3Desc: 'Выберите способ оплаты и оплатите.',
+  notesNotifications: 'Вы получите уведомления, когда заказ будет одобрен и когда он завершится.',
+  notesTracking: 'Вы можете отслеживать заказ в любое время.',
+  ctaHelper: 'Введите сумму, чтобы продолжить.',
+    step4Title: 'Отслеживайте перевод',
+    step4Desc: 'Следите за переводом в реальном времени от начала до конца.',
+    step5Title: 'Деньги доставлены',
+    step5Desc: 'Получите подтверждение, когда деньги дойдут до получателя.',
+    getStartedSectionTitle: 'Больше, чем переводы',
+    getStartedSendMoney: 'Отправить деньги',
+    getStartedBuyData: 'Купить интернет',
+    getStartedDebitCard: 'Дебетовая карта',
+    getStartedGetCoupons: 'Получить купоны',
+    createFreeAccount: 'Создать бесплатный аккаунт',
+    whyChooseTitle: 'Почему выбирают LULA?',
+    whyChooseSubtitle: 'Банкинг, который прост, безопасен и создан для вас.',
+    why1Title: 'Реальные курсы обмена',
+    why1Desc: 'Всегда среднерыночный курс без скрытых наценок.',
+    why2Title: 'Низкие и прозрачные комиссии',
+    why2Desc: 'Никаких сюрпризов — все комиссии показаны заранее.',
+    why3Title: 'Быстрые переводы',
+    why3Desc: 'Выбирайте скорость — от минут до нескольких дней.',
+  ctaTitle: 'Готовы взять контроль?',
+    ctaGetStarted: 'Начать',
+  menuLabel: 'Меню',
+    ctaSeeReviews: 'Смотреть отзывы',
+    reviewsTitle: 'Что говорят наши пользователи',
+    review1Text: '«LULA сделала отправку денег очень простой и быстрой. Рекомендую!»',
+    review1Author: '— Тинаше М.',
+    review2Text: '«Без скрытых комиссий и отличная поддержка. Люблю прозрачность.»',
+    review2Author: '— Аманда К.',
+  review3Text: '«Приложение очень удобное, а функции карты — настоящая революция.»',
+  review3Author: '— Брайан Д.',
+  review4Text: 'Быстро, честно и надёжно — мой выбор для международных переводов.',
+  review4Author: '— Куда Н.',
+  review5Text: 'Чистый дизайн и прозрачные комиссии. Нравится опыт использования.',
+  review5Author: '— Ольга С.',
+  review6Text: 'Поддержка очень помогла, когда у меня был вопрос. Отлично!',
+  review6Author: '— Тариро П.',
+  review7Text: 'Интеграция с дебетовой картой бесшовная. Рекомендую.',
+  review7Author: '— Леседи М.',
+  reviewsAriaAvg: 'Средняя оценка 4,6 из 5',
+  reviewsAvgText: 'Рейтинг 4,6/5 на Trustpilot',
+  footerSafeguard: 'LULA сотрудничает с регулируемыми провайдерами; ваши средства защищены в соответствии с применимым законодательством.',
+    footerPrivacy: 'Политика конфиденциальности',
+    footerTerms: 'Условия обслуживания',
+    faqTitle: 'Часто задаваемые вопросы',
+    faq1Q: 'Сколько времени занимает перевод?',
+    faq1A: 'Большинство переводов приходят за минуты на «Мгновенно», менее чем за день на «Экспресс» и за 1–3 дня на «Стандарт».',
+    faq2Q: 'Какие комиссии я заплачу?',
+    faq2A: 'Мы показываем все комиссии заранее. Банковская комиссия зависит от метода; для наличных-наличные и переводов в Россию банковской комиссии нет.',
+    faq3Q: 'Могу ли я отслеживать перевод?',
+    faq3A: 'Да. Вы сможете следить за переводом в реальном времени и получать уведомления на каждом этапе.',
+    speedsFaqQ: 'Какие есть скорости перевода?',
+    speedsFaqIntro: 'Большинство переводов завершается в течение 24 часов, а также мы гарантируем выполнение в течение 3 рабочих дней.',
+    speedsStandard: 'Стандарт: Очередь «первым пришёл — первым обслужен» (наименьшая комиссия).',
+    speedsExpress: 'Экспресс: Быстрая обработка — вне очереди (средняя комиссия).',
+    speedsUrgent: 'Срочно: Высший приоритет для неотложных случаев (наибольшая комиссия).',
+    reviewsPrevAria: 'Предыдущие отзывы',
+    reviewsNextAria: 'Следующие отзывы',
+    protectionTitle: 'Как мы защищаем ваши деньги',
+    protection1: 'Сотрудничаем с регулируемыми провайдерами; средства защищены.',
+    protection2: 'Шифрование и безопасные платёжные каналы.',
+    protection3: 'Отслеживание и уведомления в реальном времени.',
+  protection4: 'Мы соблюдаем требования KYC/AML совместно с надёжными партнёрами.',
+  partnersTitle: 'Партнёрам',
+  partnersSubtitle: 'Сотрудничайте с LULA, чтобы давать клиентам быстрые и честные финансовые сервисы.',
+  partnersCompliance: 'Приоритет соответствия: KYC/AML и контроль политик',
+  partnersRegulated: 'Регулируемые провайдеры и защищённые средства',
+  partnersUptime: 'Надёжная платформа и отслеживание в реальном времени',
+  partnersCta: 'Сотрудничать с нами',
+  supportPill: 'Поддержка',
+  whatsappAria: 'Напишите нам в WhatsApp',
+    
+    // Keep the year and brand literal to match original text
+    footerCopyright: '© 2025 LULA. Все права защищены.'
+  }
+};
+let currentLang = 'en';
+
+function applyTranslations(lang) {
+  const dict = i18n[lang] || i18n.en;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) el.textContent = dict[key];
+  });
+  // Translate attributes using data-i18n-attr="attr:key,attr2:key2"
+  document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+    const mappings = (el.getAttribute('data-i18n-attr') || '').split(',');
+    mappings.forEach(pair => {
+      const [attr, key] = pair.split(':').map(s => s && s.trim());
+      if (attr && key && dict[key]) {
+        el.setAttribute(attr, dict[key]);
+      }
+    });
+  });
+  // Set document language attribute
+  document.documentElement.setAttribute('lang', lang);
+  // Update language button flag/code
+  const btnFlag = document.getElementById('langBtnFlag');
+  const codeEl = document.getElementById('langCode');
+  if (btnFlag && codeEl) {
+    if (lang === 'ru') {
+      btnFlag.src = 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg';
+      codeEl.textContent = 'RU';
+    } else {
+      btnFlag.src = 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg';
+      codeEl.textContent = 'EN';
+    }
+  }
+}
+
+// Number formatting helpers (locale-aware formatting on blur)
+function unformatInput(input) {
+  if (!input) return;
+  input.value = String(input.value).replace(/[\s,]/g, '');
+}
+function formatInput(input, decimals = 2) {
+  if (!input) return;
+  const raw = parseFloat(String(input.value).replace(/[^0-9.-]/g, ''));
+  if (isNaN(raw)) return;
+  const fmt = new Intl.NumberFormat(currentLang === 'ru' ? 'ru-RU' : 'en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  input.value = fmt.format(raw);
+}
+
+// Smoothly tween numbers in text elements
+function tweenNumber(el, target, decimals = 2, duration = 450) {
+  if (!el) return;
+  const parse = (t) => {
+    const n = parseFloat(String(t).replace(/[^0-9.-]/g, ''));
+    return isNaN(n) ? 0 : n;
+  };
+  const start = parse(el.textContent);
+  const end = typeof target === 'number' ? target : parse(target);
+  const startTime = performance.now();
+  const ease = (t) => 1 - Math.pow(1 - t, 3); // easeOutCubic
+  function frame(now) {
+    const p = Math.min(1, (now - startTime) / duration);
+    const val = start + (end - start) * ease(p);
+    el.textContent = val.toFixed(decimals);
+    if (p < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+// Tween currency textContent with locale-aware formatting
+function tweenCurrency(el, target, currencyCode, locale, decimals = 2, duration = 420) {
+  if (!el) return;
+  const parse = (t) => {
+    const n = parseFloat(String(t).replace(/[^0-9.-]/g, ''));
+    return isNaN(n) ? 0 : n;
+  };
+  const start = parse(el.textContent);
+  const end = typeof target === 'number' ? target : parse(target);
+  if (isNaN(start) || isNaN(end)) {
+    el.textContent = formatAmount(end || 0, currencyCode, locale || getLocale());
+    return;
+  }
+  const startTime = performance.now();
+  const ease = (t) => t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2; // easeInOutQuad
+  function frame(now) {
+    const p = Math.min(1, (now - startTime) / duration);
+    const val = start + (end - start) * ease(p);
+    el.textContent = formatAmount(Number(val), currencyCode, locale || getLocale());
+    if (p < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+// Flash an updated field with subtle highlight
+function flashUpdate(el, text) {
+  if (!el) return;
+  el.classList.add('number-tween');
+  el.textContent = text;
+  el.classList.remove('flash-updated');
+  void el.offsetWidth; // reflow to restart animation
+  el.classList.add('flash-updated');
+  setTimeout(() => el.classList.remove('flash-updated'), 320);
+}
+
+// Flash-highlight an element without changing its text
+function highlightElement(el) {
+  if (!el) return;
+  el.classList.add('number-tween');
+  el.classList.remove('flash-updated');
+  void el.offsetWidth;
+  el.classList.add('flash-updated');
+  setTimeout(() => el.classList.remove('flash-updated'), 320);
+}
+
+// Animate input value changes when not focused (e.g., receive field)
+function animateInputValue(inputEl, target, decimals = 2, duration = 350, locale = 'en-US') {
+  if (!inputEl) return;
+  const current = parseFloat(inputEl.value || '0');
+  const end = typeof target === 'number' ? target : parseFloat(target || '0');
+  if (isNaN(current) || isNaN(end)) {
+    const fmt = new Intl.NumberFormat(locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    inputEl.value = fmt.format(end || 0);
+    return;
+  }
+  const startTime = performance.now();
+  const ease = (t) => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; // easeInOutQuad
+  function frame(now) {
+    const p = Math.min(1, (now - startTime) / duration);
+    const val = current + (end - current) * ease(p);
+    const fmt = new Intl.NumberFormat(locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    inputEl.value = fmt.format(Number(val));
+    if (p < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+function getLocale() {
+  return currentLang === 'ru' ? 'ru-RU' : 'en-US';
+}
+
+function updateConversion() {
+  const sendRaw = document.getElementById('sendAmount').value;
+  const sendAmount = parseFloat(String(sendRaw).replace(/[^0-9.-]/g, '')) || 0;
+  const rate = (exchangeRates[currentFromCurrency] && exchangeRates[currentFromCurrency][currentToCurrency]) ? exchangeRates[currentFromCurrency][currentToCurrency] : 1;
+  const receiveAmount = (sendAmount * rate).toFixed(2);
+  // compute speed fee based on current percent
+  speedFee = sendAmount * currentSpeedPercent;
+  // compute bank fee depending on selected methods
+  const cashKey = 'methodCashPickup';
+  let effectiveBankFeePercent = baseTransferFeePercent;
+  // No bank fees when destination is Russia (RUB)
+  if (currentToCurrency === 'RUB') {
+    effectiveBankFeePercent = 0;
+  } else if (selectedPaymentMethod === cashKey && selectedCollectionMethod === cashKey) {
+    // Cash to Cash has no bank fee
+    effectiveBankFeePercent = 0;
+  }
+  const bankFee = sendAmount * effectiveBankFeePercent;
+  const totalPay = (sendAmount + bankFee + speedFee).toFixed(2);
+
+  const receiveInputEl = document.getElementById('receiveAmount');
+  // Don't overwrite the user's typing in the receive input; only set when not focused
+  if (receiveInputEl && document.activeElement !== receiveInputEl) {
+    animateInputValue(receiveInputEl, receiveAmount, 2, 350, getLocale());
+  }
+  // Squish effect on 'They get' card on recalculation
+  const theyCard = document.getElementById('theyGetCard');
+  if (theyCard) {
+    theyCard.classList.remove('squish-once');
+    void theyCard.offsetWidth;
+    theyCard.classList.add('squish-once');
+  }
+  tweenNumber(document.getElementById('exchangeRate'), rate, 4);
+  const rateDisplayEl = document.getElementById('rateDisplay');
+  if (rateDisplayEl) tweenNumber(rateDisplayEl, rate, 4);
+  const locale = getLocale();
+  const totalEl = document.getElementById('totalPay');
+  const speedEl = document.getElementById('speedFeeDisplay');
+  const bankEl = document.getElementById('transferFeeDisplay');
+  if (totalEl) { tweenCurrency(totalEl, Number(totalPay), currentFromCurrency, locale); highlightElement(totalEl); }
+  if (speedEl) { tweenCurrency(speedEl, speedFee, currentFromCurrency, locale); highlightElement(speedEl); }
+  if (bankEl) { tweenCurrency(bankEl, bankFee, currentFromCurrency, locale); highlightElement(bankEl); }
+  // rotation effect removed; just tween values
+  document.getElementById('toCurrency').textContent = currentToCurrency;
+  // Refresh method options only when pair changes
+  if (lastMethodsPair.from !== currentFromCurrency || lastMethodsPair.to !== currentToCurrency) {
+    renderMethodOptions(currentFromCurrency, currentToCurrency);
+    lastMethodsPair = { from: currentFromCurrency, to: currentToCurrency };
+  }
+  // Update speed card amounts with current symbol and current input amount
+  updateSpeedCardAmounts(currentFromCurrency, sendAmount, locale);
+
+  // Enable/disable CTA
+  const cta = document.getElementById('startTransferBtn');
+  const helper = document.getElementById('ctaHelper');
+  if (cta && helper) {
+    if (sendAmount > 0) {
+      cta.removeAttribute('disabled');
+      helper.classList.add('hidden');
+    } else {
+      cta.setAttribute('disabled', '');
+      helper.classList.remove('hidden');
+    }
+  }
+
+  // Keep cards equal height after content changes
+  equalizeCardsHeight();
+
+  // Typing pulse
+  const sendInputEl = document.getElementById('sendAmount');
+  if (document.activeElement === sendInputEl) {
+    sendInputEl.classList.remove('pulse-on-input');
+    // Force reflow to restart animation
+    void sendInputEl.offsetWidth;
+    sendInputEl.classList.add('pulse-on-input');
+  }
+}
+
+function updateFromReceive() {
+  const receiveEl = document.getElementById('receiveAmount');
+  const raw = String(receiveEl.value).replace(/[^0-9.-]/g, '');
+  const rate = (exchangeRates[currentFromCurrency] && exchangeRates[currentFromCurrency][currentToCurrency]) ? exchangeRates[currentFromCurrency][currentToCurrency] : 1;
+  if (raw === '') {
+    // Mirror empty state and recompute as zero
+    document.getElementById('sendAmount').value = '';
+    updateConversion();
+    return;
+  }
+  const receiveAmount = parseFloat(raw) || 0;
+  // derive send amount from receive and recompute fees
+  const sendAmount = receiveAmount / rate;
+  document.getElementById('sendAmount').value = sendAmount.toFixed(2);
+  updateConversion();
+
+  // Typing pulse
+  if (document.activeElement === receiveEl) {
+    receiveEl.classList.remove('pulse-on-input');
+    void receiveEl.offsetWidth;
+    receiveEl.classList.add('pulse-on-input');
+  }
+}
+
+// Quick amount chip handler
+function setSendAmount(val) {
+  const input = document.getElementById('sendAmount');
+  if (!input) return;
+  input.value = Number(val).toFixed(2).replace(/\.00$/, '');
+  updateConversion();
+  // Bring focus back to the send input for accessibility
+  input.focus();
+  input.setSelectionRange(input.value.length, input.value.length);
+}
+
+function swapCurrencies() {
+  const temp = currentFromCurrency;
+  currentFromCurrency = currentToCurrency;
+  currentToCurrency = temp;
+  updateConversion();
+  
+  // Update button flags and labels
+  document.getElementById('sendCurrencyButton').querySelector('img').src = flagUrls[currentFromCurrency];
+  document.getElementById('sendCurrencyButton').querySelector('span').textContent = currentFromCurrency;
+  document.getElementById('receiveCurrencyButton').querySelector('img').src = flagUrls[currentToCurrency];
+  document.getElementById('receiveCurrencyButton').querySelector('span').textContent = currentToCurrency;
+  // Refresh UI amounts with new currency symbol
+  updateConversion();
+  // Persist last pair
+  try { localStorage.setItem('lula_pair', JSON.stringify({ from: currentFromCurrency, to: currentToCurrency })); } catch (e) {}
+
+  // Trigger a tiny bounce animation on the swap button
+  const swapBtn = document.getElementById('swapButton');
+  if (swapBtn) {
+    swapBtn.classList.remove('bounce-once', 'rotate-tilt');
+    void swapBtn.offsetWidth; // reflow to restart
+    swapBtn.classList.add('bounce-once', 'rotate-tilt');
+  }
+
+  // Optional tick sound (muted by default)
+  if (shouldPlayTick()) playTick();
+
+  // Re-equalize heights after swap animations/updates
+  setTimeout(equalizeCardsHeight, 0);
+}
+
+function updateSpeedCardAmounts(currencyCode, sendAmount, locale){
+  const options = document.querySelectorAll('.speed-option');
+  options.forEach((opt) => {
+    const pct = parseFloat(opt.dataset.percent || '0');
+    const amount = sendAmount * pct;
+    const amtEl = opt.querySelector('.speed-amount');
+    if (amtEl) amtEl.textContent = formatAmount(amount, currencyCode, locale);
+  });
+}
+
+// Speed option selection
+document.addEventListener('DOMContentLoaded', function() {
+  const speedOptions = document.querySelectorAll('.speed-option');
+  // Reveal-on-scroll initialization
+  const revealEls = Array.from(document.querySelectorAll('.reveal'));
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    // Fallback: show immediately
+    revealEls.forEach(el => el.classList.add('reveal-visible'));
+  }
+  
+  speedOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      // Clear active state from all options
+      speedOptions.forEach(opt => {
+        opt.classList.remove('bg-primary/10', 'dark:bg-primary/20');
+        opt.classList.add('bg-white', 'dark:bg-gray-800');
+      });
+
+      // Set active state
+      this.classList.remove('bg-white', 'dark:bg-gray-800');
+      this.classList.add('bg-primary/10', 'dark:bg-primary/20');
+      
+  // Update current speed percent and recompute
+  currentSpeedPercent = parseFloat(this.dataset.percent || '0');
+  updateConversion();
+    });
+  });
+  
+  // Initialize with express option selected (5%)
+  const defaultOption = document.querySelector('.speed-option[data-speed="express"]') || speedOptions[1];
+  if (defaultOption) defaultOption.click();
+  // Initialize payment/collection methods based on destination currency
+  renderMethodOptions(currentFromCurrency, currentToCurrency);
+  lastMethodsPair = { from: currentFromCurrency, to: currentToCurrency };
+  
+  // Language switcher interactions
+  const langBtn = document.getElementById('langSwitcherButton');
+  const langMenu = document.getElementById('langMenu');
+  const appBtn = document.getElementById('appDownloadButton');
+  const appMenu = document.getElementById('appMenu');
+  const mobileMenuBtn = document.getElementById('mobileMenuButton');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileBackdrop = document.getElementById('mobileBackdrop');
+  const mobileClose = document.getElementById('mobileMenuClose');
+  const mobileAppToggle = document.getElementById('mobileAppToggle');
+  const mobileAppMenu = document.getElementById('mobileAppMenu');
+  const mobileAppChevron = document.getElementById('mobileAppChevron');
+  const receiveCurrencyBtn = document.getElementById('receiveCurrencyButton');
+  const receiveCurrencyMenu = document.getElementById('receiveCurrencyMenu');
+  const sendCurrencyBtn = document.getElementById('sendCurrencyButton');
+  const sendCurrencyMenu = document.getElementById('sendCurrencyMenu');
+  const sendCardEl = sendCurrencyBtn ? sendCurrencyBtn.closest('.rounded-xl') : null;
+  const receiveCardEl = receiveCurrencyBtn ? receiveCurrencyBtn.closest('.rounded-xl') : null;
+  if (langBtn && langMenu) {
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = langMenu.classList.contains('hidden');
+      langMenu.classList.toggle('hidden');
+      langBtn.setAttribute('aria-expanded', String(willOpen));
+    });
+    langMenu.querySelectorAll('[data-lang]').forEach(item => {
+      item.addEventListener('click', (e) => {
+        const lang = e.currentTarget.getAttribute('data-lang');
+        currentLang = lang;
+        try { localStorage.setItem('lula_lang', currentLang); } catch (e) {}
+        applyTranslations(currentLang);
+        langMenu.classList.add('hidden');
+      });
+    });
+    // Close on outside click
+    document.addEventListener('click', () => {
+      if (!langMenu.classList.contains('hidden')) {
+        langMenu.classList.add('hidden');
+        langBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // Global Escape handler to close open menus
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      [langMenu, appMenu, mobileMenu, receiveCurrencyMenu, sendCurrencyMenu].forEach(menu => menu && menu.classList.add('hidden'));
+      [langBtn, appBtn, mobileMenuBtn, receiveCurrencyBtn, sendCurrencyBtn].forEach(btn => btn && btn.setAttribute('aria-expanded', 'false'));
+    }
+  });
+  // App download dropdown interactions
+  if (appBtn && appMenu) {
+    appBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = appMenu.classList.contains('hidden');
+      appMenu.classList.toggle('hidden');
+      appBtn.setAttribute('aria-expanded', String(isHidden));
+      // Close other menus
+      langMenu?.classList.add('hidden');
+    });
+    // Close on outside click
+    document.addEventListener('click', () => {
+      if (!appMenu.classList.contains('hidden')) {
+        appMenu.classList.add('hidden');
+        appBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+  // Receive currency dropdown interactions
+  if (receiveCurrencyBtn && receiveCurrencyMenu) {
+    receiveCurrencyBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = receiveCurrencyMenu.classList.contains('hidden');
+      receiveCurrencyMenu.classList.toggle('hidden');
+      receiveCurrencyBtn.setAttribute('aria-expanded', String(willOpen));
+      if (willOpen) {
+        // Elevate card and menu above siblings
+        receiveCardEl?.classList.add('relative', 'z-[100]');
+        receiveCurrencyMenu.style.zIndex = '9999';
+      } else {
+        receiveCardEl?.classList.remove('z-[100]');
+        receiveCurrencyMenu.style.zIndex = '';
+      }
+    });
+    receiveCurrencyMenu.querySelectorAll('[data-curr]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const newCurr = e.currentTarget.getAttribute('data-curr');
+        if (!newCurr || newCurr === currentToCurrency) {
+          receiveCurrencyMenu.classList.add('hidden');
+          receiveCurrencyBtn.setAttribute('aria-expanded', 'false');
+          return;
+        }
+        currentToCurrency = newCurr;
+  // Update UI icon/text
+  const img = receiveCurrencyBtn.querySelector('img');
+  const codeSpan = receiveCurrencyBtn.querySelector('span');
+  if (img) img.src = flagUrls[currentToCurrency] || img.src;
+  if (codeSpan) codeSpan.textContent = currentToCurrency;
+        // Persist pair
+        try { localStorage.setItem('lula_pair', JSON.stringify({ from: currentFromCurrency, to: currentToCurrency })); } catch (e) {}
+  // Re-render methods and recompute
+  renderMethodOptions(currentFromCurrency, currentToCurrency);
+        updateConversion();
+        receiveCurrencyMenu.classList.add('hidden');
+        receiveCurrencyBtn.setAttribute('aria-expanded', 'false');
+        receiveCardEl?.classList.remove('z-[100]');
+        receiveCurrencyMenu.style.zIndex = '';
+      });
+    });
+    // Close on outside click
+    document.addEventListener('click', () => {
+      if (!receiveCurrencyMenu.classList.contains('hidden')) {
+        receiveCurrencyMenu.classList.add('hidden');
+        receiveCurrencyBtn.setAttribute('aria-expanded', 'false');
+        receiveCardEl?.classList.remove('z-[100]');
+        receiveCurrencyMenu.style.zIndex = '';
+      }
+    });
+  }
+  // Send currency dropdown interactions
+  if (sendCurrencyBtn && sendCurrencyMenu) {
+    sendCurrencyBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = sendCurrencyMenu.classList.contains('hidden');
+      sendCurrencyMenu.classList.toggle('hidden');
+      sendCurrencyBtn.setAttribute('aria-expanded', String(willOpen));
+      if (willOpen) {
+        // Elevate card and menu above siblings
+        sendCardEl?.classList.add('relative', 'z-[100]');
+        sendCurrencyMenu.style.zIndex = '9999';
+      } else {
+        sendCardEl?.classList.remove('z-[100]');
+        sendCurrencyMenu.style.zIndex = '';
+      }
+    });
+    sendCurrencyMenu.querySelectorAll('[data-curr]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const newCurr = e.currentTarget.getAttribute('data-curr');
+        if (!newCurr || newCurr === currentFromCurrency) {
+          sendCurrencyMenu.classList.add('hidden');
+          sendCurrencyBtn.setAttribute('aria-expanded', 'false');
+          sendCardEl?.classList.remove('z-[100]');
+          sendCurrencyMenu.style.zIndex = '';
+          return;
+        }
+        currentFromCurrency = newCurr;
+        // Update UI icon/text
+        const img = sendCurrencyBtn.querySelector('img');
+        const codeSpan = sendCurrencyBtn.querySelector('span');
+        if (img) img.src = flagUrls[currentFromCurrency] || img.src;
+        if (codeSpan) codeSpan.textContent = currentFromCurrency;
+        // Persist pair and recompute
+        try { localStorage.setItem('lula_pair', JSON.stringify({ from: currentFromCurrency, to: currentToCurrency })); } catch (e) {}
+        updateConversion();
+        sendCurrencyMenu.classList.add('hidden');
+        sendCurrencyBtn.setAttribute('aria-expanded', 'false');
+        sendCardEl?.classList.remove('z-[100]');
+        sendCurrencyMenu.style.zIndex = '';
+      });
+    });
+    // Close on outside click
+    document.addEventListener('click', () => {
+      if (!sendCurrencyMenu.classList.contains('hidden')) {
+        sendCurrencyMenu.classList.add('hidden');
+        sendCurrencyBtn.setAttribute('aria-expanded', 'false');
+        sendCardEl?.classList.remove('z-[100]');
+        sendCurrencyMenu.style.zIndex = '';
+      }
+    });
+  }
+  // Mobile menu interactions
+  function openMobileMenu() {
+    if (!mobileMenu) return;
+    mobileMenu.classList.remove('hidden');
+    requestAnimationFrame(() => mobileMenu.classList.remove('translate-x-full'));
+    if (mobileBackdrop) mobileBackdrop.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    mobileMenuBtn?.setAttribute('aria-expanded', 'true');
+    // Reset mobile app submenu to closed state
+    if (mobileAppMenu && mobileAppChevron) {
+      mobileAppMenu.classList.add('hidden');
+      mobileAppChevron.textContent = 'expand_more';
+    }
+    // Focus trap: focus first focusable
+    const first = mobileMenu.querySelector('button, a, [tabindex]:not([tabindex="-1"])');
+    if (first) first.focus();
+  }
+  function closeMobileMenu() {
+    if (!mobileMenu) return;
+    mobileMenu.classList.add('translate-x-full');
+    mobileBackdrop?.classList.add('hidden');
+    document.body.style.overflow = '';
+    mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+    setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+    mobileMenuBtn?.focus();
+  }
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openMobileMenu();
+    });
+    mobileClose?.addEventListener('click', closeMobileMenu);
+    mobileBackdrop?.addEventListener('click', closeMobileMenu);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileMenu();
+      if (e.key === 'Escape') {
+        const wasLangOpen = langMenu && !langMenu.classList.contains('hidden');
+        const wasAppOpen = appMenu && !appMenu.classList.contains('hidden');
+        langMenu?.classList.add('hidden');
+        appMenu?.classList.add('hidden');
+        if (wasLangOpen) langBtn?.focus();
+        else if (wasAppOpen) appBtn?.focus();
+      }
+      if (e.key === 'Tab' && !mobileMenu.classList.contains('hidden')) {
+        // rudimentary focus trap
+        const focusables = mobileMenu.querySelectorAll('button, a, [tabindex]:not([tabindex="-1"])');
+        if (focusables.length) {
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    });
+    // Language selection from mobile menu
+    mobileMenu.querySelectorAll('.lang-select').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const lang = e.currentTarget.getAttribute('data-lang');
+        currentLang = lang;
+        try { localStorage.setItem('lula_lang', currentLang); } catch (e) {}
+        applyTranslations(currentLang);
+        closeMobileMenu();
+      });
+    });
+  }
+  // Toggle mobile app submenu
+  if (mobileAppToggle && mobileAppMenu && mobileAppChevron) {
+    mobileAppToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = mobileAppMenu.classList.contains('hidden');
+      mobileAppMenu.classList.toggle('hidden');
+      mobileAppChevron.textContent = isHidden ? 'expand_less' : 'expand_more';
+    });
+  }
+  // Simple FAQ toggles
+  document.querySelectorAll('[data-faq-toggle]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const panel = btn.nextElementSibling;
+      if (!panel) return;
+      const isHidden = panel.classList.contains('hidden');
+      // close any open sibling panels if needed
+      const container = panel.parentElement;
+      if (container) {
+        container.querySelectorAll('[data-faq-panel]').forEach((p) => {
+          if (p !== panel) p.classList.add('hidden');
+        });
+        container.querySelectorAll('[data-faq-toggle] .material-symbols-outlined').forEach((icon) => {
+          icon.textContent = 'expand_more';
+        });
+      }
+      panel.classList.toggle('hidden');
+      const icon = btn.querySelector('.material-symbols-outlined');
+      if (icon) icon.textContent = isHidden ? 'expand_less' : 'expand_more';
+    });
+  });
+  // Initialize language from storage
+  try {
+    const saved = localStorage.getItem('lula_lang');
+    if (saved && (saved === 'en' || saved === 'ru')) {
+      currentLang = saved;
+    }
+    const savedPair = localStorage.getItem('lula_pair');
+    if (savedPair) {
+      const p = JSON.parse(savedPair);
+      if (p && p.from && p.to && exchangeRates[p.from] && exchangeRates[p.from][p.to]) {
+        currentFromCurrency = p.from;
+        // Migrate any legacy ZWL destination to USD (Zimbabwe)
+        currentToCurrency = (p.to === 'ZWL') ? 'USD' : p.to;
+        if (p.to === 'ZWL') {
+          try { localStorage.setItem('lula_pair', JSON.stringify({ from: currentFromCurrency, to: currentToCurrency })); } catch (e) {}
+        }
+        // Update flags and labels accordingly
+        const sendBtn = document.getElementById('sendCurrencyButton');
+        const recvBtn = document.getElementById('receiveCurrencyButton');
+        if (sendBtn) {
+          sendBtn.querySelector('img').src = flagUrls[currentFromCurrency];
+          sendBtn.querySelector('span').textContent = currentFromCurrency;
+        }
+        if (recvBtn) {
+          recvBtn.querySelector('img').src = flagUrls[currentToCurrency];
+          recvBtn.querySelector('span').textContent = currentToCurrency;
+        }
+      }
+    } else {
+      // Persist default: Sending from Zim (USD) to Russia (RUB)
+      try { localStorage.setItem('lula_pair', JSON.stringify({ from: currentFromCurrency, to: currentToCurrency })); } catch (e) {}
+    }
+    // Restore saved method selections
+    const savedMethods = localStorage.getItem('lula_methods');
+    if (savedMethods) {
+      const m = JSON.parse(savedMethods);
+      if (m) { selectedPaymentMethod = m.payment || null; selectedCollectionMethod = m.collection || null; }
+    }
+  } catch (e) {}
+  // Apply initial language
+  applyTranslations(currentLang);
+  // Pre-warm audio for tick on first user gesture
+  window.addEventListener('pointerdown', initAudioContext, { once: true });
+  // Format defaults once post-init
+  setTimeout(() => {
+    const s = document.getElementById('sendAmount');
+    const r = document.getElementById('receiveAmount');
+    if (s && document.activeElement !== s) formatInput(s, 2);
+    if (r && document.activeElement !== r) formatInput(r, 2);
+    // Initial height sync once everything paints
+    equalizeCardsHeight();
+  }, 0);
+  // Re-sync on viewport resize
+  window.addEventListener('resize', () => {
+    equalizeCardsHeight();
+  });
+});
+
+// Make "They get" card match "You send" height
+function equalizeCardsHeight() {
+  const sendCard = document.getElementById('youSendCard');
+  const getCard = document.getElementById('theyGetCard');
+  if (!sendCard || !getCard) return;
+  // Reset any fixed height to measure natural sizes
+  sendCard.style.height = '';
+  getCard.style.height = '';
+  // Compute max height from natural layouts
+  const sendH = sendCard.getBoundingClientRect().height;
+  const getH = getCard.getBoundingClientRect().height;
+  const target = Math.max(sendH, getH);
+  // Apply same explicit height to both for visual parity
+  sendCard.style.height = `${target}px`;
+  getCard.style.height = `${target}px`;
+}
+
+// Render dropdown menu items for current pair
+function renderMethodOptions(sourceCurrency, destCurrency) {
+  const paymentMenu = document.getElementById('paymentMethodMenu');
+  const collectionMenu = document.getElementById('collectionMethodMenu');
+  const paymentLabel = document.getElementById('paymentMethodLabel');
+  const collectionLabel = document.getElementById('collectionMethodLabel');
+  const paymentIcon = document.getElementById('paymentMethodIcon');
+  const collectionIcon = document.getElementById('collectionMethodIcon');
+  const paymentBtn = document.getElementById('paymentMethodButton');
+  const collectionBtn = document.getElementById('collectionMethodButton');
+  if (!paymentMenu || !collectionMenu || !paymentLabel || !collectionLabel || !paymentBtn || !collectionBtn) return;
+  const paymentCard = paymentBtn.closest('.rounded-xl');
+  const collectionCard = collectionBtn.closest('.rounded-xl');
+  const elevate = (cardEl, on) => {
+    if (!cardEl) return;
+    if (on) {
+      cardEl.classList.add('relative');
+      cardEl.classList.add('z-[100]');
+    } else {
+      cardEl.classList.remove('z-[100]');
+      // keep relative harmlessly
+    }
+  };
+  paymentMenu.innerHTML = '';
+  collectionMenu.innerHTML = '';
+  const dict = i18n[currentLang] || i18n.en;
+  const methodIconMap = {
+    methodBank: 'account_balance',
+    methodBankCard: 'credit_card',
+    methodCashPickup: 'payments',
+    methodMobileMoney: 'smartphone'
+  };
+  const makeItem = (key, group) => {
+    const a = document.createElement('a');
+    a.href = '#';
+    a.className = 'flex items-center gap-2 px-2 py-2 rounded btn-liquid-item text-gray-800 dark:text-gray-100';
+    a.setAttribute('role', 'menuitemradio');
+    a.setAttribute('aria-checked', String((group === 'payment' ? selectedPaymentMethod : selectedCollectionMethod) === key));
+    const icon = document.createElement('span');
+    icon.className = 'material-symbols-outlined text-base';
+    icon.textContent = methodIconMap[key] || 'tune';
+    const label = document.createElement('span');
+    label.textContent = dict[key] || key;
+    a.appendChild(icon);
+    a.appendChild(label);
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (group === 'payment') {
+        selectedPaymentMethod = key;
+        paymentLabel.textContent = dict[key] || key;
+        paymentMenu.classList.add('hidden');
+        paymentBtn.setAttribute('aria-expanded', 'false');
+        paymentMenu.style.zIndex = '';
+        elevate(paymentCard, false);
+        if (paymentIcon) paymentIcon.textContent = methodIconMap[key] || 'tune';
+      } else {
+        selectedCollectionMethod = key;
+        collectionLabel.textContent = dict[key] || key;
+        collectionMenu.classList.add('hidden');
+        collectionBtn.setAttribute('aria-expanded', 'false');
+        collectionMenu.style.zIndex = '';
+        elevate(collectionCard, false);
+        if (collectionIcon) collectionIcon.textContent = methodIconMap[key] || 'tune';
+      }
+      try { localStorage.setItem('lula_methods', JSON.stringify({ payment: selectedPaymentMethod, collection: selectedCollectionMethod })); } catch (e) {}
+      renderMethodOptions(sourceCurrency, destCurrency); // refresh aria-checked states
+      updateConversion(); // recompute fees on selection
+    });
+    return a;
+  };
+  // Build options from decoupled configs
+  const payOptions = paymentMethodsBySource[sourceCurrency] || ['methodBank'];
+  const colOptions = collectionMethodsByDest[destCurrency] || ['methodBank'];
+  // Ensure sensible defaults
+  if (!selectedPaymentMethod || !payOptions.includes(selectedPaymentMethod)) {
+    const defPay = defaultPaymentBySource[sourceCurrency] || payOptions[0];
+    selectedPaymentMethod = payOptions.includes(defPay) ? defPay : payOptions[0];
+    try { localStorage.setItem('lula_methods', JSON.stringify({ payment: selectedPaymentMethod, collection: selectedCollectionMethod })); } catch (e) {}
+    setTimeout(updateConversion, 0);
+  }
+  if (!selectedCollectionMethod || !colOptions.includes(selectedCollectionMethod)) {
+    const defCol = defaultCollectionByDest[destCurrency] || colOptions[0];
+    selectedCollectionMethod = colOptions.includes(defCol) ? defCol : colOptions[0];
+    try { localStorage.setItem('lula_methods', JSON.stringify({ payment: selectedPaymentMethod, collection: selectedCollectionMethod })); } catch (e) {}
+  }
+  payOptions.forEach(k => paymentMenu.appendChild(makeItem(k, 'payment')));
+  colOptions.forEach(k => collectionMenu.appendChild(makeItem(k, 'collection')));
+  // Set labels from current selection or placeholder dashes
+  paymentLabel.textContent = selectedPaymentMethod ? (dict[selectedPaymentMethod] || selectedPaymentMethod) : '—';
+  collectionLabel.textContent = selectedCollectionMethod ? (dict[selectedCollectionMethod] || selectedCollectionMethod) : '—';
+  if (paymentIcon) paymentIcon.textContent = selectedPaymentMethod ? (methodIconMap[selectedPaymentMethod] || 'tune') : 'credit_card';
+  if (collectionIcon) collectionIcon.textContent = selectedCollectionMethod ? (methodIconMap[selectedCollectionMethod] || 'tune') : 'account_balance';
+  // Update aria-labels for accessibility since visible labels were removed
+  if (paymentBtn) paymentBtn.setAttribute('aria-label', `${dict.payingWith || 'Paying with'}: ${paymentLabel.textContent}`);
+  if (collectionBtn) collectionBtn.setAttribute('aria-label', `${dict.collectingWith || 'Collecting with'}: ${collectionLabel.textContent}`);
+  // ensure fees reflect defaults
+  setTimeout(updateConversion, 0);
+
+  // Wire button toggles
+  const openPayment = (e) => {
+    e.stopPropagation();
+    const willOpen = paymentMenu.classList.contains('hidden');
+    paymentMenu.classList.toggle('hidden');
+    paymentBtn.setAttribute('aria-expanded', String(willOpen));
+    collectionMenu.classList.add('hidden');
+    collectionBtn.setAttribute('aria-expanded', 'false');
+    if (willOpen) {
+      elevate(paymentCard, true);
+      elevate(collectionCard, false);
+      paymentMenu.style.zIndex = '9999';
+      collectionMenu.style.zIndex = '';
+    } else {
+      elevate(paymentCard, false);
+      paymentMenu.style.zIndex = '';
+    }
+  };
+  const openCollection = (e) => {
+    e.stopPropagation();
+    const willOpen = collectionMenu.classList.contains('hidden');
+    collectionMenu.classList.toggle('hidden');
+    collectionBtn.setAttribute('aria-expanded', String(willOpen));
+    paymentMenu.classList.add('hidden');
+    paymentBtn.setAttribute('aria-expanded', 'false');
+    if (willOpen) {
+      elevate(collectionCard, true);
+      elevate(paymentCard, false);
+      collectionMenu.style.zIndex = '9999';
+      paymentMenu.style.zIndex = '';
+    } else {
+      elevate(collectionCard, false);
+      collectionMenu.style.zIndex = '';
+    }
+  };
+  if (paymentBtn) paymentBtn.onclick = openPayment;
+  if (collectionBtn) collectionBtn.onclick = openCollection;
+  if (!window._methodsClickBound) {
+    document.addEventListener('click', () => {
+      if (!paymentMenu.classList.contains('hidden')) { paymentMenu.classList.add('hidden'); paymentBtn.setAttribute('aria-expanded', 'false'); paymentMenu.style.zIndex=''; elevate(paymentCard, false); }
+      if (!collectionMenu.classList.contains('hidden')) { collectionMenu.classList.add('hidden'); collectionBtn.setAttribute('aria-expanded', 'false'); collectionMenu.style.zIndex=''; elevate(collectionCard, false); }
+    });
+    window._methodsClickBound = true;
+  }
+}
+
+// --- Micro tick sound helpers ---
+let audioCtx = null;
+function initAudioContext() {
+  if (!audioCtx) {
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { audioCtx = null; }
+  }
+}
+function shouldPlayTick() {
+  try { return localStorage.getItem('lula_tick_enabled') === 'true'; } catch (e) { return false; }
+}
+function playTick() {
+  if (!audioCtx) return;
+  const o = audioCtx.createOscillator();
+  const g = audioCtx.createGain();
+  o.type = 'triangle';
+  o.frequency.value = 880; // A5
+  g.gain.value = 0.0018; // very quiet
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start();
+  // short chirp envelope
+  const now = audioCtx.currentTime;
+  g.gain.exponentialRampToValueAtTime(0.00001, now + 0.06);
+  o.stop(now + 0.07);
+}
+
+// Initialize conversion on page load
+updateConversion();
+
+// Register service worker for PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+
+// --- Reviews pagination (lazy-init) ---
+function initReviews() {
+  const reviews = [
+    { textKey: 'review1Text', authorKey: 'review1Author', stars: 4.5 },
+    { textKey: 'review2Text', authorKey: 'review2Author', stars: 5 },
+    { textKey: 'review3Text', authorKey: 'review3Author', stars: 5 },
+    { textKey: 'review4Text', authorKey: 'review4Author', stars: 5 },
+    { textKey: 'review5Text', authorKey: 'review5Author', stars: 4.5 },
+    { textKey: 'review6Text', authorKey: 'review6Author', stars: 5 },
+    { textKey: 'review7Text', authorKey: 'review7Author', stars: 5 },
+  ];
+  const pageSize = 3;
+  let page = 0;
+  const container = document.getElementById('reviewsContainer');
+  const dotsEl = document.getElementById('reviewsDots');
+  const prevBtn = document.getElementById('reviewsPrevBtn');
+  const nextBtn = document.getElementById('reviewsNextBtn');
+
+  function starRow(stars) {
+    const full = Math.floor(stars);
+    const half = stars - full >= 0.5 ? 1 : 0;
+    const empties = 5 - full - half;
+    return [
+      ...Array(full).fill('<span class="material-symbols-outlined text-yellow-400">star</span>'),
+      ...Array(half).fill('<span class="material-symbols-outlined text-yellow-400">star_half</span>'),
+      ...Array(empties).fill('<span class="material-symbols-outlined text-gray-300 dark:text-gray-600">star</span>'),
+    ].join('');
+  }
+
+  function cardHtml(r) {
+    const dict = i18n[currentLang] || i18n.en;
+    const text = r.textKey ? (dict[r.textKey] || '') : r.text;
+    const author = r.authorKey ? (dict[r.authorKey] || '') : r.author;
+    return `
+      <div class="bg-background-light dark:bg-surface-dark rounded-xl shadow p-6 flex flex-col items-center reveal slide-up">
+        <span class="material-symbols-outlined text-primary text-4xl mb-2">format_quote</span>
+        <p class="text-lg font-medium mb-4">${text}</p>
+        <div class="flex items-center gap-2">${starRow(r.stars || 5)}</div>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">${author}</p>
+      </div>
+    `;
+  }
+
+  function render() {
+    if (!container || !dotsEl) return;
+    const start = page * pageSize;
+    const slice = reviews.slice(start, start + pageSize);
+    container.innerHTML = slice.map(cardHtml).join('');
+    // Make newly injected cards visible (bypass reveal observer for dynamic content)
+    container.querySelectorAll('.reveal').forEach(el => el.classList.add('reveal-visible'));
+    // dots
+    const totalPages = Math.ceil(reviews.length / pageSize);
+    dotsEl.innerHTML = Array.from({ length: totalPages }).map((_, i) => `
+      <button class="pager-dot ${i === page ? 'active' : ''}" aria-label="Go to page ${i+1}"></button>
+    `).join('');
+    dotsEl.querySelectorAll('button').forEach((btn, i) => btn.addEventListener('click', () => { page = i; render(); }));
+    // controls state
+    if (prevBtn) {
+      if (page === 0) prevBtn.setAttribute('disabled', ''); else prevBtn.removeAttribute('disabled');
+    }
+    if (nextBtn) {
+      if (page >= totalPages - 1) nextBtn.setAttribute('disabled', ''); else nextBtn.removeAttribute('disabled');
+    }
+  }
+
+  prevBtn?.addEventListener('click', () => { if (page > 0) { page -= 1; render(); }});
+  nextBtn?.addEventListener('click', () => { const totalPages = Math.ceil(reviews.length / pageSize); if (page < totalPages - 1) { page += 1; render(); }});
+
+  render();
+}
+
+// Defer reviews init until idle or when section enters viewport
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(() => initReviews());
+} else {
+  const reviewsSection = document.getElementById('reviews');
+  if ('IntersectionObserver' in window && reviewsSection) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { initReviews(); io.disconnect(); }
+      });
+    }, { rootMargin: '0px 0px -20% 0px' });
+    io.observe(reviewsSection);
+  } else {
+    document.addEventListener('DOMContentLoaded', initReviews);
+  }
+}
+</script>
 
 </body></html>

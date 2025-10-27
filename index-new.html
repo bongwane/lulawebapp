@@ -16,15 +16,58 @@
 <meta name="twitter:image" content="/assets/og-image.jpg"/>
 <meta name="theme-color" content="#9FE870"/>
 <link rel="manifest" href="/manifest.webmanifest"/>
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LULA",
+  "url": "https://www.lula.example/",
+  "logo": "/assets/og-image.jpg",
+  "sameAs": []
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long do transfers take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most transfers arrive within minutes on Instant, under a day on Express, and 1–3 days on Standard."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What fees will I pay?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We show all fees upfront. Bank fees may vary by method; cash-to-cash and transfers to Russia have no bank fee."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I track my transfer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can follow your transfer in real-time and receive notifications at each step."
+      }
+    }
+  ]
+}
+</script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
 <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin>
 <link rel="preconnect" href="https://tools.applemediaservices.com" crossorigin>
 <link rel="preconnect" href="https://play.google.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts: minimalist, futuristic sans for readability  -->
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
     tailwind.config = {
@@ -38,9 +81,10 @@
             "surface-dark": "#172111",
           },
           fontFamily: {
-            sans: ["Space Grotesk", "Manrope", "sans-serif"],
+            // Primary UI font (default)
+            sans: ["Sora", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+            // Logo/brand marks
             brand: ["Luckiest Guy", "cursive"],
-            display: ["Manrope"],
           },
           borderRadius: {
             DEFAULT: "0.5rem",
@@ -890,7 +934,11 @@ Start your transfer
 </div>
 <!-- End Floating WhatsApp Support -->
 
+<!-- Font switcher removed per request -->
+
 <script>
+// Font switcher removed per request
+
 // Rate calculator functionality
 const exchangeRates = {
   'USD': { 'EUR': 1.35, 'GBP': 0.85, 'CAD': 1.45, 'AUD': 1.55, 'JPY': 110, 'ZWL': 400, 'RUB': 78.62 },

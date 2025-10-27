@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Agent Transaction Tracking</title>
+  <script>(function(){try{const t=localStorage.getItem('lula_theme')||'light';document.documentElement.classList.toggle('dark',t==='dark')}catch(e){}})();</script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script id="tailwind-config">
     tailwind.config = {
@@ -19,7 +20,7 @@
             "surface-dark": "#172111",
           },
           fontFamily: {
-            "display": ["Manrope", "sans-serif"],
+            sans: ["Sora","system-ui","-apple-system","Segoe UI","Roboto","sans-serif"],
             "mono": ["monospace"],
           },
           borderRadius: {
@@ -33,15 +34,18 @@
     };
   </script>
   <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-  <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+  <link as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" onload="this.rel='stylesheet'" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <link rel="preload" href="styles/theme.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles/theme.css"></noscript>
   <style>
     body {
       min-height: max(884px, 100dvh);
     }
   </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<body class="bg-background-light dark:bg-background-dark font-sans text-ink dark:text-white">
 <div class="flex h-screen flex-col">
   <header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm p-4">
     <div class="flex items-center justify-between">

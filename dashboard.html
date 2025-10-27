@@ -1,9 +1,20 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
+<html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Lula dashboard</title>
 <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script>
+  // Initialize theme and language from localStorage before CSS loads to avoid FOUC
+  (function(){
+    try {
+      var t = localStorage.getItem('lula_theme');
+      if (t === 'dark') document.documentElement.classList.add('dark');
+      var lang = localStorage.getItem('lula_lang');
+      if (lang === 'ru' || lang === 'en') document.documentElement.setAttribute('lang', lang);
+    } catch (e) {}
+  })();
+</script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
     tailwind.config = {
@@ -17,7 +28,7 @@
             "surface-dark": "#172111",
           },
           fontFamily: {
-            display: ["Manrope"],
+            display: ["Sora"],
           },
           borderRadius: {
             DEFAULT: "0.5rem",
@@ -31,14 +42,9 @@
   </script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <link rel="stylesheet" href="styles/theme.css" />
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
 <style>
     body {
       min-height: max(884px, 100dvh);
@@ -47,150 +53,60 @@
   </head>
 <body class="font-display bg-background-light dark:bg-background-dark text-background-dark dark:text-background-light">
   <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
-    <header class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between bg-background-dark/80 p-4 pb-2 backdrop-blur-sm">
+    <header class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between bg-white/80 dark:bg-background-dark/80 p-4 pb-2 backdrop-blur-sm border-b border-black/5 dark:border-white/10">
 <div class="flex items-center gap-3">
 <img alt="Nikiwe's profile picture" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGmTncQ5C-4tczebiMVWayjgf4KZ5MD3y_y3zlxZtcdfmbtlfP5ZoRrOlhc1csBOBsj0sFR5z-u6GKCM8n4H_hltW_z4RnGv25wxq4BDgtHeMutjDlLEGhjq3PUuCKbDLiuIR972Fu38gabkVGUsnAAQ_4x31zQDQ2krWtM7IAPtnQqxHhDqFgVdb3VwkZMzAn0sXHAu0Qw_7PKXKtzM_woFNVVZhERJzW1RWHsh7bVIPusJTMK9L0WCaKFXeVZiQ-Q6T3ksG6FV7S"/>
-    <p class="font-bold text-background-light" data-i18n="hiName">Hi, Nikiwe</p>
+    <p class="font-bold text-background-dark dark:text-background-light" data-i18n="hiName">Hi, Nikiwe</p>
 </div>
 <div class="flex items-center gap-2">
-<button onclick="location.href='notifications.html'"  class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-background-light">
+<button onclick="location.href='notifications.html'"  class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-background-dark dark:text-background-light">
 <span class="material-symbols-outlined text-2xl"> notifications </span>
 </button>
-<button class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-background-light">
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-background-dark dark:text-background-light">
 <span class="material-symbols-outlined text-2xl"> search </span>
 </button>
-    <div class="relative">
-      <button id="langSwitcherButton" class="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-xs font-bold py-1.5 px-3 rounded-full border border-white/20 transition">
-        <img id="langBtnFlag" src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="EN" class="h-4 w-4 rounded-full object-cover" />
-        <span id="langCode">EN</span>
-        <span class="material-symbols-outlined text-sm">expand_more</span>
-      </button>
-      <div id="langMenu" class="absolute right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-36 p-1 hidden z-50">
-        <button class="w-full flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 text-gray-800" data-lang="en">
-          <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="English" class="h-4 w-4 rounded-full object-cover" />
-          <span>English</span>
-        </button>
-        <button class="w-full flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 text-gray-800" data-lang="ru">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg" alt="Русский" class="h-4 w-4 rounded-full object-cover" />
-          <span>Русский</span>
-        </button>
-      </div>
-      <script>
-        const i18nDB = {
-          en: {
-            hiName: 'Hi, Nikiwe',
-            totalBalance: 'Total balance',
-            topUp: 'Top up',
-            send: 'Send',
-            store: 'Store',
-            tracking: 'Tracking',
-            recentTx: 'Recent Transactions',
-            viewAll: 'View all',
-            home: 'Home',
-            cards: 'Cards',
-            profile: 'Profile'
-          },
-          ru: {
-            hiName: 'Привет, Никиве',
-            totalBalance: 'Общий баланс',
-            topUp: 'Пополнить',
-            send: 'Отправить',
-            store: 'Магазин',
-            tracking: 'Отслеживание',
-            recentTx: 'Недавние операции',
-            viewAll: 'Показать все',
-            home: 'Главная',
-            cards: 'Карты',
-            profile: 'Профиль'
-          }
-        };
-        let langDB = 'en';
-        function applyDB(lang) {
-          const d = i18nDB[lang] || i18nDB.en;
-          document.documentElement.setAttribute('lang', lang);
-          document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (d[key]) el.textContent = d[key];
-          });
-          const f = document.getElementById('langBtnFlag');
-          const c = document.getElementById('langCode');
-          if (f && c) {
-            if (lang === 'ru') {
-              f.src = 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg';
-              c.textContent = 'RU';
-            } else {
-              f.src = 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg';
-              c.textContent = 'EN';
-            }
-          }
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-          try {
-            const saved = localStorage.getItem('lula_lang');
-            if (saved && (saved === 'en' || saved === 'ru')) langDB = saved;
-          } catch (e) {}
-          applyDB(langDB);
-          const btn = document.getElementById('langSwitcherButton');
-          const menu = document.getElementById('langMenu');
-          if (btn && menu) {
-            btn.addEventListener('click', (e) => {
-              e.stopPropagation();
-              menu.classList.toggle('hidden');
-            });
-            menu.querySelectorAll('[data-lang]').forEach(item => {
-              item.addEventListener('click', (e) => {
-                langDB = e.currentTarget.getAttribute('data-lang');
-                try { localStorage.setItem('lula_lang', langDB); } catch (e) {}
-                applyDB(langDB);
-                menu.classList.add('hidden');
-              });
-            });
-            document.addEventListener('click', () => menu.classList.add('hidden'));
-          }
-        });
-      </script>
-    </div>
+    
 </div>
 </header>
 <main class="flex-grow px-4 pb-24 pt-20 max-w-md mx-auto">
-<div class="bg-surface-dark rounded-xl p-4 my-4">
+<div class="bg-white dark:bg-surface-dark rounded-xl p-4 my-4 shadow-sm dark:shadow-none">
 <div class="flex items-center justify-between">
-<p class="text-sm text-background-light/60" data-i18n="totalBalance">Total balance</p>
-<div class="flex items-center gap-1 text-sm font-medium text-background-light">
+<p class="text-sm text-background-dark/60 dark:text-background-light/60" data-i18n="totalBalance">Total balance</p>
+<div class="flex items-center gap-1 text-sm font-medium text-background-dark dark:text-background-light">
 <span>MANDLA</span>
 <span class="material-symbols-outlined text-base"> expand_more </span>
 </div>
 </div>
-<p class="text-3xl font-bold text-background-light mt-1 mb-6">1,007.77 ♛</p>
+<p class="text-3xl font-bold text-background-dark dark:text-background-light mt-1 mb-6">1,007.77 ♛</p>
 <div class="grid grid-cols-4 gap-2 text-center">
 <a class="flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors hover:bg-white/10" href="top-up.html">
 <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-background-dark">
 <span class="material-symbols-outlined"> add </span>
 </div>
-<span class="text-xs font-medium text-background-light" data-i18n="topUp">Top up</span>
+<span class="text-xs font-medium text-background-dark dark:text-background-light" data-i18n="topUp">Top up</span>
 </a>
 <a class="flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors hover:bg-white/10" href="send-money.html">
 <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-background-dark">
 <span class="material-symbols-outlined"> arrow_outward </span>
 </div>
-<span class="text-xs font-medium text-background-light" data-i18n="send">Send</span>
+<span class="text-xs font-medium text-background-dark dark:text-background-light" data-i18n="send">Send</span>
 </a>
 <a class="flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors hover:bg-white/10" href="store.html">
 <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-background-dark">
 <span class="material-symbols-outlined"> store </span>
 </div>
-<span class="text-xs font-medium text-background-light" data-i18n="store">Store</span>
+<span class="text-xs font-medium text-background-dark dark:text-background-light" data-i18n="store">Store</span>
 </a>
 <a class="flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors hover:bg-white/10" href="track.html">
 <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-background-dark">
 <span class="material-symbols-outlined"> local_shipping </span>
 </div>
-<span class="text-xs font-medium text-background-light" data-i18n="tracking">Tracking</span>
+<span class="text-xs font-medium text-background-dark dark:text-background-light" data-i18n="tracking">Tracking</span>
 </a>
 </div>
 </div>
 <div class="flex items-center justify-between pt-5 pb-3">
-<h3 class="text-lg font-bold text-background-light" data-i18n="recentTx">Recent Transactions</h3>
+<h3 class="text-lg font-bold text-background-dark dark:text-background-light" data-i18n="recentTx">Recent Transactions</h3>
 <a class="text-sm font-medium text-primary" href="transactions.html" data-i18n="viewAll">View all</a>
 </div>
 <div class="space-y-2">
@@ -198,8 +114,8 @@
     <div class="flex items-center gap-4 py-2 min-h-[64px]">
       <img alt="David Adebayo's profile picture" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArOiwKoHXg6iRf7NzBLMGg7yyq5an9A3ckRE_DTeguQKyZiRe7S0zBIh2Dv18pzSy4rFvU22SzLEdLb5WcXUSkMgoAupcwFs7edqRcCJzRVBLZrGd0v5wMhidbiIXU_CxJWHMl0Qvr8DjW6yol1IJfTlBonk-c-j4a-9dL5GGpWPS0q3tXCZJPR-5_alcuvS9xsam6RxUzaNJXN90xSohdB5lIkEzr85US5T0gpM-S1wmurF4J8n1e1zhgjKHDO5ExJnURIYqiXyxE"/>
       <div class="flex-grow">
-        <p class="font-medium text-background-light">Payment from Zibusio Nyoni</p>
-        <p class="text-sm text-background-light/60">July 20, 2024</p>
+        <p class="font-medium text-background-dark dark:text-background-light">Payment from Zibusio Nyoni</p>
+        <p class="text-sm text-background-dark/60 dark:text-background-light/60">July 20, 2024</p>
       </div>
       <p class="shrink-0 font-medium text-primary">+150.00 ♛</p>
     </div>
@@ -208,8 +124,8 @@
     <div class="flex items-center gap-4 py-2 min-h-[64px]">
       <img alt="Amara Okoro's profile picture" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiffhBMsAm00NOCQQbuKrfcsukmBN8Jbwd5-jDwQwFzpCTfNRff_3p-Sj-lrlGyDgFr0sZjoUb-Q842ndkrhkfj9IYhs1NqTgHXMmbrpx1e2yF5DsaOv84HChtckcHHPBiuG1wwzLmv7LKQJ2ZlL93ab6vDXiXAC8TGizowGnvH1SVGe28ZS56NMVTrQAG4Zhmf7cMVZAq-CE7KTTFSBLwrr7rGgbE0aMqkuqtbti-yRHwkTbu_SjnqBEGcjmzV5SabWjovZrf6bR5"/>
       <div class="flex-grow">
-        <p class="font-medium text-background-light">Payment to Nomalanga Nyoni</p>
-        <p class="text-sm text-background-light/60">July 19, 2024</p>
+        <p class="font-medium text-background-dark dark:text-background-light">Payment to Nomalanga Nyoni</p>
+        <p class="text-sm text-background-dark/60 dark:text-background-light/60">July 19, 2024</p>
       </div>
       <p class="shrink-0 font-medium text-red-500 flex items-center gap-1">-75.50 <span class="ml-1">♛</span></p>
     </div>
@@ -220,8 +136,8 @@
         <span class="material-symbols-outlined text-2xl text-primary"> account_balance </span>
       </div>
       <div class="flex-grow">
-        <p class="font-medium text-background-light">Top Up from Bank</p>
-        <p class="text-sm text-background-light/60">July 18, 2024</p>
+        <p class="font-medium text-background-dark dark:text-background-light">Top Up from Bank</p>
+        <p class="text-sm text-background-dark/60 dark:text-background-light/60">July 18, 2024</p>
       </div>
       <p class="shrink-0 font-medium text-primary">+500.00 ♛</p>
     </div>
@@ -230,8 +146,8 @@
     <div class="flex items-center gap-4 py-2 min-h-[64px]">
       <img alt="Kofi Mensah's profile picture" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzzFKC7TlSku78Z852moqSxRTnYxvqipkFP-ocG2pWtjX1oa9il_QsJ86z5p1cDrJg190Mp-phnaM2ru1VHAn_tq8Q-T37izUU-e_HSvsnVKo1QZcXbWNya3nj1ZEjfHbEouOVbNX6aEc3dnL2WrxiwBODwlTg4RKWZ4mLPQ7EzqZIbJ5SXDEQcoYNXrOrEl-AtsaZzxyZBf71vy7ag7NVCP5S0gWtZbHuLWsEL9rvLuu4fQtREVLIGHQLbZomQX13SHYWwk4pVpID"/>
       <div class="flex-grow">
-        <p class="font-medium text-background-light">Payment to Noto Njanike</p>
-        <p class="text-sm text-background-light/60">July 17, 2024</p>
+        <p class="font-medium text-background-dark dark:text-background-light">Payment to Noto Njanike</p>
+        <p class="text-sm text-background-dark/60 dark:text-background-light/60">July 17, 2024</p>
       </div>
       <p class="shrink-0 font-medium text-red-500 flex items-center gap-1">-25.00 <span class="ml-1">♛</span></p>
     </div>
@@ -240,38 +156,94 @@
     <div class="flex items-center gap-4 py-2 min-h-[64px]">
       <img alt="David Adebayo's profile picture" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLeCytn8BOXToUvLcVijLDqalgx1-rO8dmYQceYORB7pcMKJle86zUJG94q33a7qyxbqSx9oNaH-jIctKrzRK1oT6Zy6T7dSPy0gawC25POf07nxk9AOgRNQXqX6yly2RoP_r3cVc8o27r0rqo45_aygGMzFJyh4Y7VHrbsU85dKq420Q3f5yMrE54V8ZWw2y4ANyDBFums51vyStAPl51Fqufu3x-eSXAHwqXgQFLCUcBK0xTnCUfTMJ4EI9WZJomnZwJ7Nt3Bpeh"/>
       <div class="flex-grow">
-        <p class="font-medium text-background-light">Payment from Castro Cici</p>
-        <p class="text-sm text-background-light/60">July 17, 2024</p>
+        <p class="font-medium text-background-dark dark:text-background-light">Payment from Castro Cici</p>
+        <p class="text-sm text-background-dark/60 dark:text-background-light/60">July 17, 2024</p>
       </div>
       <p class="shrink-0 font-medium text-primary">+150.00 ♛</p>
     </div>
   </a>
 </div>
 </main>
-<footer class="fixed bottom-0 left-0 right-0 z-10 bg-background-dark/80 backdrop-blur-sm">
+<footer class="fixed bottom-0 left-0 right-0 z-10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm border-t border-black/5 dark:border-white/10">
 <nav class="flex justify-around pt-2 pb-5">
 <a class="flex flex-col items-center gap-1 text-primary" href="dashboard.html">
 <span class="material-symbols-outlined"> home </span>
 <span class="text-xs font-medium" data-i18n="home">Home</span>
 </a>
-<a class="flex flex-col items-center gap-1 text-background-light/60" href="store.html">
+<a class="flex flex-col items-center gap-1 text-background-dark/60 dark:text-background-light/60" href="store.html">
 <span class="material-symbols-outlined"> store </span>
 <span class="text-xs font-medium" data-i18n="store">Store</span>
 </a>
-<a class="flex flex-col items-center gap-1 text-background-light/60" href="send-money.html">
+<a class="flex flex-col items-center gap-1 text-background-dark/60 dark:text-background-light/60" href="send-money.html">
 <span class="material-symbols-outlined"> arrow_outward </span>
 <span class="text-xs font-medium" data-i18n="send">Send</span>
 </a>
-<a class="flex flex-col items-center gap-1 text-background-light/60" href="cards.html">
+<a class="flex flex-col items-center gap-1 text-background-dark/60 dark:text-background-light/60" href="cards.html">
 <span class="material-symbols-outlined"> credit_card </span>
 <span class="text-xs font-medium" data-i18n="cards">Cards</span>
 </a>
-<a class="flex flex-col items-center gap-1 text-background-light/60" href="profile.html">
+<a class="flex flex-col items-center gap-1 text-background-dark/60 dark:text-background-light/60" href="profile.html">
 <span class="material-symbols-outlined"> person </span>
 <span class="text-xs font-medium" data-i18n="profile">Profile</span>
 </a>
 </nav>
 </footer>
 </div>
+<script>
+  // Passive i18n: apply stored language to dashboard without UI
+  (function(){
+    const i18nDB = {
+      en: {
+        hiName: 'Hi, Nikiwe',
+        totalBalance: 'Total balance',
+        topUp: 'Top up',
+        send: 'Send',
+        store: 'Store',
+        tracking: 'Tracking',
+        recentTx: 'Recent Transactions',
+        viewAll: 'View all',
+        home: 'Home',
+        cards: 'Cards',
+        profile: 'Profile'
+      },
+      ru: {
+        hiName: 'Привет, Никиве',
+        totalBalance: 'Общий баланс',
+        topUp: 'Пополнить',
+        send: 'Отправить',
+        store: 'Магазин',
+        tracking: 'Отслеживание',
+        recentTx: 'Недавние операции',
+        viewAll: 'Показать все',
+        home: 'Главная',
+        cards: 'Карты',
+        profile: 'Профиль'
+      }
+    };
+    function applyDB(lang) {
+      const d = i18nDB[lang] || i18nDB.en;
+      document.documentElement.setAttribute('lang', lang);
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (d[key]) el.textContent = d[key];
+      });
+    }
+    try {
+      const saved = localStorage.getItem('lula_lang');
+      applyDB(saved === 'ru' ? 'ru' : 'en');
+    } catch (e) { applyDB('en'); }
+  })();
+  // Ensure theme stays synced if changed elsewhere
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'lula_theme') {
+      if (e.newValue === 'dark') document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+    }
+    if (e.key === 'lula_lang') {
+      // Re-apply i18n on language change from another tab/page
+      try { location.reload(); } catch (e) {}
+    }
+  });
+</script>
 
 </body></html>

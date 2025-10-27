@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
+<html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Stitch Design</title>
 <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script>
+  (function(){
+  try{ const t = localStorage.getItem('lula_theme'); if(t==='dark') document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark'); }catch(e){}
+  })();
+</script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" onload="this.rel='stylesheet'" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <script>
         tailwind.config = {
@@ -15,6 +20,7 @@
                 extend: {
                     colors: {
                         primary: "#98ea6c",
+            "background-light": "#f7f8f6",
                         "background-dark": "#0A140D",
                         "surface-dark": "#172111",
                         "text-primary-dark": "#f6f8f6",
@@ -22,8 +28,8 @@
                         "border-dark": "#2d4234",
                     },
                     fontFamily: {
-                        display: ["Manrope", "sans-serif"],
-                        sans: ["Noto Sans", "sans-serif"],
+            display: ["Sora", "ui-sans-serif", "system-ui"],
+            sans: ["Sora", "ui-sans-serif", "system-ui"],
                     },
                     borderRadius: {
                         DEFAULT: "1rem",
@@ -35,6 +41,8 @@
             },
         };
     </script>
+<link rel="preload" href="styles/theme.css" as="style" />
+<link rel="stylesheet" href="styles/theme.css" />
 <style>
         .form-select {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23a7b3ad' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
@@ -43,10 +51,9 @@
         .dark .form-select {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23a7b3ad' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
         }
-        body {
-            min-height: 100vh;
-            background-color: #0A140D;
-        }
+    body {
+      min-height: 100vh;
+    }
     </style>
 <style>
         body {
@@ -70,15 +77,15 @@
     }
   </style>
   </head>
-<body class="bg-background-dark font-display text-text-primary-dark">
+<body class="bg-background-light dark:bg-background-dark font-sans text-ink dark:text-text-primary-dark">
   <div class="flex h-full w-full flex-col">
-    <header class="sticky top-0 z-10 flex items-center justify-between p-4 bg-background-dark/80 backdrop-blur-sm max-w-md mx-auto w-full">
+    <header class="sticky top-0 z-10 flex items-center justify-between p-4 bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm ring-1 ring-black/5 dark:ring-white/10 max-w-md mx-auto w-full">
   <button class="p-2 rounded-full hover:bg-surface-dark/50" onclick="history.back()">
     <svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
       <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path>
     </svg>
   </button>
-  <h1 class="flex-1 text-center text-xl font-bold text-text-primary-dark">Top Up Wallet</h1>
+  <h1 class="flex-1 text-center text-xl font-bold text-ink dark:text-text-primary-dark">Top Up Wallet</h1>
   <div class="w-10"></div>
 </header>
     <div class="flex-grow flex flex-col">

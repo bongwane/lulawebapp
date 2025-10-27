@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
+<html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Stitch Design</title>
 <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script>
+  (function(){
+    try{ const t = localStorage.getItem('lula_theme'); if(t==='dark') document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark'); }catch(e){}
+  })();
+  </script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
     tailwind.config = {
@@ -17,7 +22,7 @@
             "surface-dark": "#172111",
           },
           fontFamily: {
-            display: ["Manrope"],
+            sans: ["Sora", "ui-sans-serif", "system-ui"],
           },
           borderRadius: {
             DEFAULT: "0.5rem",
@@ -31,8 +36,10 @@
   </script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link rel="preload" href="styles/theme.css" as="style" />
+<link rel="stylesheet" href="styles/theme.css" />
 <style>
     body {
       min-height: max(884px, 100dvh);
@@ -44,11 +51,11 @@
     }
   </style>
   </head>
-<body class="font-display bg-background-dark text-background-light">
+<body class="font-sans bg-background-light dark:bg-background-dark text-ink dark:text-background-light">
 <div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden">
 <div class="flex-grow flex flex-col">
-  <header class="fixed top-0 left-0 right-0 z-10 flex items-center p-4 bg-background-dark">
-  <button class="flex size-10 items-center justify-center rounded-full text-background-light"
+  <header class="fixed top-0 left-0 right-0 z-10 flex items-center p-4 bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm ring-1 ring-black/5 dark:ring-white/10">
+  <button class="flex size-10 items-center justify-center rounded-full text-ink dark:text-background-light"
   onclick="history.back()">
     <span class="material-symbols-outlined text-2xl"> arrow_back </span>
   </button>
@@ -56,12 +63,12 @@
   <main class="flex-grow flex flex-col items-center justify-center px-4 pt-16">
     <div class="w-full max-w-sm text-center">
       <span class="material-symbols-outlined text-7xl text-primary mb-4"> local_shipping </span>
-      <h1 class="text-2xl font-bold text-background-light mb-2">Track your order</h1>
-      <p class="text-background-light/60 mb-8">Enter your order number to see its status.</p>
+      <h1 class="text-2xl font-bold text-ink dark:text-background-light mb-2">Track your order</h1>
+      <p class="text-ink/70 dark:text-background-light/60 mb-8">Enter your order number to see its status.</p>
       <form class="space-y-4">
         <div>
           <label class="sr-only" for="order-number">Order number</label>
-          <input class="w-full bg-surface-dark border border-white/10 text-background-light placeholder:text-background-light/40 rounded-full py-3 px-4 text-center text-lg focus:ring-primary focus:border-primary" id="order-number" placeholder="e.g., LULA0123456789" type="text"/>
+          <input class="w-full bg-white/80 dark:bg-surface-dark ring-1 ring-black/5 dark:ring-white/10 text-ink dark:text-background-light placeholder:text-ink/40 dark:placeholder:text-background-light/40 rounded-full py-3 px-4 text-center text-lg focus:ring-primary focus:border-primary" id="order-number" placeholder="e.g., LULA0123456789" type="text"/>
         </div>
       </form>
     </div>
