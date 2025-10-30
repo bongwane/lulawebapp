@@ -283,7 +283,7 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.6",
+  "ratingValue": "5.0",
       "ratingCount": 1284,
       "reviewCount": 1284
     }
@@ -299,7 +299,7 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.6",
+  "ratingValue": "5.0",
       "ratingCount": 1284
     }
   }
@@ -811,13 +811,13 @@ Start your transfer
 <section id="reviews" class="py-24 md:py-20 px-4 bg-white dark:bg-background-dark border-t border-primary/20">
   <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
   <h2 class="text-3xl md:text-4xl font-bold tracking-wide" data-i18n="reviewsTitle">What our users say</h2>
-  <div class="flex items-center justify-center gap-2 text-gray-700 dark:text-gray-200 reveal slide-up" aria-label="Average rating 4.6 out of 5" data-i18n-attr="aria-label:reviewsAriaAvg">
-      <span class="material-symbols-outlined text-yellow-400">star</span>
-      <span class="material-symbols-outlined text-yellow-400">star</span>
-      <span class="material-symbols-outlined text-yellow-400">star</span>
-      <span class="material-symbols-outlined text-yellow-400">star</span>
-      <span class="material-symbols-outlined text-yellow-400">star_half</span>
-  <span class="text-sm ml-1" data-i18n="reviewsAvgText">Rated 4.6/5 on Trustpilot</span>
+  <div class="flex items-center justify-center gap-2 text-gray-700 dark:text-gray-200 reveal slide-up" aria-label="Average rating 5.0 out of 5" data-i18n-attr="aria-label:reviewsAriaAvg">
+    <span class="material-symbols-outlined text-yellow-400">star</span>
+    <span class="material-symbols-outlined text-yellow-400">star</span>
+    <span class="material-symbols-outlined text-yellow-400">star</span>
+    <span class="material-symbols-outlined text-yellow-400">star</span>
+    <span class="material-symbols-outlined text-yellow-400">star</span>
+  <span class="text-sm ml-1" data-i18n="reviewsAvgText">Rated 5.0/5 on Trustpilot</span>
     </div>
     <div id="reviewsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full"></div>
     <div id="reviewsPagination" class="flex items-center justify-center gap-3 mt-6">
@@ -1091,8 +1091,8 @@ const i18n = {
   review6Author: '— Tariro P.',
   review7Text: 'The debit card integration is seamless. Highly recommend.',
   review7Author: '— Lesedi M.',
-  reviewsAriaAvg: 'Average rating 4.6 out of 5',
-  reviewsAvgText: 'Rated 4.6/5 on Trustpilot',
+  reviewsAriaAvg: 'Average rating 5.0 out of 5',
+  reviewsAvgText: 'Rated 5.0/5 on Trustpilot',
   footerSafeguard: 'LULA partners with regulated providers; your funds are safeguarded in line with applicable laws.',
     footerPrivacy: 'Privacy Policy',
     footerTerms: 'Terms of Service',
@@ -1203,8 +1203,8 @@ const i18n = {
   review6Author: '— Тариро П.',
   review7Text: 'Интеграция с дебетовой картой бесшовная. Рекомендую.',
   review7Author: '— Леседи М.',
-  reviewsAriaAvg: 'Средняя оценка 4,6 из 5',
-  reviewsAvgText: 'Рейтинг 4,6/5 на Trustpilot',
+  reviewsAriaAvg: 'Средняя оценка 5,0 из 5',
+  reviewsAvgText: 'Рейтинг 5,0/5 на Trustpilot',
   footerSafeguard: 'LULA сотрудничает с регулируемыми провайдерами; ваши средства защищены в соответствии с применимым законодательством.',
     footerPrivacy: 'Политика конфиденциальности',
     footerTerms: 'Условия обслуживания',
@@ -2106,13 +2106,13 @@ if ('serviceWorker' in navigator) {
 // --- Reviews pagination (lazy-init) ---
 function initReviews() {
   const reviews = [
-    { textKey: 'review1Text', authorKey: 'review1Author', stars: 4.5 },
-    { textKey: 'review2Text', authorKey: 'review2Author', stars: 5 },
-    { textKey: 'review3Text', authorKey: 'review3Author', stars: 5 },
-    { textKey: 'review4Text', authorKey: 'review4Author', stars: 5 },
-    { textKey: 'review5Text', authorKey: 'review5Author', stars: 4.5 },
-    { textKey: 'review6Text', authorKey: 'review6Author', stars: 5 },
-    { textKey: 'review7Text', authorKey: 'review7Author', stars: 5 },
+  { textKey: 'review1Text', authorKey: 'review1Author', stars: 5 },
+  { textKey: 'review2Text', authorKey: 'review2Author', stars: 5 },
+  { textKey: 'review3Text', authorKey: 'review3Author', stars: 5 },
+  { textKey: 'review4Text', authorKey: 'review4Author', stars: 5 },
+  { textKey: 'review5Text', authorKey: 'review5Author', stars: 5 },
+  { textKey: 'review6Text', authorKey: 'review6Author', stars: 5 },
+  { textKey: 'review7Text', authorKey: 'review7Author', stars: 5 },
   ];
   const pageSize = 3;
   let page = 0;
