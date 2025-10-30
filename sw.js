@@ -3,7 +3,7 @@ const CACHE_NAME = 'lula-v1';
 const ASSETS = [
   '/',
   '/index.html',
-  '/index-new.html',
+  '/index-demo.html',
   '/styles/theme.css'
 ];
 self.addEventListener('install', (event) => {

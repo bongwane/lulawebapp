@@ -143,16 +143,44 @@ html:not(.dark) #balanceValue {
 .bounce-once { animation: micro-bounce 420ms cubic-bezier(.2,.8,.2,1); }
 .rotate-tilt { transform: rotate(8deg); }
 
-/* Selected speed helper: subtle neutral ring to match fee highlight */
-.speed-option.speed-selected { position: relative; }
-html:not(.dark) .speed-option.speed-selected {
-  /* Slightly darker border and inner outline for clarity on light glass */
-  border-color: rgba(0, 0, 0, 0.12) !important;
-  outline: 1px solid rgba(0, 0, 0, 0.08);
-  outline-offset: -1px;
+/* Light green highlight for selected speed (more visible than primary/10) */
+html:not(.dark) .speed-green {
+  background-color: rgba(159, 232, 112, 0.18) !important; /* ~18% */
 }
-.dark .speed-option.speed-selected {
-  border-color: rgba(255, 255, 255, 0.18) !important;
-  outline: 1px solid rgba(255, 255, 255, 0.16);
-  outline-offset: -1px;
+.dark .speed-green {
+  background-color: rgba(159, 232, 112, 0.20) !important; /* slight bump in dark */
+}
+
+/* Force dropdown menus to be light in light mode */
+html:not(.dark) #paymentMethodMenu,
+html:not(.dark) #collectionMethodMenu,
+html:not(.dark) #sendCurrencyMenu,
+html:not(.dark) #receiveCurrencyMenu {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #000 !important;
+}
+/* Light-mode dropdown item hover */
+html:not(.dark) .btn-liquid-item:hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Keyboard focus visibility for speed cards (accessibility) */
+.speed-option:focus-visible {
+  outline: 2px solid rgba(159, 232, 112, 0.35);
+  outline-offset: 2px;
+}
+html:not(.dark) #paymentMethodMenu .material-symbols-outlined,
+html:not(.dark) #collectionMethodMenu .material-symbols-outlined,
+html:not(.dark) #sendCurrencyMenu .material-symbols-outlined,
+html:not(.dark) #receiveCurrencyMenu .material-symbols-outlined,
+html:not(.dark) #paymentMethodMenu span,
+html:not(.dark) #collectionMethodMenu span,
+html:not(.dark) #sendCurrencyMenu span,
+html:not(.dark) #receiveCurrencyMenu span,
+html:not(.dark) #paymentMethodMenu .btn-liquid-item,
+html:not(.dark) #collectionMethodMenu .btn-liquid-item,
+html:not(.dark) #sendCurrencyMenu .btn-liquid-item,
+html:not(.dark) #receiveCurrencyMenu .btn-liquid-item {
+  color: #000 !important;
 }
