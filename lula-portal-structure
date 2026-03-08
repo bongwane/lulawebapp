@@ -1,1 +1,88 @@
-lula-portal-structure
+# Lula Portal – Project Structure
+
+This document describes the folder structure and conventions used after the refactor to align with common React best practices.
+
+## Directory layout
+
+```
+src/
+├── app/                    # App shell and routing
+│   ├── App.jsx             # Root component: providers + RouterProvider
+│   ├── layouts/
+│   │   └── DashboardLayout.jsx   # Shared layout for authenticated pages (header + outlet + bottom nav)
+│   └── routes/
+│       ├── ProtectedRoute.jsx     # Wraps protected pages, redirects unauthenticated users
+│       └── routes.jsx             # Route definitions (uses PATHS and DashboardLayout)
+│
+├── api/                    # API layer
+│   └── client.js           # API_URL (from env), apiFetch, getAuthHeaders, auth failure handling
+│
+├── config/                 # Static configuration (no API calls)
+│   ├── paths.js            # ROOT_PATH, PATHS (dashboard, login, sendMoney, etc.)
+│   ├── version.js          # APP_VERSION, VERSION_INFO
+│   └── translations/       # i18n (en.js, ru.js, index.js)
+│
+├── contexts/               # React Context providers
+│   ├── ThemeContext.jsx
+│   ├── LanguageContext.jsx
+│   └── CountriesContext.jsx
+│
+├── features/               # Feature-based UI and logic (barrel exports)
+│   ├── auth/               # LoginButton, etc.
+│   ├── landing/            # Header, Hero, Footer, FAQ, CTA, etc.
+│   ├── dashboard/          # DashboardHeader, BalanceCard, TransactionList, BottomNavigation, etc.
+│   └── send-money/         # SendMoneyComponent + subcomponents + hooks (useInvoice, useExchangeRate, …)
+│
+├── shared/                 # Shared UI and utilities
+│   └── forms/
+│       └── FormBuilder.jsx # Ant Design form builder
+│
+├── pages/                  # One folder per route; each exports default page component
+│   ├── landing/
+│   ├── login/
+│   ├── dashboard/
+│   ├── sendMoney/
+│   └── ...
+│
+├── hooks/                  # Global hooks (translation, wallet, orders, buy mandla invoice)
+├── utils/                  # Pure helpers: common.js (auth helpers), sendMoneyStorage.js
+├── data/                   # Mock/fixtures (e.g. transactions.js)
+├── assets/                  # Styles (theme.css), images
+├── main.jsx                # Entry: renders <App />
+└── components/             # Legacy component locations (re-exported via features/)
+```
+
+## Path alias
+
+- **`@/`** in imports resolves to **`src/`** (configured in `vite.config.js` and `jsconfig.json`).
+- Use `@/config/paths`, `@/api/client`, `@/features/dashboard`, etc., for clearer imports.
+
+## Conventions
+
+1. **Routes**  
+   - Defined in `app/routes/routes.jsx`.  
+   - Protected routes use `ProtectedRoute` and `DashboardLayout` so each page only renders its content.
+
+2. **API**  
+   - All server calls go through `api/client.js` (`apiFetch`, `API_URL`).  
+   - Base URL: set `VITE_API_URL` in `.env` (see `.env.example`).
+
+3. **Config**  
+   - Paths, version, and translations live under `config/`.  
+   - No API or routing logic in `config/`.
+
+4. **Features**  
+   - `features/*` expose components and hooks by feature (landing, dashboard, send-money, auth).  
+   - Pages import from `@/features/...` (or directly from `@/components/...` where still used).
+
+5. **Pages**  
+   - Each page under `pages/<name>/index.jsx` exports a single default component.  
+   - Protected pages only render their inner content; layout is provided by `DashboardLayout`.
+
+## Running the app
+
+- **Dev:** `npm run dev`  
+- **Build:** `npm run build`  
+- **Preview build:** `npm run preview`
+
+Ensure `.env` has `VITE_API_URL` set if you need a custom API base URL.
